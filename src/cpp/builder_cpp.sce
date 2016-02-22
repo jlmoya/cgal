@@ -6,20 +6,21 @@
 function builder_src_cpp()
 
   src_cpp_path = get_absolute_file_path('builder_cpp.sce');
-  CPPFLAGS = "";
-  LDFLAGS = ""
+  CPPFLAGS = ilib_include_flag(src_cpp_path);
 
   if getos() == "Windows" then
-    thirdparty_path = fullpath(src_cpp_path + "../../thirdparty/Windows/x64");
-    CPPFLAGS = ilib_include_flag(fullfile(thirdparty_path, "include"));
-	lib_path = fullfile(thirdparty_path, "lib");
-    LDFLAGS = fullfile(lib_path, "CGAL-vc120-mt-4.7.lib");
-    LDFLAGS = LDFLAGS + " " + fullfile(lib_path, "CGAL_ImageIO-vc120-mt-4.7.lib");
-    LDFLAGS = LDFLAGS + " " + fullfile(lib_path, "libboost_thread-vc120-mt-1_60.lib");
-    LDFLAGS = LDFLAGS + " " + fullfile(lib_path, "libboost_system-vc120-mt-1_60.lib");
-  else
-    CPPFLAGS = "-frounding-math -I" + src_cpp_path;
-    LDFLAGS = '-lCGAL -lgmp -lCGAL_ImageIO';
+  thirdparty_path = fullpath(src_cpp_path + "../../thirdparty/Windows/x64");
+      CPPFLAGS = CPPFLAGS + ilib_include_flag(fullfile(thirdparty_path, "include"));
+      lib_path = fullfile(thirdparty_path, "lib");
+      LDFLAGS = fullfile(lib_path, "CGAL-vc120-mt-4.7.lib");
+      LDFLAGS = LDFLAGS + " " + fullfile(lib_path, "CGAL_ImageIO-vc120-mt-4.7.lib");
+      LDFLAGS = LDFLAGS + " " + fullfile(lib_path, "libboost_thread-vc120-mt-1_60.lib");
+      LDFLAGS = LDFLAGS + " " + fullfile(lib_path, "libboost_system-vc120-mt-1_60.lib");
+  else      
+      thirdparty_path = fullpath(src_cpp_path + "../../thirdparty/Linux/x64");
+      CPPFLAGS = CPPFLAGS + ilib_include_flag(fullfile(thirdparty_path, "include"));
+      LDFLAGS = "-L" + fullfile(thirdparty_path, "lib");
+      LDFLAGS = LDFLAGS + " -lCGAL -lCGAL_ImageIO";
   end
 
   files_cpp = ['Constrained_Delaunay.cpp', ..

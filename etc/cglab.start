@@ -15,13 +15,13 @@ function cglablib = startModule()
   etc_tlbx  = get_absolute_file_path("cglab.start");
   etc_tlbx  = getshortpathname(etc_tlbx);
   root_tlbx = strncpy( etc_tlbx, length(etc_tlbx)-length("\etc\") );
-
+ 
   // Load macros library
   // =============================================================================
   mprintf("\tLoad macros\n");
   pathmacros = fullfile(root_tlbx, "macros");
   cglablib = lib(pathmacros);
-
+  
   // Load thirdparties
   // =============================================================================
   verboseMode = ilib_verbose();
@@ -38,7 +38,9 @@ function cglablib = startModule()
       link(fullfile(bin_path, "CGAL-vc120-mt-4.7.dll"));
       link(fullfile(bin_path, "CGAL_ImageIO-vc120-mt-4.7.dll"));
   else
-
+      lib_path = fullfile(root_tlbx, "thirdparty", "Linux", arch, "lib");
+      link(fullfile(lib_path, "libCGAL.so"));     
+      link(fullfile(lib_path, "libCGAL_ImageIO.so"));         
   end
 
   // Load gateways

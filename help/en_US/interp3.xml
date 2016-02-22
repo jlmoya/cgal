@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Edyta PRZYMUS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="interp3"><info><pubdate>September 2006</pubdate></info><refnamediv><refname>interp3</refname><refpurpose> a trilinear interplation.</refpurpose></refnamediv>
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   <refsynopsisdiv><title>Calling Sequence</title><synopsis>vp = interp3(xp,yp,zp,x,y,z,v)</synopsis></refsynopsisdiv>
+  
+   <refsection><title>Parameters</title>
+  
+      <variablelist>
+    
+         <varlistentry>
+      
+            <term>xp,yp,zp</term>
+      
+            <listitem>
+        : are two real vectors or matrices with the same size.
+      </listitem>
+    
+         </varlistentry>
+	
+         <varlistentry>
+		
+            <term>x,y,z</term>
+		
+            <listitem>
+			: strictly increasing row vectors defining the interpolation grid.
+		</listitem>
+	
+         </varlistentry>
+	
+         <varlistentry>
+		
+            <term>v</term>
+		
+            <listitem>
+			: is an hypermatrix with the values of the interpolated function at the grid points. 
+		</listitem>
+    
+         </varlistentry>
+    
+         <varlistentry>
+      
+            <term>vp</term>
+      
+            <listitem>
+        	: is a matrix containing the returned values of the interpolation.
+      </listitem>
+    
+         </varlistentry>
+  
+      </variablelist>
+  
+   </refsection>
+  
+   <refsection><title>Description</title>
+	  
+      <para>
+		  The function interp3 is a trilinear interpolation, it computes the weighted sum of the function values.
+	  </para>
+  
+   </refsection>
+  
+   <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
+func =  "v=2*(x-0.5).*(y-0.5) + 4*(z-0.5)";
+deff("v=f(x,y,z)",func);
+n = 5; 
+x = linspace(0,1,n); y=x; z=x;
+[X,Y,Z] = ndgrid(x,y,z);
+V = f(X,Y,Z);
+// compute (and display) the linear interpolant on some slices
+m = 10;
+Xp = linspace(0,1,m); Yp=Xp; Zp=Xp;
+
+Vp =  interp3(Xp,Yp,Zp, x, y, z, V);
+V_exact = f(Xp,Yp,Zp);
+		 
+norm(Vp -V_exact) < 10e-14
+ 
+  ]]></programlisting></refsection>
+  
+   <refsection><title>See Also</title><simplelist type="inline">
+	  
+	  
+      <member>
+         <link linkend="interp2">interp2</link>
+      </member>
+  
+   </simplelist></refsection>
+  
+   <para>for more details see <ulink url="http://www.cgal.org/Manual/3.2/doc_html/cgal_manual/Interpolation_ref/Function_linear_interpolation.html">CGAL Manual.</ulink>
+   </para>
+  
+   <para>
+  This function uses the Interpolation package of CGAL, which is under QPL license. See <ulink url="http://www.cgal.org/index2.html"> License Terms</ulink>
+  
+   </para> 
+  
+   <refsection><title>Authors</title><simplelist type="vert">
+    
+      <member>Naceur MESKINI.</member>
+  
+   </simplelist></refsection>
+
+</refentry>

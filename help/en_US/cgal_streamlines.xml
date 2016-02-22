@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Edyta PRZYMUS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cgal_streamlines"><info><pubdate>September 2006</pubdate></info><refnamediv><refname>cgal_streamlines</refname><refpurpose> Plots data returned by stream_2.</refpurpose></refnamediv>
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   <refsynopsisdiv><title>Calling Sequence</title><synopsis>streamlines(cell)</synopsis></refsynopsisdiv>
+  
+   <refsection><title>Parameters</title>
+  
+      <variablelist>
+    
+         <varlistentry>
+      
+            <term>cell </term>
+      
+            <listitem>
+        : is cell array containing the streamlines.
+      </listitem>
+    
+         </varlistentry>
+  
+      </variablelist>
+  
+   </refsection>
+  
+   <refsection><title>Description</title>
+	  
+      <para>
+		  This function plots the streamlines computed by cgal_stream_2.
+	  </para>
+  
+   </refsection>
+  
+   <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
+p=cglab_getrootpath();
+load(p+"/demos/field","u","v");
+c = cgal_stream_2(u,v,3.5);
+cgal_streamlines(c);
+ 
+  ]]></programlisting></refsection>
+   <mediaobject><imageobject><imagedata align="center" fileref="../images/stream2.png"/></imageobject></mediaobject>
+  
+   <refsection><title>See Also</title><simplelist type="inline">
+	  
+      <member>
+         <link linkend="cgal_stream_2">stream_2</link>
+      </member>
+  
+   </simplelist></refsection>
+  
+   <refsection><title>Authors</title><simplelist type="vert">
+    
+      <member>Naceur Meskini and Enrico Segre.</member>
+  
+   </simplelist></refsection>
+
+</refentry>

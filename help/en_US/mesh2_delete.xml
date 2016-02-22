@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Edyta PRZYMUS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mesh2_delete"><info><pubdate>November 2005</pubdate></info><refnamediv><refname>mesh2_delete</refname><refpurpose> Delete a pointer that represent mesh2.</refpurpose></refnamediv>
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   <refsynopsisdiv><title>Calling Sequence</title><synopsis>mesh2_delete(ptr,"ptr")
+mesh2_delete()</synopsis></refsynopsisdiv>
+
+   <refsection><title>Parameters</title>
+	
+      <variablelist>
+		
+         <varlistentry>
+			
+            <term>ptr</term>
+			
+            <listitem>
+				: is a pointer representing mesh2 to be deleted.
+			</listitem>
+		
+         </varlistentry>
+	
+      </variablelist>
+
+   </refsection>
+
+   <refsection><title>Description</title>
+	
+      <para>
+		Given a pointer ptr of mesh2, mesh2_delete(ptr,"ptr") frees the memory hold by the pointer ptr and clears ptr in Scialb interpreter.
+		If no parameters are given to mesh2_delete(), then all pointers of differents mesh2 will be deleted.
+	</para>
+
+   </refsection>
+
+   <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
+C=[1 1 5 1; 5 1 7 3; 7 3 4 4; 4 4 3 6; 3 6 1 5; 1 5 1 1;...
+5 2 5 3; 5 3 3 4; 3 4 2 2; 2 2 5 2];
+[coord,tri,ptr]= mesh_2(C);
+mesh2_set_seeds(ptr,3.5,2.5);
+tri = mesh2_get_connectivity(ptr);
+coord = mesh2_get_coord(ptr);
+clf();
+[nbtri,nb] = size(tri);
+tri = [tri tri(:,1)];
+x=coord(:,1)';
+y=coord(:,2)';
+for k = 1:nbtri
+plot2d(x(tri(k,:)),y(tri(k,:)),style = 2);
+end
+mesh2_delete(ptr,"ptr"); // ptr is deleted here and cleared from scilab interpreter.
+ptr
+//example 2:
+[coord,tri,ptr1]= mesh_2(C);
+clear ptr1; // ptr1 is cleared from the sciab interpreter, but the memory is not freed yet.
+mesh2_delete(); // all pointers of mesh2 will be deleted.
+
+]]></programlisting></refsection>
+
+   <refsection><title>See Also</title><simplelist type="inline">
+	
+      <member>
+         <link linkend="mesh_2">mesh_2</link>
+      </member>
+	
+      <member>
+         <link linkend="mesh2_set_seeds">mesh2_set_seeds</link>
+      </member>
+	
+      <member>
+         <link linkend="mesh2_get_connectivity">mesh2_get_connectivity</link>
+      </member>
+	
+      <member>
+         <link linkend="mesh2_refine">mesh2_refine</link>
+      </member>
+	
+      <member>
+         <link linkend="mesh2_get_coord">mesh2_get_coord</link>
+      </member>
+
+   </simplelist></refsection>
+ 
+   <para>
+This function uses the Mesh_2 package of CGAL, which is under QPL license. See <ulink url="http://www.cgal.org/index2.html">License Terms</ulink>
+
+   </para>   
+
+   <refsection><title>Authors</title><simplelist type="vert">
+	
+      <member>Naceur MESKINI.</member>
+
+   </simplelist></refsection>
+
+</refentry>

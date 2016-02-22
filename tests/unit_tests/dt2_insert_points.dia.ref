@@ -1,0 +1,36 @@
+// Copyright (C) 2011 - Edyta Przymus
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+x = rand(1,10);
+y = rand(1,10);
+[tri,ptr] = delaunay_2(x,y);
+new_x = rand(1,10);
+new_y = rand(1,10);
+dt2_insert_points(ptr,new_x,new_y);
+//checking what error will be produced with wrong types of inputs
+assert_checkerror("dt2_insert_points(x,x,y)","%s: Wrong type for input argument #%d: A pointer expected.",999,"dt2_insert_points",1);
+assert_checkerror("dt2_insert_points(ptr,ptr,y)","%s: Wrong type for input argument #%d: A vector expected.",999,"dt2_insert_points",2);
+assert_checkerror("dt2_insert_points(ptr,x,ptr)","%s: Wrong type for input argument #%d: A vector expected.",999,"dt2_insert_points",3);
+//checking what error will be produced with wrong number of inputs
+assert_checkerror("dt2_insert_points(ptr,x)","%s: Wrong number of input argument(s): %d expected.",77,"dt2_insert_points",3);
+//testing what error message is produced when inputs have wrong size
+x = rand(1,10);
+y = rand(1,10);
+[tri1,ptr] = delaunay_2(x,y);
+new_x = rand(1,10);
+new_y = rand(1,8);  
+assert_checkerror("dt2_insert_points(ptr,new_x,new_y)","%s: Incompatible inputs.",999,"dt2_insert_points");
+//testing if computed outputs are the same as expected
+x=[ 0.9058    0.1270    0.9134    0.6324   0.0975  0.9058    0.1270    0.9134    0.6324    0.0975];
+y=[ 0.9706    0.9572    0.4854    0.8003   0.1419  0.4218    0.9157    0.7922    0.9595    0.6557];
+[tri,ptr] = delaunay_2(x,y);
+new_x=[0.2113249    0.7560439];
+new_y=[0.0002211    0.3303271];
+dt2_insert_points(ptr,new_x,new_y);
+new_tri = dt2_get_connectivity(ptr);
+new_tri1=int32([7  2   10;9  2   7;8   1   4;8  4   3;4   10  12;4   12  3;4   7   10;4  9   7;1   9  4;1   2  9;12   10   5;5   11  12;3   12   6]);
+assert_checkequal(new_tri, new_tri1);

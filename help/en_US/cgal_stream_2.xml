@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Edyta PRZYMUS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cgal_stream_2"><info><pubdate>September 2006</pubdate></info><refnamediv><refname>cgal_stream_2</refname><refpurpose> Computes the streamlines of a given regular vector field.</refpurpose></refnamediv>
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   <refsynopsisdiv><title>Calling Sequence</title><synopsis>cell = cgal_stream_2(u,v,sd,[step])</synopsis></refsynopsisdiv>
+  
+   <refsection><title>Parameters</title>
+  
+      <variablelist>
+    
+         <varlistentry>
+      
+            <term>u,v</term>
+      
+            <listitem>
+        : are two vectors representing the vector field.
+      </listitem>
+    
+         </varlistentry>
+	
+         <varlistentry>
+		
+            <term>sd</term>
+		
+            <listitem>
+			: is the separating distance allowed between two streamlines.
+		</listitem>
+	
+         </varlistentry>
+	
+         <varlistentry>
+		
+            <term>step</term>
+		
+            <listitem>
+			: is the intergration step, by default it is fixed to 1.
+		</listitem>
+    
+         </varlistentry>
+    
+         <varlistentry>
+      
+            <term>cell </term>
+      
+            <listitem>
+        	: is cell array containing the streamlines.
+      </listitem>
+    
+         </varlistentry>
+  
+      </variablelist>
+  
+   </refsection>
+  
+   <refsection><title>Description</title>
+	  
+      <para>
+		  Creates a placement of streamlines according to a specified density and gives access to those streamlines via a cell array.
+	  </para>
+  
+   </refsection>
+  
+   <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
+p=cglab_getrootpath();
+load(p+"/demos/field","u","v");
+c = cgal_stream_2(u,v,1.5);
+ 
+  ]]></programlisting></refsection>
+  
+   <refsection><title>See Also</title><simplelist type="inline">
+	  
+      <member>
+         <link linkend="cgal_streamlines">cgal_streamlines</link>
+      </member>
+  
+   </simplelist></refsection>
+  
+   <para>for more details see <ulink url="http://www.cgal.org/Manual/3.2/doc_html/manual/Stream_lines_2_ref/Class_Stream_lines_2.html">CGAL Manual.</ulink>
+   </para>
+  
+   <para>
+  This function uses the Streamlines package of CGAL, which is under QPL license. See <ulink url="http://www.cgal.org/index2.html"> License Terms</ulink>
+  
+   </para> 
+  
+   <refsection><title>Authors</title><simplelist type="vert">
+    
+      <member>Naceur MESKINI.</member>
+  
+   </simplelist></refsection>
+
+</refentry>

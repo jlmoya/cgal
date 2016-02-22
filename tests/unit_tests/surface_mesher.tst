@@ -1,0 +1,26 @@
+// Copyright (C) 2011 - Edyta Przymus
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+//checking what error will be produced with wrong file as an input
+p=cglab_getrootpath();
+image_1= p+"/demos/skull_2.9";
+bounded_sphere = [122.0 102.0 117.0 200.0*200.0*2.0];
+mesh_criteria = [30 5 5];
+assert_checkerror("[tri, coord] = surface_mesher(image_1,2.9,bounded_sphere,mesh_criteria)","%s: Incorrect file or format.",49,"surface_mesher");
+image_1= p+"/demos/delaunay_2.dem.sce";
+assert_checkerror("[tri, coord] = surface_mesher(image_1,2.9,bounded_sphere,mesh_criteria)","%s: Incorrect file or format.",49,"surface_mesher");
+
+image_1= p+"/demos/skull_2.9.inr";
+//checking what error will be produced with wrong number of inputs
+assert_checkerror("surface_mesher(image_1,2.9,bounded_sphere)","%s: Wrong number of input argument(s): %d expected.",77,"surface_mesher",4);
+
+//checking what error will be produced with wrong types of inputs
+assert_checkerror("[tri1,coord1] = surface_mesher(2.9,2.9,bounded_sphere,mesh_criteria);","%s: Wrong type for input argument #%d: A string expected.",999,"surface_mesher",1);
+assert_checkerror("[tri1,coord1] = surface_mesher(image_1,image_1,bounded_sphere,mesh_criteria);","%s: Wrong type for input argument #%d: A vector expected.",999,"surface_mesher",2);
+assert_checkerror("[tri1,coord1] = surface_mesher(image_1,2.9,image_1,mesh_criteria);","%s: Wrong type for input argument #%d: A vector expected.",999,"surface_mesher",3);
+assert_checkerror("[tri1,coord1] = surface_mesher(image_1,2.9,bounded_sphere,image_1);","%s: Wrong type for input argument #%d: A vector expected.",999,"surface_mesher",4);

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Edyta PRZYMUS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+ <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="delaunay_3"><info><pubdate>November 2005</pubdate></info><refnamediv><refname>delaunay_3</refname><refpurpose> Delaunay triangulation of a set of points in 3d space.</refpurpose></refnamediv>
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   <refsynopsisdiv><title>Calling Sequence</title><synopsis>[tri [,ptr] ] = delaunay_3(x,y,z);</synopsis></refsynopsisdiv>
+  
+   <refsection><title>Parameters</title>
+  
+      <variablelist>
+    
+         <varlistentry>
+      
+            <term>x , y ,z</term>
+      
+            <listitem>
+        : are vectors of points coordinates.
+      </listitem>
+    
+         </varlistentry>
+        
+         <varlistentry>
+            
+            <term>tri</term>
+            
+            <listitem>
+                : is (nbtriangles,4) array, Each row of tri defines one tetraedral and contains indices into (x,y,z).
+            </listitem>
+    
+         </varlistentry>
+    
+         <varlistentry>
+      
+            <term>ptr </term>
+      
+            <listitem>
+        : is a pointer representing the Delaunay triangulation, dt3. The associated functions of Delaunay triangulation that using "ptr"
+        are:
+            - <link linkend="dt3_insert_points">dt3_insert_points</link>
+            - <link linkend="dt3_remove_points">dt3_remove_points</link>
+            - <link linkend="dt3_get_connectivity">dt3_get_connectivity</link>
+            - <link linkend="dt3_delete">dt3_delete</link>
+      
+            </listitem>
+    
+         </varlistentry>
+  
+      </variablelist>
+  
+   </refsection>
+  
+   <refsection><title>Description</title>
+      
+      <para>
+        A Delaunay triangulation of a set of points is a triangulation of the sets of points that fulfills the following empty circle property (also called Delaunay property): the circumscribing circle of any facet of the triangulation contains no point of the set in its interior. For a point set with no case of cocircularity of more than three points, the Delaunay triangulation is unique, it is the dual of the Voronoi diagram of the points.
+      </para>
+  
+   </refsection>
+  
+   <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
+
+x =rand(1,10);
+y =rand(1,10);
+z =rand(1,10);
+tri = delaunay_3(x,y,z)
+// use the pointer if you want to interact with dt3.
+[tri,ptr] = delaunay_3(x,y,z);
+dt3_insert_points(ptr,rand(1,100),rand(1,100),rand(1,100));
+new_tri = dt3_get_connectivity(ptr);
+dt3_delete(ptr,"ptr");
+size(new_tri)
+
+ 
+  ]]></programlisting></refsection>
+  
+   <refsection><title>See Also</title><simplelist type="inline">
+    
+      <member>
+         <link linkend="delaunay_2">delaunay_2</link>
+      </member>
+    
+      <member>
+         <link linkend="delaunay_n">delaunay_n</link>
+      </member>
+  
+      <member>
+         <link linkend="constrained_delaunay_2">constrained_delaunay_2</link>
+      </member>
+  
+   </simplelist></refsection>
+    
+   <para>For more details see<ulink url="http://www.cgal.org/Manual/doc_html/cgal_manual/Triangulation_3_ref/Class_Delaunay_triangulation_3.html"> CGAL Manual.</ulink>
+   </para>
+  
+   <para>
+  This function uses the Triangulation_3 package of CGAL, which is under QPL license. See <ulink url="http://www.cgal.org/index2.html">License Terms</ulink>
+  
+   </para>
+  
+   <refsection><title>Authors</title><simplelist type="vert">
+    
+      <member>Naceur MESKINI</member>
+  
+   </simplelist></refsection>
+
+</refentry>

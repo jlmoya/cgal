@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Edyta PRZYMUS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dt2_remove_points"><info><pubdate>November 2005</pubdate></info><refnamediv><refname>dt2_remove_points</refname><refpurpose> Remove the existante points from dt2. </refpurpose></refnamediv>
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   <refsynopsisdiv><title>Calling Sequence</title><synopsis>dt2_remove_points(ptr,x,y);</synopsis></refsynopsisdiv>
+  
+   <refsection><title>Parameters</title>
+  
+      <variablelist>
+    
+         <varlistentry>
+      
+            <term>x , y </term>
+      
+            <listitem>
+        : are vectors of coordinates of points to remove from dt2.
+      </listitem>
+    
+         </varlistentry>
+        
+         <varlistentry>
+            
+            <term>ptr</term>
+            
+            <listitem>
+                : is a pointer representing dt2.
+            </listitem>
+    
+         </varlistentry>
+  
+      </variablelist>
+  
+   </refsection>
+  
+   <refsection><title>Description</title>
+    
+      <para>
+    Given a pointer ptr of dt2, dt2_remove_points(ptr,x,y) removes (x,y) points from dt2.  
+    </para>
+  
+   </refsection>
+  
+   <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
+
+x = rand(1,10);
+y = rand(1,10);
+[tri,ptr] = delaunay_2(x,y);
+dt2_remove_points(ptr,x,y);
+new_tri = dt2_get_connectivity(ptr)
+dt2_delete(ptr,"ptr");
+ 
+  ]]></programlisting></refsection>
+  
+   <refsection><title>See Also</title><simplelist type="inline">
+    
+      <member>
+         <link linkend="delaunay_2">delaunay_2</link>
+      </member>
+    
+      <member>
+         <link linkend="dt2_get_connectivity">dt2_get_connectivity</link>
+      </member>
+    
+      <member>
+         <link linkend="dt2_insert_points">dt2_insert_points</link>
+      </member>
+    
+      <member>
+         <link linkend="dt2_delete">dt2_delete</link>
+      </member>
+  
+   </simplelist></refsection>
+   
+   <para>
+  This function uses the Triangulation_2 package of CGAL, which is under QPL license. See <ulink url="http://www.cgal.org/index2.html"> License Terms</ulink>
+  
+   </para> 
+  
+   <refsection><title>Authors</title><simplelist type="vert">
+    
+      <member>Naceur MESKINI.</member>
+  
+   </simplelist></refsection>
+
+</refentry>

@@ -1,0 +1,44 @@
+// Copyright (C) 2011 - Edyta Przymus
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ 
+
+//checking what error will be produced with wrong types of inputs
+x = [0.5878720    0.4829179    0.2232865    0.8400886    0.1205996];
+y = [0.2855364    0.8607515    0.8494102    0.5257061    0.9931210];
+z = [0.6488563    0.9923191    0.0500420    0.7485507    0.4104059];
+points = [x' y' z'];
+[tri,ptr] = delaunay_n(points);
+new_x = [0.6084526    0.8544211];
+new_y = [0.0642647    0.8279083];
+new_z = [0.9262344    0.5667211];
+new_points = [new_x' new_y' new_z'];
+assert_checkerror("dtn_insert_points(new_points,new_points)","%s: Wrong type for input argument #%d: A pointer expected.",999,"dtn_insert_points",1);
+assert_checkerror("dtn_insert_points(ptr,ptr)","%s: Wrong type for input argument #%d: A vector expected.",999,"dtn_insert_points",2);
+
+//checking what error will be produced with wrong number of inputs
+assert_checkerror("dtn_insert_points(ptr)","%s: Wrong number of input argument(s): %d expected.",77,"dtn_insert_points",2);
+
+//checking if computed outputs are the same as expected
+x1 = [0.2855364    0.8607515    0.8494102    0.5257061    0.9931210    0.6488563];
+y1 = [0.9923191    0.0500420    0.7485507    0.4104059    0.6084526    0.8544211];
+z1 = [0.0642647    0.8279083    0.9262344    0.5667211    0.5711639    0.8160110];
+t1 = [0.0568928    0.5595937    0.1249340    0.7279222    0.2677766    0.5465335];
+S = [x1' y1' z1' t1'];
+[tes,ptr] = delaunay_n(S);
+xx=[0.2113249    0.7560439];
+yy=[0.0002211    0.3303271];
+zz=[0.6653811    0.6283918];
+tt=[0.8497452    0.6857310];
+new_S=[xx' yy' zz' tt'];
+dtn_insert_points(ptr,new_S);
+new_tes = dtn_get_connectivity(ptr);
+new_tes1=int32([1  3  4  5  6;1  2  3  4  5;6  2  3  4  7;1  6  3  4  7;1  2  3  4  7;6  3  4  5  8;2  3  6  5  8;2  3  4  6  8;2  3  4  5  8;6  2  4  7  8;1  6  4  5  8;1  2  4  7  8;1  2  4  5  8]);
+new_tes11=int32([1  4  3  8  4;3  7  4  2  5;4  1  5  3  8;5  6  8  4  1;6  3  2  5  2;1  4  3  8  4;2  7  6  6  7 ;3  1  5  2  8;4  2  8  4  1;5  3  2  7  2;6  4  3  8  4;2  7  4  1  5;3  6  6  6  8]);
+bool1=(new_tes==new_tes1);
+bool2=(new_tes==new_tes11);
+assert_checktrue(bool1|bool2);

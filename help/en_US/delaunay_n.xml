@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Edyta PRZYMUS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+ <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="delaunay_n"><info><pubdate>November 2005</pubdate></info><refnamediv><refname>delaunay_n</refname><refpurpose>Delaunay triangulation of a set of points in some n-dimensional space</refpurpose></refnamediv>
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   <refsynopsisdiv><title>Calling Sequence</title><synopsis>[tes,ptr]=delaunay_n(S);</synopsis></refsynopsisdiv>
+  
+   <refsection><title>Parameters</title>
+  
+      <variablelist>
+    
+         <varlistentry>
+      
+            <term>S</term>
+      
+            <listitem>
+        :  is an (m,n) array representing m points in n-D space.
+      </listitem>
+    
+         </varlistentry>
+    
+         <varlistentry>
+      
+            <term>tes</term>
+      
+            <listitem>
+        :  is a (nbsimplices,dcur+1) array where each row contains the indices into S of the vertices of the corresponding simplex, where
+            dcur is the affine dimension of S and nbsimplices is the number of simplices.
+      </listitem>
+    
+         </varlistentry>
+  
+         <varlistentry>
+      
+            <term>ptr</term>
+      
+            <listitem>
+         : is a pointer representing the Delaunay triangulation, dtn. The associated functions of Delaunay triangulation that using "ptr"
+        are:
+            <link linkend="dtn_insert_points">dtn_insert_points</link>, <link linkend="dtn_get_connectivity">dtn_get_connectivity</link> and <link linkend="dtn_delete">dtn_delete</link>
+      
+            </listitem>
+    
+         </varlistentry>
+  
+      </variablelist>
+  
+   </refsection>
+  
+   <refsection><title>Description</title>
+    
+      <para>
+tes = delaunay_n(S) is a Delaunay triangulation of a set S of points in some n-dimensional space. We call S the underlying point set and n the dimension of the underlying space.
+A Delaunay triangulation is a simplicial complex. All simplices in the Delaunay triangulation have dimension dcur. In the nearest site Delaunay triangulation the circumsphere of any simplex in the triangulation contains no point of S in its interior. In the furthest site Delaunay triangulation the circumsphere of any simplex contains no point of S in its exterior. If the points in S are co-circular then any triangulation of S is a nearest as well as a furthest site Delaunay triangulation of S.
+    </para>
+  
+   </refsection>
+  
+   <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
+x = rand(1,10);
+y = rand(1,10);
+z = rand(1,10);
+t = rand(1,10);
+w = rand(1,10);
+S = [x' y' z' t' w'];
+tes = delaunay_n(S)
+
+ 
+  ]]></programlisting></refsection>
+  
+   <refsection><title>See Also</title><simplelist type="inline">
+    
+      <member>
+         <link linkend="delaunay_2">delaunay_2</link>
+      </member>
+    
+      <member>
+         <link linkend="delaunay_3">delaunay_3</link>
+      </member>
+    
+      <member>
+         <link linkend="constrained_delaunay_2">constrained_delaunay_2</link>
+      </member>
+  
+   </simplelist></refsection>
+    
+   <para>For more details see <ulink url="http://www.cgal.org/Manual/doc_html/cgal_manual/Convex_hull_d_ref/Class_Delaunay_d.html"> CGAL Manual.</ulink>
+    
+   </para>
+
+   <para> Remark: you may experience robustness problems (errors, loops) because this cglab function does not yet make use of CGAL's exactness features. </para>
+  
+   <para>
+    This function uses the Convex_hull_d package of CGAL, which is under the QPL license. See <ulink url="http://www.cgal.org/index2.html">License Terms</ulink>
+  
+   </para>
+  
+   <refsection><title>Authors</title><simplelist type="vert">
+    
+      <member>Naceur MESKINI.</member>
+  
+   </simplelist></refsection>
+
+</refentry>

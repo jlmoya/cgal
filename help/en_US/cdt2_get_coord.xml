@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Edyta PRZYMUS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cdt2_get_coord"><info><pubdate>November 2005</pubdate></info><refnamediv><refname>cdt2_get_coord</refname><refpurpose>Get coordinates of vertices of cdt2.</refpurpose></refnamediv>
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   <refsynopsisdiv><title>Calling Sequence</title><synopsis>coord = cdt2_get_coord(ptr)</synopsis></refsynopsisdiv>
+  
+   <refsection><title>Parameters</title>
+  
+      <variablelist>
+    
+         <varlistentry>
+      
+            <term>coord</term>
+      
+            <listitem>
+        : is (nbvertices,2) array defininig (x,y) coordinates of vertices of cdt2.
+      </listitem>
+    
+         </varlistentry>
+        
+         <varlistentry>
+            
+            <term>ptr</term>
+            
+            <listitem>
+                : is a pointer representing cdt2.
+            </listitem>
+    
+         </varlistentry>
+  
+      </variablelist>
+  
+   </refsection>
+  
+   <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
+x = [5 1 6];
+y = [2 6 6];
+C=[8.    2.     7.    4.;6.    4.5    4.    5.;3.    6.     3.    7.;3.    4.     2.    3.;9.    4.     8.    7.];
+[tri,ptr] = constrained_delaunay_2(x,y,C);
+coord = cdt2_get_coord(ptr) 
+cdt2_delete(ptr,"ptr");
+ 
+  ]]></programlisting></refsection>
+  
+   <refsection><title>See Also</title><simplelist type="inline">
+    
+      <member>
+         <link linkend="cdt2_insert_constraints">cdt2_insert_constraints</link>
+      </member>
+    
+      <member>
+         <link linkend="cdt2_remove_constraints">cdt2_remove_constraints</link>
+      </member>
+    
+      <member>
+         <link linkend="cdt2_insert_points">cdt2_insert_points</link>
+      </member>
+    
+      <member>
+         <link linkend="cdt2_remove_points">cdt2_remove_points</link>
+      </member>
+    
+      <member>
+         <link linkend="cdt2_get_connectivity">cdt2_get_connectivity</link>
+      </member>
+    
+      <member>
+         <link linkend="cdt2_delete">cdt2_delete</link>
+      </member>
+  
+   </simplelist></refsection>
+ 
+   <para>
+This function uses the Triangulation_2 package of CGAL, which is under QPL license. See <ulink url="http://www.cgal.org/index2.html">License Terms</ulink>
+
+   </para> 
+  
+   <refsection><title>Authors</title><simplelist type="vert">
+    
+      <member>N.Meskini</member>
+  
+   </simplelist></refsection>
+
+</refentry>

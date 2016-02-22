@@ -1,0 +1,55 @@
+// Copyright (C) 2011 - Edyta Przymus
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+//checking if computed outputs are the same as expected
+
+Vp1=[-1.5  -1.25308641975308643  -0.9567901234567904  -0.61111111111111116  -0.21604938271604951    0.22839506172839527    0.72222222222222188 1.26543209876543217    1.858024691358024    2.5];
+func =  "v=2*(x-0.5).*(y-0.5) + 4*(z-0.5)";
+deff("v=f(x,y,z)",func);
+n = 5; 
+x = linspace(0,1,n); y=x; z=x;
+[X,Y,Z] = ndgrid(x,y,z);
+V = f(X,Y,Z);
+m = 10;
+Xp = linspace(0,1,m); Yp=Xp; Zp=Xp;
+Vp = interp3(Xp,Yp,Zp, x, y, z, V);
+format("v",17);
+assert_checkalmostequal(Vp,Vp1);
+
+//checking what error will be produced with wrong number of inputs
+assert_checkerror("Vp = interp3(Xp,Yp,Zp, x, y, z);","%s: Wrong number of input argument(s): %d expected.",77,"interp3",7);
+
+//checking what error will be produced with wrong types of inputs
+assert_checkerror("Vp = interp3(V,Yp,Zp, x, y, z, V)","%s: Wrong type for input argument #%d: A matrix expected.",999,"interp3",1);
+assert_checkerror("Vp = interp3(Xp,V,Zp, x, y, z, V)","%s: Wrong type for input argument #%d: A matrix expected.",999,"interp3",2);
+assert_checkerror("Vp = interp3(Xp,Yp,V, x, y, z, V)","%s: Wrong type for input argument #%d: A matrix expected.",999,"interp3",3);
+assert_checkerror("Vp = interp3(Xp,Yp,Zp, V, y, z, V)","%s: Wrong type for input argument #%d: A vector expected.",999,"interp3",4);
+assert_checkerror("Vp = interp3(Xp,Yp,Zp, x, V, z, V)","%s: Wrong type for input argument #%d: A vector expected.",999,"interp3",5);
+assert_checkerror("Vp = interp3(Xp,Yp,Zp, x, y, V, V)","%s: Wrong type for input argument #%d: A vector expected.",999,"interp3",6);
+
+//checking what error will be produced with wrong size of inputs
+func =  "v=2*(x-0.5).*(y-0.5) + 4*(z-0.5)";
+deff("v=f(x,y,z)",func);
+n = 5; 
+x = linspace(0,1,n); y=linspace(0,1,4); z=x;
+[X,Y,Z] = ndgrid(x,y,z);
+V = f(X,Y,Z);
+m = 10;
+Xp = linspace(0,1,m); Yp=Xp; Zp=Xp;
+assert_checkerror("interp3(Xp,Yp,Zp, x, y, z, V)","%s: bad inputs for x, y, z ",999,"interp3");
+y=rand(3,3);
+assert_checkerror("interp3(Xp,Yp,Zp, x, y, z, V)","%s: row vectors expected",999,"interp3");
+func =  "v=2*(x-0.5).*(y-0.5) + 4*(z-0.5)";
+deff("v=f(x,y,z)",func);
+n = 5; 
+x = linspace(0,1,n); y=x; z=x;
+[X,Y,Z] = ndgrid(x,y,z);
+V = f(X,Y,Z);
+m = 10;
+Xp = linspace(0,1,m); Yp=linspace(0,1,8); Zp=Xp;
+assert_checkerror("interp3(Xp,Yp,Zp, x, y, z, V)","%s: bad inputs for xp, yp, zp ",999,"interp3");

@@ -1,0 +1,69 @@
+// ====================================================================
+// Edyta PRZYMUS
+// Allan CORNET - DIGITEO - 2011
+// Scilab Enterprises - 2015
+// ====================================================================
+function cglablib = startModule()
+
+  mprintf("Start CG-lab\n");
+
+  if isdef("cglablib") then
+    warning("CG-lab library is already loaded");
+    return;
+  end
+
+  etc_tlbx  = get_absolute_file_path("cglab.start");
+  etc_tlbx  = getshortpathname(etc_tlbx);
+  root_tlbx = strncpy( etc_tlbx, length(etc_tlbx)-length("\etc\") );
+
+  // Load macros library
+  // =============================================================================
+  mprintf("\tLoad macros\n");
+  pathmacros = fullfile(root_tlbx, "macros");
+  cglablib = lib(pathmacros);
+
+  // Load thirdparties
+  // =============================================================================
+  verboseMode = ilib_verbose();
+  ilib_verbose(0);
+
+  mprintf("\tLoad thirdparties\n");
+  [version, opts] = getversion();
+  arch = opts(2);
+  if getos() == "Windows" then
+      bin_path = fullfile(root_tlbx, "thirdparty", "Windows", arch, "bin");
+      link(fullfile(bin_path, "boost_system-vc120-mt-1_60.dll"));
+      link(fullfile(bin_path, "boost_chrono-vc120-mt-1_60.dll"));
+      link(fullfile(bin_path, "boost_thread-vc120-mt-1_60.dll"));
+      link(fullfile(bin_path, "CGAL-vc120-mt-4.7.dll"));
+      link(fullfile(bin_path, "CGAL_ImageIO-vc120-mt-4.7.dll"));
+  else
+
+  end
+
+  // Load gateways
+  // =============================================================================
+  mprintf("\tLoad gateways\n");
+  exec(fullfile(root_tlbx, "sci_gateway", "loader_gateway.sce"));
+
+  // Load help chapter
+  // =============================================================================
+  if or(getscilabmode() == ["NW";"STD"]) then
+    mprintf("\tLoad help\n");
+    path_addchapter = fullfile(root_tlbx, "jar");
+    if (isdir(path_addchapter) <> []) then
+      add_help_chapter("CG-lab", path_addchapter, %F);
+    end
+  end
+
+  // Load demos
+  // =============================================================================
+  if or(getscilabmode() == ["NW";"STD"]) then
+    mprintf("\tLoad demos\n");
+    add_demo("CG-lab", fullfile(root_tlbx, "demos", "cglab.dem.gateway.sce"));
+  end
+
+endfunction
+
+cglablib = startModule();
+clear startModule;

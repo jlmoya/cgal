@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Edyta PRZYMUS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dtn_get_connectivity"><info><pubdate>November 2005</pubdate></info><refnamediv><refname>dtn_get_connectivity</refname><refpurpose> Get the connectivity of dtn</refpurpose></refnamediv>
+	
+   
+	
+   
+	
+   
+	
+   
+	
+   
+	
+   <refsynopsisdiv><title>Calling Sequence</title><synopsis>tes = dtn_get_connectivity(ptr);</synopsis></refsynopsisdiv>
+	
+   <refsection><title>Parameters</title>
+		
+      <variablelist>
+			
+         <varlistentry>
+				
+            <term>ptr</term>
+				
+            <listitem>
+					: is a pointer representing dtn.
+				</listitem>
+			
+         </varlistentry>
+			
+         <varlistentry>
+				
+            <term>tes</term>
+				
+            <listitem>
+					: is a (nbsimplices,dcur+1) array where each row contains the indices of the vertices of the corresponding simplex, where dcur is the affine dimension of a set of points witch ptr is computed from, and nbsimplices is the number of simplices.
+				</listitem>
+			
+         </varlistentry>
+		
+      </variablelist>
+	
+   </refsection>
+	
+   <refsection><title>Description</title>
+		
+      <para>
+			Given a pointer ptr of dtn, tri = dtn_get_connectivity (ptr) allows to get the connectivity of dtn.
+		</para>
+	
+   </refsection>
+	
+   <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+x = rand(1,10);
+y = rand(1,10);
+points=[x' y'];
+[tri,ptr] = delaunay_n(points);
+new_x = rand(1,10);
+new_y = rand(1,10);
+new_points=[new_x' new_y']
+dtn_insert_points(ptr,new_points);
+new_tri = dtn_get_connectivity(ptr);
+dtn_delete(ptr,"ptr");
+new_tri
+]]></programlisting></refsection>
+	
+   <refsection><title>See Also</title><simplelist type="inline">
+		
+      <member>
+         <link linkend="delaunay_2">delaunay_2</link>
+      </member>
+		
+      <member>
+         <link linkend="dtn_insert_points">dtn_insert_points</link>
+      </member>
+		
+      <member>
+         <link linkend="dtn_delete">dtn_delete</link>
+      </member>
+	
+   </simplelist></refsection>
+  
+   <para>
+  This function uses the Convex_hull_d package of CGAL, which is under QPL license. See <ulink url="http://www.cgal.org/index2.html">License Terms</ulink>
+  
+   </para>
+	
+   <refsection><title>Authors</title><simplelist type="vert">
+		
+      <member>Naceur MESKINI.</member>
+	
+   </simplelist></refsection>
+
+</refentry>

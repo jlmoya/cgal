@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Edyta PRZYMUS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="surface_mesher"><info><pubdate>September 2006</pubdate></info><refnamediv><refname>surface_mesher</refname><refpurpose> Meshes a surface defined as a grey level in a 3D image</refpurpose></refnamediv>
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   <refsynopsisdiv><title>Calling Sequence</title><synopsis>[connect,coord]=surface_mesher(image,iso_value,bounded_sphere,mesh_criteria)</synopsis></refsynopsisdiv>
+  
+   <refsection><title>Parameters</title>
+  
+      <variablelist>
+    
+         <varlistentry>
+	
+            <term>image</term>
+      
+            <listitem>
+		  : is a string telling the path of the 3D image. This function supports several types of 3D images: INRIMAGE (extension .inr),
+		  	GIS (extension .dim, of .ima), and ANALYZE (extension .hdr, or .img).
+      </listitem>
+    
+         </varlistentry>
+	
+	
+         <varlistentry>
+		
+            <term>iso_value</term>
+		
+            <listitem>
+			: is a scalar telling the level of the grey we are interested in.
+		</listitem>
+	
+         </varlistentry>
+		
+	
+         <varlistentry>
+		
+            <term>bounded_sphere</term>
+		
+            <listitem>
+			: = [x_sphere_centre,y_sphere_centre,z_sphere_centre,squared radius]. the sphere center must be inside the
+				surface defined by 'image' and the radius must be high enough so that the sphere actually bounds the whole image.
+		</listitem>
+	
+         </varlistentry>
+	
+	
+         <varlistentry>
+		
+            <term>mesh_criteria</term>
+		
+            <listitem>
+			: = [angle_bound, radius_bound, distance_bound] as bounds for the minimum facet angle in degrees, 
+			    the radius of the surface Delaunay balls and the center-center distances respectively.
+		</listitem>
+    
+         </varlistentry>
+	
+	
+	
+         <varlistentry>
+		
+            <term>connect</term>
+		
+            <listitem>
+			: is (nbtriangles,3) array, Each row of connect defines one triangle. nbtriangles is the number of triangles of the obtained mesh.
+		</listitem>
+	
+         </varlistentry>
+	
+
+	
+         <varlistentry>
+		
+            <term>coord</term>
+		
+            <listitem>
+			: is (nbpoints,3) array defining (x,y,z) coordinates of vertices of the obtained mesh.
+		</listitem>
+	
+         </varlistentry>
+	
+  
+      </variablelist>
+  
+   </refsection>
+  
+   <refsection><title>Description</title>
+	  
+      <para>
+		  The function surface_mesher builds a two dimensional mesh approximating surfaces defined as grey level of 3D images.
+	  </para>
+  
+   </refsection>
+  
+   <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
+p=cglab_getrootpath();
+image_1= p+"/demos/skull_2.9.inr";
+bounded_sphere = [122.0 102.0 117.0 200.0*200.0*2.0];
+mesh_criteria = [30 5 5];
+[tri,coord] = surface_mesher(image_1,2.9,bounded_sphere,mesh_criteria);
+
+//rendering using scilab plot3d:
+
+xx=matrix(coord(tri,1),-1,3)';
+yy=matrix(coord(tri,2),-1,3)';
+zz=matrix(coord(tri,3),-1,3)';
+clf();plot3d(xx,yy,zz)
+a=gca(); a.isoview="on"; a.rotation_angles=[75,-75];
+ 
+  ]]></programlisting></refsection>
+     <mediaobject><imageobject><imagedata align="center" fileref="../images/surface_mesher.png"/></imageobject></mediaobject>
+
+  
+   <refsection><title>Authors</title><simplelist type="vert">
+    
+      <member>Naceur MESKINI.</member>
+  
+   </simplelist></refsection>
+
+</refentry>

@@ -1,0 +1,37 @@
+// Copyright (C) 2011 - Edyta Przymus
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
+//checking if result of computation is the same as expected
+x = [5 1 6];
+y = [2 6 6];
+C=[8.    2.     7.    4.;6.    4.5    4.    5.;3.    6.     3.    7.;3.    4.     2.    3.;9.    4.     8.    7.];
+[tri,ptr] = constrained_delaunay_2(x,y,C);
+tri1=int32([9  2  8;7   1   6 ;1   10   11;6   5  3;1   4   5;8   7   3;1   5  6;3  7  6;10   1   7;9   8  3;2   10  8;13   9   3;8   10   7 ;2   11  10;5  12   13;5   4  12;5  13   3]);
+assert_checkequal(tri,tri1);
+
+//checking what error will be produced with wrong number of arguments
+assert_checkerror("tri=constrained_delaunay_2(x,y)","%s: Wrong number of input argument(s): %d expected.",77,"constrained_delaunay_2",3);
+
+//checking what error will be produced with wrong type of inputs
+str="abc";
+assert_checkerror("tri=constrained_delaunay_2(x,y,str)","%s: Wrong type for input argument #%d: A vector expected.",999,"constrained_delaunay_2",3);
+assert_checkerror("tri=constrained_delaunay_2(x,str,C)","%s: Wrong type for input argument #%d: A vector expected.",999,"constrained_delaunay_2",2);
+assert_checkerror("tri=constrained_delaunay_2(str,y,C)","%s: Wrong type for input argument #%d: A vector expected.",999,"constrained_delaunay_2",1);
+
+//checking types of outputs
+[tri,ptr] = constrained_delaunay_2(x,y,C);
+type1=type(tri);
+assert_checkequal(type1,8.0);
+type2=type(ptr);
+assert_checkequal(type2, 128.0);
+
+//checking what error will be produced with wrong size of arguments
+u=[5 1 6; 2 6 6];
+assert_checkerror ( "tri2=constrained_delaunay_2(x,u,C)", "%s: Wrong size for input argument #%d: ." , 999,"constrained_delaunay_2",1);
+assert_checkerror ( "tri2=constrained_delaunay_2(u,y,C)","%s: Wrong size for input argument #%d: ." , 999,"constrained_delaunay_2",1);

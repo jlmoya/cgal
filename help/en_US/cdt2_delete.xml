@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Edyta PRZYMUS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cdt2_delete"><info><pubdate>November 2005</pubdate></info><refnamediv><refname>cdt2_delete</refname><refpurpose> Delete a pointer that represents cdt2.</refpurpose></refnamediv>
+	
+   
+	
+   
+	
+   
+	
+   
+	
+   
+	
+   <refsynopsisdiv><title>Calling Sequence</title><synopsis>cdt2_delete(ptr,"ptr")
+cdt2_delete()</synopsis></refsynopsisdiv>
+	
+   <refsection><title>Parameters</title>
+		
+      <variablelist>
+			
+         <varlistentry>
+				
+            <term>ptr</term>
+				
+            <listitem>
+					: is a pointer representing cdt2 to be deleted.
+				</listitem>
+			
+         </varlistentry>
+		
+      </variablelist>
+	
+   </refsection>
+	
+   <refsection><title>Description</title>
+		
+      <para>
+			Given a pointer ptr of cdt2, cdt2_delete(ptr,"ptr") frees the memory hold by the pointer ptr and clears ptr in Scialb interpreter.
+			if no parameters are given to cdt2_delete(), then all pointers of differents cdt2 will be deleted.
+		</para>
+	
+   </refsection>
+
+   <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
+x = rand(1,10);
+y = rand(1,10);
+new_x = rand(1,10);
+new_y = rand(1,10);
+//example 1:
+C=[8.    2.     7.    4.;6.    4.5    4.    5.;3.    6.     3.    7.;3.    4.     2.    3.;9.    4.     8.    7.];
+[tri,ptr] = constrained_delaunay_2(x,y,C);
+cdt2_insert_points(ptr,new_x,new_y);
+new_tri = cdt2_get_connectivity(ptr);
+cdt2_delete(ptr,"ptr"); // ptr is deleted here and cleared from scilab interpreter.
+ptr
+//example 2:
+[tri1,ptr1] = constrained_delaunay_2(rand(1,10),rand(1,10),[]);
+clear ptr1; // ptr is not yet defined in scilab interpreter, but the memory is not freed.
+cdt2_delete(); // all pointers of cdt2 will be deleted.
+ 
+  ]]></programlisting></refsection>
+  
+   <refsection><title>See Also</title><simplelist type="inline">
+  	
+      <member>
+         <link linkend="cdt2_insert_constraints">cdt2_insert_constraints</link>
+      </member>
+    
+      <member>
+         <link linkend="cdt2_remove_constraints">cdt2_remove_constraints</link>
+      </member>
+    
+      <member>
+         <link linkend="cdt2_insert_points">cdt2_insert_points</link>
+      </member>
+  	
+      <member>
+         <link linkend="cdt2_remove_points">cdt2_remove_points</link>
+      </member>
+    
+      <member>
+         <link linkend="cdt2_get_connectivity">cdt2_get_connectivity</link>
+      </member>
+    
+      <member>
+         <link linkend="cdt2_get_coord">cdt2_get_coord</link>
+      </member>  
+   </simplelist></refsection>
+ 
+   <para>
+The function above uses the Triangulation_2 package of CGAL, which is under QPL license.<ulink url="http://www.cgal.org/index2.html">License Terms</ulink>
+
+   </para> 
+
+  
+   <refsection><title>Authors</title><simplelist type="vert">
+    
+      <member>Naceur MESKINI.</member>
+  
+   </simplelist></refsection>
+
+</refentry>

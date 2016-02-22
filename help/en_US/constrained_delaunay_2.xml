@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Edyta PRZYMUS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+ <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="constrained_delaunay_2"><info><pubdate>Juin 2004</pubdate></info><refnamediv><refname>constrained_delaunay_2</refname><refpurpose>Constrained Delaunay triangulation</refpurpose></refnamediv>
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   <refsynopsisdiv><title>Calling Sequence</title><synopsis>[tri [,ptr] ] = constrained_delaunay_2(x,y,C)</synopsis></refsynopsisdiv>
+  
+   <refsection><title>Parameters</title>
+  
+      <variablelist>
+    
+         <varlistentry>
+      
+            <term>x , y </term>
+      
+            <listitem>
+        : are vectors of points coordinates.
+      </listitem>
+    
+         </varlistentry>
+    
+         <varlistentry>
+      
+            <term>C </term>
+      
+            <listitem>
+        : is (nbconstraints,4) array, Each row of C defines one constrained edge by its two endpoints.
+      </listitem>
+    
+         </varlistentry>
+        
+         <varlistentry>
+      
+            <term>tri</term>
+      
+            <listitem>
+        : is (nbtriangle,3) matrix, Each row of tri defines one triangle and contains indices into (x,y).
+      </listitem>
+    
+         </varlistentry>
+        
+         <varlistentry>
+            
+            <term>ptr</term>
+            
+            <listitem>
+                : is a pointer representing constrained Delaunay triangulation, cdt2. The associated functions that using "ptr"
+                are:
+                <para>- <link linkend="cdt2_insert_constraints">cdt2_insert_constraints</link>     - <link linkend="cdt2_remove_constraints">cdt2_remove_constraints</link>
+               </para>
+                
+               <para>- <link linkend="cdt2_insert_points">cdt2_insert_points</link>          - <link linkend="cdt2_remove_points">cdt2_remove_points</link>
+               </para>
+                
+               <para>- <link linkend="cdt2_get_connectivity">cdt2_get_connectivity</link>
+               </para>   - <link linkend="cdt2_get_coord">cdt2_get_coord</link>
+                
+               <para>- <link linkend="cdt2_delete">cdt2_delete</link>
+               </para>
+            
+            </listitem>
+        
+         </varlistentry>
+  
+      </variablelist>
+  
+   </refsection>
+  
+   <refsection><title>Description</title>
+    
+      <para>
+A constrained Delaunay triangulation is a triangulation with constrained edges which tries to be as much Delaunay as possible. Constrained edges are not necessarily Delaunay edges, therefore a constrained Delaunay triangulation is not a Delaunay triangulation. A constrained Delaunay is a triangulation whose faces do not necessarily fulfill the empty circle property but fulfill a weaker property called the constrained empty circle. To state this property, it is convenient to think of constrained edges as blocking the view. Then, a triangulation is constrained Delaunay if the circumscribing circle of any of its triangular faces includes in its interior no vertex that is visible from the interior of the triangle.
+    </para>
+  
+   </refsection>
+  
+   <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
+x = [5 1 6];
+y = [2 6 6];
+C=[8.    2.     7.    4.;6.    4.5    4.    5.;3.    6.     3.    7.;3.    4.     2.    3.;9.    4.     8.    7.];
+[tri,ptr] = constrained_delaunay_2(x,y,C);
+clf();
+coord = cdt2_get_coord(ptr);
+X=coord(:,1)';
+Y=coord(:,2)';
+[nbtri,nb] = size(tri);
+tri = [tri tri(:,1)];
+for k = 1:nbtri
+plot2d(X(tri(k,:)),Y(tri(k,:)),style = 2);
+end
+[nbconstraints,nb] = size(C);
+for i = 1:nbconstraints
+    plot2d([C(i,1) C(i,3)]',[C(i,2) C(i,4)]',style = 3);
+    plot2d([C(i,1) C(i,3)]',[C(i,2) C(i,4)]',style = -5);
+end
+cdt2_delete(ptr,"ptr");
+ 
+  ]]></programlisting></refsection>
+   <mediaobject><imageobject><imagedata align="center" fileref="../images/constrained2.png"/></imageobject></mediaobject>
+  
+   <refsection><title>See Also</title><simplelist type="inline">
+    
+      <member>
+         <link linkend="delaunay_2">delaunay_2</link>
+      </member>
+    
+      <member>
+         <link linkend="delaunay_3">delaunay_3</link>
+      </member>
+    
+      <member>
+         <link linkend="delaunay_n">delaunay_n</link>
+      </member>
+    
+   </simplelist></refsection>
+
+   <para>For more details see <ulink url="http://www.cgal.org/Manual/doc_html/cgal_manual/Triangulation_2_ref/Class_Constrained_Delaunay_triangulation_2.html"> CGAL Manual.</ulink>
+
+   </para>
+
+
+   <para>
+This function uses the Triangulation_2 package of CGAL, which is under QPL license. See <ulink url="http://www.cgal.org/index2.html">License Terms</ulink>
+
+   </para> 
+  
+   <refsection><title>Authors</title><simplelist type="vert">
+    
+      <member>Naceur MESKINI.</member>
+  
+   </simplelist></refsection>
+
+</refentry>

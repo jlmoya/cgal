@@ -1,0 +1,25 @@
+// Copyright (C) 2011 - Edyta Przymus
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+//checking if computed outputs are the same as expected
+C=[1 1 5 1; 5 1 7 3; 7 3 4 4; 4 4 3 6; 3 6 1 5; 1 5 1 1;5 2 5 3; 5 3 3 4; 3 4 2 2; 2 2 5 2];
+[coord,tri,ptr]= mesh_2(C);
+mesh2_set_seeds(ptr,3.5,2.5);
+tri = mesh2_get_connectivity(ptr);
+coord = mesh2_get_coord(ptr);
+coord1 = [1.       1.;5.       1.;7.       3.;4.       4.;3.       6.;1.       5.;5.       2.;5.       3.;3.       4.;2.       2.;6.       2.;3.       1.;3.5      5.;5.5      3.5;1.       3.;4.       3.5;5.5      1.5;3.5      2.;2.       1.;4.75     3.75;1.       2.;3.5      3.75;4.5      3.25;2.5      3.;3.375    2.875];
+coord2 = [1.       1.;5.       1.;7.       3.;4.       4.;3.       6.;1.       5.;5.       2.;5.       3.;3.       4.;2.       2.;6.       2.;3.       1.;5.5     3.5;3.5      5;1.       3.;4.       3.5;5.5      1.5;3.5      2.;2.       1.;4.75     3.75;1.       2.;3.5      3.75;4.5      3.25;2.5      3.;3.375    2.875];
+boolean1=(coord==coord1);
+boolean2=(coord==coord2);
+assert_checktrue(boolean1|boolean2);
+
+//checking what error will be produced with wrong number of inputs
+assert_checkerror("tri=mesh2_get_coord(ptr,ptr)","%s: Wrong number of input argument(s): %d expected.",77,"mesh2_get_coord",1);
+
+//checking what error will be produced with wrong types of inputs
+assert_checkerror("tri=mesh2_get_coord(C)","%s: Wrong type for input argument #%d: A pointer expected.",999,"mesh2_get_coord",1);

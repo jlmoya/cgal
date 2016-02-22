@@ -1,0 +1,27 @@
+// Copyright (C) 2011 - Edyta Przymus
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+// testing if computed results are correct
+x = [5 1 6];
+y = [2 6 6];
+C=[8.    2.     7.    4.;6.    4.5    4.    5.;3.    6.     3.    7.;3.    4.     2.    3.;9.    4.     8.    7.];
+[tri,ptr] = constrained_delaunay_2(x,y,C);
+coord = cdt2_get_coord(ptr);
+coord1=[5.    2.;1.    6.;6.    6.;8.    2.;7.    4.;6.    4.5;4.    5.;3.    6.;3.    7.;3.    4.;2.    3.;9.    4.;8.    7.];
+assert_checkequal(coord,coord1);
+
+//checking the type of output
+type1=type(coord);
+assert_checkequal(type1,1.0);
+
+//checking what error will be produced with wrong number of inputs
+assert_checkerror("coord=cdt2_get_coord(ptr, ptr)","%s: Wrong number of input argument(s): %d expected.",77,"cdt2_get_coord",1);
+assert_checkerror("coord=cdt2_get_coord()","%s: Wrong number of input argument(s): %d expected.",77,"cdt2_get_coord",1);
+
+//checking what error will be produced with wrong types of inputs
+assert_checkerror("coord=cdt2_get_coord(x)","%s: Wrong type for input argument #%d: A pointer expected.",999,"cdt2_get_coord",1);

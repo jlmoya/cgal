@@ -1,0 +1,21 @@
+// Copyright (C) 2011 - Edyta Przymus
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ 
+//checking what error will be produced with wrong types of inputs
+x = rand(1,10);
+y = rand(1,10);
+new_x = rand(1,10);
+new_y = rand(1,10);
+C=[8.    2.     7.    4.;6.    4.5    4.    5.;3.    6.     3.    7.;3.    4.     2.    3.;9.    4.     8.    7.];
+[tri,ptr] = constrained_delaunay_2(x,y,C);
+cdt2_insert_points(ptr,new_x,new_y);
+assert_checkerror("cdt2_delete(x)","%s: Wrong type for input argument #%d: A pointer expected.",999,"cdt2_delete",1);
+assert_checkerror("cdt2_delete(ptr,x)","%s: Wrong type for input argument #%d: A scalar string expected.",999,"cdt2_delete",2);
+
+//checking what error will be produced with wrong number of inputs
+assert_checkerror("cdt2_delete(ptr,ptr,ptr)","%s: Wrong number of input argument(s): %d to %d expected.",77,"cdt2_delete",0,2);

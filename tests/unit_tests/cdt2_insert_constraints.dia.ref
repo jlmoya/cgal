@@ -1,0 +1,32 @@
+// Copyright (C) 2011 - Edyta Przymus
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+//checking what error will be produced with wrong types of inputs
+x = [5 1 6];
+y = [2 6 6];
+C=[8.    2.     7.    4.;6.    4.5    4.    5.;3.    6.     3.    7.;3.    4.     2.    3.;9.    4.     8.    7.];
+[tri,ptr] = constrained_delaunay_2(x,y,[]);
+cdt2_insert_constraints(ptr,C);
+assert_checkerror("cdt2_insert_constraints(x,C)","%s: Wrong type for input argument #%d: A pointer expected.",999,"cdt2_insert_constraints",1);
+//testing what error message is produced when inputs have wrong size 
+assert_checkerror("cdt2_insert_constraints(ptr,x)","%s: Incompatible inputs ",999,"cdt2_insert_constraints");
+//checking what error will be produced with wrong number of inputs
+assert_checkerror("cdt2_insert_constraints(ptr,y,C)","%s: Wrong number of input argument(s): %d expected.",77,"cdt2_insert_constraints",2);
+//checking what error will be produced when the inputs has wrong size
+x = [5 1 6];
+y = [2 6 6];
+C=[8.    2.     7. ;6.    4.5    4. ;3.    6.     3.  ;3.    4.     2.   ;9.    4.     8.];
+[tri,ptr] = constrained_delaunay_2(x,y,[]);
+assert_checkerror("cdt2_insert_constraints(ptr,C)","%s: Incompatible inputs ",999,"cdt2_insert_constraints");
+//checking if computed results are the same as expected
+x = [5 1 6];
+y = [2 6 6];
+C=[8.    2.     7.    4.;6.    4.5    4.    5.;3.    6.     3.    7.;3.    4.     2.    3.;9.    4.     8.    7.];
+[tri,ptr] = constrained_delaunay_2(x,y,[]);
+cdt2_insert_constraints(ptr,C);
+tri = cdt2_get_connectivity(ptr);
+tri1=int32([9   3   9;2   1   3;8   5   8;7   6  10;1   3   7;6   7   2;1   6  11;10  10  10;11   1   5;6   7  12;5   9  13;3   8   5;1   3   4;4   2  12;5  10   5;8   8  13;7  13   3]);

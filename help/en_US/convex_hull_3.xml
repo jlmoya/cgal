@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Edyta PRZYMUS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="convex_hull_3"><info><pubdate>29/11/2005</pubdate></info><refnamediv><refname>convex_hull_3</refname><refpurpose>Convex hull in 3d space.</refpurpose></refnamediv>
+  
+   
+  
+   
+  
+   
+    
+   
+  
+   
+  
+   <refsynopsisdiv><title>Calling Sequence</title><synopsis>H=convex_hull_3(x, y, z);</synopsis></refsynopsisdiv>
+  
+   <refsection><title>Parameters</title>
+  
+      <variablelist>
+    
+         <varlistentry>
+      
+            <term>x, y, z</term>
+      
+            <listitem>
+        : are vectors of points coordinates in 3d space.
+      </listitem>
+    
+         </varlistentry>
+    
+         <varlistentry>
+      
+            <term>H</term>
+      
+            <listitem>
+        : is (nbFacets,degreeOfFacet) array of  points indices, each row of H contain one facet of the convex hull of X.
+      </listitem>
+    
+         </varlistentry>
+  
+      </variablelist>
+  
+   </refsection>
+  
+   <refsection><title>Description</title>
+    
+      <para>
+      The function convex_hull_3 computes the convex hull of a given set of three-dimensional points.
+    </para>
+  
+   </refsection>
+
+   <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
+        x =rand(1,10);
+        y =rand(1,10);
+        z =rand(1,10);
+        H=convex_hull_3(x,y,z);
+ 
+  ]]></programlisting></refsection>
+  
+   <refsection><title>See Also</title><simplelist type="inline">
+    
+      <member>
+         <link linkend="convex_hull_2">convex_hull_2</link>
+      </member>
+  
+   </simplelist></refsection>
+    
+   <para>For more details see <ulink url="http://www.cgal.org/Manual/doc_html/manual/Convex_hull_3_ref/Function_convex_hull_3.html"> CGAL Manual.</ulink>
+   </para>
+    
+
+   <para>
+This function uses the Convex_hull_3 package of CGAL, which is under QPL license. See <ulink url="http://www.cgal.org/index2.html">License Terms</ulink>
+
+   </para>
+  
+   <refsection><title>Authors</title><simplelist type="vert">
+    
+      <member>Naceur MESKINI.</member>
+  
+   </simplelist></refsection>
+
+</refentry>

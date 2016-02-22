@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Edyta PRZYMUS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dt3_get_connectivity"><info><pubdate>November 2005</pubdate></info><refnamediv><refname>dt3_get_connectivity</refname><refpurpose> Get the connectivity of dt3</refpurpose></refnamediv>
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   <refsynopsisdiv><title>Calling Sequence</title><synopsis>tri = dt3_get_connectivity(ptr);</synopsis></refsynopsisdiv>
+  
+   <refsection><title>Parameters</title>
+  
+      <variablelist>
+    
+         <varlistentry>
+      
+            <term>ptr</term>
+      
+            <listitem>
+        : is a pointer representing dt3.
+      </listitem>
+    
+         </varlistentry>
+		
+         <varlistentry>
+			
+            <term>tri</term>
+			
+            <listitem>
+				: is (nbtriangles,4) array, Each row of tri defines one tetraedral.
+			</listitem>
+    
+         </varlistentry>
+  
+      </variablelist>
+  
+   </refsection>
+  
+   <refsection><title>Description</title>
+    
+      <para>
+ 		Given a pointer ptr of dt3, tri = dt3_get_connectivity (ptr) allows to get the connectivity of dt3.	
+	</para>
+  
+   </refsection>
+  
+   <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
+ x = rand(1,8);
+ y = rand(1,8);
+ z = rand(1,8);
+ [tri,ptr] = delaunay_3(x,y,z);
+ new_x = rand(1,3);
+ new_y = rand(1,3);
+ new_z = rand(1,3);
+ dt3_insert_points(ptr,new_x,new_y,new_z);
+ new_tri = dt3_get_connectivity(ptr)
+ dt3_delete(ptr,"ptr");                         
+ 
+  ]]></programlisting></refsection>
+  
+   <refsection><title>See Also</title><simplelist type="inline">
+    
+      <member>
+         <link linkend="delaunay_3">delaunay_3</link>
+      </member>
+  	
+      <member>
+         <link linkend="dt3_insert_points">dt3_insert_points</link>
+      </member>
+    
+      <member>
+         <link linkend="dt3_remove_points">dt3_remove_points</link>
+      </member>
+    
+      <member>
+         <link linkend="dt3_delete">dt3_delete</link>
+      </member>
+  
+   </simplelist></refsection>
+   
+   <para>
+  This function uses the Triangulation_3 package of CGAL, which is under QPL license. See <ulink url="http://www.cgal.org/index2.html">License Terms</ulink>
+  
+   </para>
+  
+   <refsection><title>Authors</title><simplelist type="vert">
+    
+      <member>Naceur MESKINI.</member>
+  
+   </simplelist></refsection>
+
+</refentry>

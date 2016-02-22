@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Edyta PRZYMUS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+ <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="dt2_delete"><info><pubdate>November 2005</pubdate></info><refnamediv><refname>dt2_delete</refname><refpurpose> Delete a pointer that represent dt2.</refpurpose></refnamediv>
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   <refsynopsisdiv><title>Calling Sequence</title><synopsis>dt2_delete(ptr,"ptr")
+dt2_delete()</synopsis></refsynopsisdiv>
+  
+   <refsection><title>Parameters</title>
+  
+      <variablelist>
+        
+         <varlistentry>
+            
+            <term>ptr</term>
+            
+            <listitem>
+                : is a pointer representing dt2 to be deleted.
+            </listitem>
+    
+         </varlistentry>
+  
+      </variablelist>
+  
+   </refsection>
+  
+   <refsection><title>Description</title>
+    
+      <para>
+      Given a pointer ptr of dt2, dt2_delete(ptr,"ptr") frees the memory hold by the pointer ptr and clears ptr in Scilab interpreter.
+      If no parameters are given to dt2_delete(), then all pointers of differents dt2 will be deleted.
+    </para>
+  
+   </refsection>
+  
+   <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+
+
+x = rand(1,10);
+y = rand(1,10);
+new_x = rand(1,10);
+new_y = rand(1,10);
+//example 1:
+
+[tri,ptr] = delaunay_2(x,y);
+dt2_insert_points(ptr,new_x,new_y);
+new_tri = dt2_get_connectivity(ptr);
+dt2_delete(ptr,"ptr"); // ptr is deleted here and cleared from the scilab interpreter.
+ptr
+//example 2:
+[tri1,ptr1] = delaunay_2(rand(1,10),rand(1,10));
+clear ptr1; // ptr1 is cleared from a scilab interpreter, but the memory is not freed yet.
+dt2_delete(); // all pointers of dt2 will be deleted.
+ 
+  ]]></programlisting></refsection>
+  
+   <refsection><title>See Also</title><simplelist type="inline">
+    
+      <member>
+         <link linkend="delaunay_2">delaunay_2</link>
+      </member>
+    
+      <member>
+         <link linkend="dt2_get_connectivity">dt2_get_connectivity</link>
+      </member>
+    
+      <member>
+         <link linkend="dt2_insert_points">dt2_insert_points</link>
+      </member>
+    
+      <member>
+         <link linkend="dt2_remove_points">dt2_remove_points</link>
+      </member>
+  
+   </simplelist></refsection>
+
+   <para>
+This function uses the Triangulation_2 package of CGAL, which is under QPL license. See <ulink url="http://www.cgal.org/index2.html"> License Terms</ulink>
+
+   </para> 
+  
+   <refsection><title>Authors</title><simplelist type="vert">
+    
+      <member>Naceur MESKINI.</member>
+  
+   </simplelist></refsection>
+
+</refentry>

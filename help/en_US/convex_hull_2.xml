@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Edyta PRZYMUS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+ <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="convex_hull_2"><info><pubdate>29/11/2005</pubdate></info><refnamediv><refname>convex_hull_2</refname><refpurpose> convex hull of a set of points in the plane.</refpurpose></refnamediv>
+  
+   
+  
+   
+  
+   
+    
+   
+  
+   
+  
+   <refsynopsisdiv><title>Calling Sequence</title><synopsis>[nhull,ind] = convex_hull_2(xy);</synopsis></refsynopsisdiv>
+  
+   <refsection><title>Parameters</title>
+  
+      <variablelist>
+    
+         <varlistentry>
+      
+            <term>xy</term>
+      
+            <listitem>
+        : 2 x n real matrix of coordinates.
+      </listitem>
+    
+         </varlistentry>
+    
+         <varlistentry>
+      
+            <term>nhull</term>
+      
+            <listitem>
+        : integer
+      </listitem>
+    
+         </varlistentry>
+    
+         <varlistentry>
+      
+            <term>ind</term>
+      
+            <listitem>
+        : integer row vector
+      </listitem>
+    
+         </varlistentry>
+  
+      </variablelist>
+  
+   </refsection>
+
+   <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+if atomsIsLoaded("metanet") then
+ta=[27 27 3 12 11 12 27 26 26 25 25 24 23 23 21 22 21 20 19 18 18];
+ta=[ta  16 15 15 14 12 9 10 6 9 17 8 17 10 20 11 23 23 12 18 28];
+he=[ 1  2 2  4  5 11 13  1 25 22 24 22 22 19 13 13 14 16 16  9 16];
+he=[he  10 10 11 12  2 6  5 5 7  8 7  9  6 11  4 18 13  3 28 17];
+g=make_graph('foo',0,28,ta,he);
+xx=[46 120 207 286 366 453 543 544 473 387 300 206 136 250 346 408];
+g('node_x')=[xx 527 443 306 326 196 139 264  55  58  46 118 513];
+yy=[36  34  37  40  38  40  35 102 102  98  93  96 167 172 101 179];
+g('node_y')=[yy 198 252 183 148 172 256 259 258 167 109 104 253];
+show_graph(g);
+xy=[g('node_x');g('node_y')];
+[nhull,ind] = convex_hull_2(xy);
+show_nodes(ind);
+end;
+]]></programlisting></refsection>
+  
+   <refsection><title>See Also</title><simplelist type="inline">
+    
+      <member>
+         <link linkend="convex_hull_3">convex_hull_3</link>
+      </member>
+    
+   </simplelist></refsection>
+         
+   <para>For more details see <ulink url="http://www.cgal.org/Manual/doc_html/cgal_manual/Convex_hull_2_ref/Function_convex_hull_2.html"> CGAL Manual.</ulink>
+   </para>
+
+   <para>
+This function uses the Convex_hull_2 package of CGAL, which is under LGPL license. See <ulink url="http://www.cgal.org/index2.html">License Terms</ulink>
+
+   </para>
+  
+   <refsection><title>Authors</title><simplelist type="vert">
+    
+      <member>Naceur MESKINI.</member>
+  
+   </simplelist></refsection>
+
+</refentry>

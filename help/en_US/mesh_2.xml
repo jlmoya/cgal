@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Edyta PRZYMUS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mesh_2"><info><pubdate>November 2005</pubdate></info><refnamediv><refname>mesh_2</refname><refpurpose>Delaunay Mesher</refpurpose></refnamediv>
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   <refsynopsisdiv><title>Calling Sequence</title><synopsis>[coord,tri [,ptr] ]=mesh_2(C)</synopsis></refsynopsisdiv>
+  
+   <refsection><title>Parameters</title>
+  
+      <variablelist>
+		
+         <varlistentry>
+			
+            <term>coord</term>
+			
+            <listitem>
+				: is (nbvertices,2) array defininig (x,y) coordinates of vertices of the obtained mesh. where nbvertices is number of vertices of the mesh.
+			</listitem>
+    
+         </varlistentry>
+    
+         <varlistentry>
+      
+            <term>tri</term>
+      
+            <listitem>
+				: is (nbtriangles,3) array, Each row of tri defines one triangle and contains indices into (x,y). nbtriangles is number of triangles of mesh.
+      </listitem>
+    
+         </varlistentry>
+		
+         <varlistentry>
+			
+            <term>ptr</term>
+			
+            <listitem>
+				: is pointer representing Delaunay mesher. ptr contains the data structure of the mesh, and all operations about the mesh passes throw this pointer.
+			</listitem>
+		
+         </varlistentry>
+    
+         <varlistentry>
+      
+            <term>C </term>
+      
+            <listitem>
+        : is (nbsegments,4) array, Each row of C defines one segment by its two endpoints. All segments defines a domain to be meshed.
+      </listitem>
+    
+         </varlistentry>
+
+  
+      </variablelist>
+  
+   </refsection>
+  
+   <refsection><title>Description</title>
+		
+      <para>
+A mesh is a partition of a given region into simplices whose shapes and sizes satisfy several criteria.
+The domain is the region that the user wants to mesh. It has to be a bounded region of the plane. The domain is defined by a planar straight line graph, PSLG for short, which is a set of segments such that two segments in the set are either disjoint or share an endpoint. The segments of the PSLG are constraints that will be represented by a union of edges in the mesh.
+The segments of the PSLG are either segments of the boundary or internals constraints. The segments of the PSLG have to cover the boundary of the domain.
+The PSLG divides the plane into several connected components. By default, the domain is the union of the bounded connected components. The user can override this default by providing a set of seed points. Seed points mark components not to be meshed (holes).
+	</para>
+  
+   </refsection>
+   <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+C=[1 1 5 1; 5 1 7 3; 7 3 4 4; 4 4 3 6; 3 6 1 5; 1 5 1 1;...
+5 2 5 3; 5 3 3 4; 3 4 2 2; 2 2 5 2];
+
+[coord,tri]= mesh_2(C);
+clf();
+[nbtri,nb] = size(tri);
+tri = [tri tri(:,1)];
+x=coord(:,1)';
+y=coord(:,2)';
+for k = 1:nbtri
+plot2d(x(tri(k,:)),y(tri(k,:)),style = 2);
+end
+]]></programlisting></refsection>
+ <mediaobject><imageobject><imagedata align="center" fileref="../images/mesh.png"/></imageobject></mediaobject>
+   <refsection><title>See Also</title><simplelist type="inline">
+    
+      <member>
+         <link linkend="mesh2_refine">mesh2_refine</link>
+      </member>
+		
+      <member>
+         <link linkend="mesh2_set_seeds">mesh2_set_seeds</link>
+      </member>
+		
+      <member>
+         <link linkend="mesh2_get_connectivity">mesh2_get_connectivity</link>
+      </member>
+		
+      <member>
+         <link linkend="mesh2_get_coord">mesh2_get_coord</link>
+      </member>
+		
+      <member>
+         <link linkend="mesh2_delete">mesh2_delete</link>
+      </member>
+ 
+   </simplelist></refsection>
+ 
+   <para>For more details see <ulink url="http://www.cgal.org/Manual/doc_html/cgal_manual/Mesh_2_ref/Class_Delaunay_mesher_2.html"> CGAL Manual.</ulink>
+   </para>
+ 
+ 
+   <para>
+This function uses the Mesh_2 package of CGAL, which is under QPL license. See <ulink url="http://www.cgal.org/index2.html">License Terms</ulink>
+
+   </para>   
+  
+   <refsection><title>Authors</title><simplelist type="vert">
+    
+      <member>Naceur MESKINI.</member>
+  
+   </simplelist></refsection>
+
+</refentry>

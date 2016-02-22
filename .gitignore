@@ -1,0 +1,25 @@
+macros/lib
+macros/names
+macros/*.bin
+
+loader.sce
+loader_gateway.sce
+cleaner*.sce
+
+sci_gateway/c/gw_cglab.*
+src/cpp/libcgal_cpp.*
+
+help/*/scilab_*_*_help/*
+help/*/master_help.xml
+jar/*_help.jar
+
+# Linux
+*.so
+*.exp
+
+# Windows
+*.mak
+Release/
+Debug/
+
+*.bak

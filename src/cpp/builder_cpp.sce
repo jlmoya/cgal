@@ -6,10 +6,16 @@
 function builder_src_cpp()
 
   src_cpp_path = get_absolute_file_path('builder_cpp.sce');
+  thirdparty_path = fullfile(src_cpp_path, "../../thirdparty");
+  
+  os = getos();
+  [version, opts] = getversion();
+  arch = opts(2);
+  thirdparty_path = fullpath(fullfile(thirdparty_path, os, arch));
+  
   CPPFLAGS = ilib_include_flag(src_cpp_path);
-
-  if getos() == "Windows" then
-  thirdparty_path = fullpath(src_cpp_path + "../../thirdparty/Windows/x64");
+    
+  if getos() == "Windows" then      
       CPPFLAGS = CPPFLAGS + ilib_include_flag(fullfile(thirdparty_path, "include"));
       lib_path = fullfile(thirdparty_path, "lib");
       LDFLAGS = fullfile(lib_path, "CGAL-vc120-mt-4.7.lib");
@@ -17,7 +23,6 @@ function builder_src_cpp()
       LDFLAGS = LDFLAGS + " " + fullfile(lib_path, "libboost_thread-vc120-mt-1_60.lib");
       LDFLAGS = LDFLAGS + " " + fullfile(lib_path, "libboost_system-vc120-mt-1_60.lib");
   else      
-      thirdparty_path = fullpath(src_cpp_path + "../../thirdparty/Linux/x64");
       CPPFLAGS = CPPFLAGS + ilib_include_flag(fullfile(thirdparty_path, "include"));
       LDFLAGS = "-L" + fullfile(thirdparty_path, "lib");
       LDFLAGS = LDFLAGS + " -lCGAL -lCGAL_ImageIO";

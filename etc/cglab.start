@@ -32,11 +32,14 @@ function cglablib = startModule()
   arch = opts(2);
   if getos() == "Windows" then
       bin_path = fullfile(root_tlbx, "thirdparty", "Windows", arch, "bin");
+      orig_dir = pwd();
+      cd(bin_path);
       link(fullfile(bin_path, "boost_system-vc120-mt-1_60.dll"));
       link(fullfile(bin_path, "boost_chrono-vc120-mt-1_60.dll"));
       link(fullfile(bin_path, "boost_thread-vc120-mt-1_60.dll"));
       link(fullfile(bin_path, "CGAL-vc120-mt-4.7.dll"));
       link(fullfile(bin_path, "CGAL_ImageIO-vc120-mt-4.7.dll"));
+      cd(orig_dir);
   else
       lib_path = fullfile(root_tlbx, "thirdparty", "Linux", arch, "lib");
       link(fullfile(lib_path, "libCGAL.so"));     

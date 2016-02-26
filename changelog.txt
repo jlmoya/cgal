@@ -1,18 +1,17 @@
-cglab (2.1)
+2.2:
+    [ Simon MARCHETTO ]
+    * CGAL 4.7 packaged in the toolbox
+    * Support of Windows added
 
-     [ Edyta PRZYMUS ]
-     * Various improvement in the code
-     * License header added
+2.1:
+    [ Edyta PRZYMUS ]
+    * Various improvement in the code
+    * License header added
 
-     [ Sylvestre Ledru ]
-     * Port to Scilab 5.4.0
+    [ Sylvestre Ledru ]
+    * Port to Scilab 5.4.0
 
- -- Sylvestre Ledru <sylvestre.ledru@scilab-enterprises.com>  Fri, 20 Jul 2012 14:23:16 +0200
-
-
-cglab (2.0)
-
-     * Initial version based on the former work from Inria
-
- -- Edyta PRZYMUS <edyta.przymus@gmail.com>  Fri, 11 Aug 2011 14:23:16 +0200
+2.0:
+    [ Edyta PRZYMUS ]
+    * Initial version based on the former work from Inria
 

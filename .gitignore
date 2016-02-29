@@ -7,15 +7,12 @@ loader_gateway.sce
 cleaner*.sce
 
 sci_gateway/c/gw_cglab.*
+sci_gateway/c/libgw_cglab.*
 src/cpp/libcgal_cpp.*
 
 help/*/scilab_*_*_help/*
 help/*/master_help.xml
 jar/*_help.jar
-
-# Linux
-*.so
-*.exp
 
 # Windows
 *.mak

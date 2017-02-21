@@ -18,18 +18,22 @@
 // Author(s)     : Naceur Meskini
 //=========================================================================
 
-#ifdef __cplusplus
-extern "C"
-{
+#include "version.h"
+#if SCI_VERSION_MAJOR < 6
+#define __USE_DEPRECATED_STACK_FUNCTIONS__
 #endif
 
 #include "call_scilab.h"
 #include "Scierror.h"
+#include "machine.h"
 
 #include <string.h>
-#include "machine.h"
 #include <stdio.h>
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 int send_scilab_job(char *job)
 {
     #ifdef _MSC_VER
@@ -43,6 +47,7 @@ int send_scilab_job(char *job)
     }
 
     return SendScilabJob(job);
+    return 0;
 }
 #ifdef __cplusplus
 }

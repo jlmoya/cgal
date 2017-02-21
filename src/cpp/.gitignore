@@ -1,0 +1,7 @@
+libcgal_cpp.*
+
+# Windows
+*.mak
+Release/
+Debug/
+

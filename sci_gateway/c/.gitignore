@@ -1,0 +1,8 @@
+gw_cglab.*
+libgw_cglab.*
+
+# Windows
+*.mak
+Release/
+Debug/
+

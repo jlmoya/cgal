@@ -5,6 +5,7 @@ macros/*.bin
 loader.sce
 loader_gateway.sce
 cleaner*.sce
+unloader.sce
 
 help/*/scilab_*_*_help/*
 help/*/master_help.xml

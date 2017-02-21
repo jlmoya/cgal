@@ -11,11 +11,10 @@
 
 #include "localization.h"
 #include "api_scilab.h"
-#include "sciprint.h"
+#include "Scierror.h"
 
 int sci_convex_hull_3(GW_PARAMETERS)
 {
-
     static int l4;
     SciErr sciErr;
     

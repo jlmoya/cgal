@@ -26,5 +26,5 @@ str="abc";
 assert_checkerror("convex_hull_2(str)","%s: Wrong type for input argument #%d: A vector expected.",999,"convex_hull_2",1);
 
 //checking what error will be produced with wrong size of inputs
-assert_checkerror("convex_hull_2(x)","%s: Incompatible inputs ",999,"convex_hull_2");
+assert_checkerror("convex_hull_2(x)","%s: Incompatible inputs",999,"convex_hull_2");
 

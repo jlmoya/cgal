@@ -128,7 +128,7 @@ int sci_cdt2_insert_points(GW_PARAMETERS)
     
     if (!(m2 == m3) ||!(n2 == n3) )
     {
-        Scierror(999,"%s: Incompatible inputs \r\n",fname);
+        Scierror(999, "%s: Incompatible inputs", fname);
         return 0;
     }
 

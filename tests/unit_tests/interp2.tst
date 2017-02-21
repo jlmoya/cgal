@@ -7,8 +7,8 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 //checking if computed outputs are the same as expected
-p=cglab_getrootpath();
-load(p+"/tests/unit_tests/zp1.txt");
+rootpath = cglab_getrootpath();
+load(fullfile(rootpath, "tests/unit_tests/zp1.txt"));
 n = 8;
 x = linspace(0,2*%pi,n); y = x;
 z = 2*sin(x')*cos(y);

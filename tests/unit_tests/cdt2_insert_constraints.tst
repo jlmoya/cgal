@@ -6,7 +6,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
 //checking what error will be produced with wrong types of inputs
 x = [5 1 6];
 y = [2 6 6];
@@ -26,7 +25,7 @@ x = [5 1 6];
 y = [2 6 6];
 C=[8.    2.     7. ;6.    4.5    4. ;3.    6.     3.  ;3.    4.     2.   ;9.    4.     8.];
 [tri,ptr] = constrained_delaunay_2(x,y,[]);
-assert_checkerror("cdt2_insert_constraints(ptr,C)","%s: Incompatible inputs ",999,"cdt2_insert_constraints");
+assert_checkerror("cdt2_insert_constraints(ptr,C)","%s: Incompatible inputs",999,"cdt2_insert_constraints");
 
 //checking if computed results are the same as expected
 x = [5 1 6];

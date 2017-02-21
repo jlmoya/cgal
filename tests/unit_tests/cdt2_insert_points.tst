@@ -27,7 +27,7 @@ new_x = rand(1,4)*6;
 new_y = rand(1,3)*3;
 C=[8.    2.     7.    4.;6.    4.5    4.    5.;3.    6.     3.    7.;3.    4.     2.    3.;9.    4.     8.    7.];
 [tri,ptr] = constrained_delaunay_2(x,y,C);
-assert_checkerror("cdt2_insert_points(ptr,new_x,new_y)","%s: Incompatible inputs ",999,"cdt2_insert_points");
+assert_checkerror("cdt2_insert_points(ptr,new_x,new_y)","%s: Incompatible inputs",999,"cdt2_insert_points");
 
 //checking if computed outputs are the same as expected
 x=[1.0566243    3.7802193    0.0011057];

@@ -149,14 +149,14 @@ int sci_constrained_delaunay_2(GW_PARAMETERS)
     Ptr = constrained_delaunay_2(pdX,pdY,pdCxy,n1,m3);
     if (!Ptr)
     {
-        sciprint("%s: Incompatible inputs \r\n","cdelaunay");
+        Scierror(999, "%s: Incompatible inputs", "constrained_delaunay_2");
         return 0;
     }
         
     data = cdt2_get_connectivity(Ptr,&NbTri);
     if (!data)
     {
-        sciprint("%s: Incompatible inputs \r\n","GetConnectivityOfCdt");
+        Scierror(999, "%s: Incompatible inputs", "cdt2_get_connectivity");
         return 0;
     }
     

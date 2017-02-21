@@ -11,11 +11,10 @@
 
 #include "localization.h"
 #include "api_scilab.h"
-#include "sciprint.h"
+#include "Scierror.h"
 
 int sci_convex_hull_2(GW_PARAMETERS)
 {
-
     static int l2, l3;
     
     SciErr sciErr;
@@ -67,7 +66,7 @@ int sci_convex_hull_2(GW_PARAMETERS)
     
     if (!(m1 == 2))
     {
-        Scierror(999,"%s: Incompatible inputs \r\n","convex_hull_2");
+        Scierror(999,"%s: Incompatible inputs", "convex_hull_2");
         return 0;
     }
     

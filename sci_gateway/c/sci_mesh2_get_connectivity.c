@@ -6,13 +6,12 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-
 #include "gateway_cglab.h"
+#include "Delaunay_mesher.h"
+
 #include "localization.h"
 #include "api_scilab.h"
-#include "sciprint.h"
-#include "Delaunay_mesher.h"
+#include "Scierror.h"
 
 int sci_mesh2_get_connectivity(GW_PARAMETERS)
 {

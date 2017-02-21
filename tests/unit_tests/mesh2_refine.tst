@@ -21,4 +21,4 @@ assert_checkerror("mesh2_refine(ptr,ptr,2.5)","%s: Wrong type for input argument
 assert_checkerror("mesh2_refine(ptr,3.5,ptr)","%s: Wrong type for input argument #%d: A vector expected.",999,"mesh2_refine",3);
 
 //checking what error will be produced with wrong size of inputs
-assert_checkerror("mesh2_refine(ptr,[3.5 3.5],2.5)","%s: Incompatible inputs.",999,"mesh2_refine");
+assert_checkerror("mesh2_refine(ptr,[3.5 3.5],2.5)","%s: Incompatible inputs", 999, "mesh2_refine");

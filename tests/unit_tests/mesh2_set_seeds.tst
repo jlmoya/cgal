@@ -20,5 +20,5 @@ assert_checkerror("mesh2_set_seeds(ptr,ptr,2.5)","%s: Wrong type for input argum
 assert_checkerror("mesh2_set_seeds(ptr,3.5,ptr)","%s: Wrong type for input argument #%d: A vector expected.",999,"mesh2_set_seeds",3);
 
 //checking what error will be produced with wrong size of inputs
-assert_checkerror("mesh2_set_seeds(ptr,[3.5 3.5],2.5)","%s: Incompatible inputs.",999,"mesh2_set_seeds");
+assert_checkerror("mesh2_set_seeds(ptr,[3.5 3.5],2.5)","%s: Incompatible inputs", 999, "mesh2_set_seeds");
 

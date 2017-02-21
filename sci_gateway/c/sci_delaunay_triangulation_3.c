@@ -6,14 +6,14 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
 #include "gateway_cglab.h"
+#include "Delaunay_3d.h"
+#include "api_scilab.h"
+#include "Scierror.h"
+
 #include "localization.h"
 #include <string.h>
 #include <stdio.h>
-#include "api_scilab.h"
-#include "sciprint.h"
-#include "Delaunay_3d.h"
 
 int sci_delaunay_triangulation_3(GW_PARAMETERS)
 {
@@ -136,14 +136,14 @@ int sci_delaunay_triangulation_3(GW_PARAMETERS)
 
     if (!(m1 == m2) ||!(n1 == n2)||!(n1 == n3) )
     {
-        Scierror(999,"%s: Incompatible inputs \r\n","delaunay3");
+        Scierror(999, "%s: Incompatible inputs", fname);
         return 0;
     }
 
     Ptr = delaunay_triangulation_3(pdDt3X,pdDt3Y,pdDt3Z,n1);
     if(!Ptr)
     {
-        sciprint("%s: Incompatible inputs \r\n","cdelaunay");
+        Scierror(999, "%s: Incompatible inputs", "delaunay_triangulation_3");
         return 0;
     }
 

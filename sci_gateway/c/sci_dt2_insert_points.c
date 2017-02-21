@@ -6,12 +6,12 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
 #include "gateway_cglab.h"
+#include "Delaunay_2d.h"
+
 #include "localization.h"
 #include "api_scilab.h"
-#include "sciprint.h"
-#include "Delaunay_2d.h"
+#include "Scierror.h"
 
 int sci_dt2_insert_points(GW_PARAMETERS)
 {
@@ -123,7 +123,7 @@ int sci_dt2_insert_points(GW_PARAMETERS)
 
     if (!(m2 == m3) ||! (n2 == n3) )
     {
-        Scierror(999, "%s: Incompatible inputs.\n",fname);
+        Scierror(999, "%s: Incompatible inputs",fname);
         return 0;
     }
 

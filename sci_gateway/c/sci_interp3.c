@@ -11,7 +11,6 @@
 
 #include "localization.h"
 #include "api_scilab.h"
-#include "sciprint.h"
 #include "Scierror.h"
 
 #include <stdlib.h>

@@ -97,7 +97,7 @@ int sci_cdt2_insert_constraints(GW_PARAMETERS)
 
     if (!(n2 == 4) )
     {
-        Scierror(999,"%s: Incompatible inputs \r\n",fname);
+        Scierror(999, "%s: Incompatible inputs", fname);
         return 0;
     }
 

@@ -73,8 +73,7 @@ int sci_cdt2_get_connectivity(GW_PARAMETERS)
     data = cdt2_get_connectivity(pdPtr,&NbTri);
     if (!data)
     {
-        sciprint("%s: Incompatible inputs \r\n","GetConnectivityOfCdt");
-        sciprint("the intersections of input constraints are disallowed \r\n");
+        Scierror(999, "%s: Incompatible inputs", "cdt2_get_connectivity");
         return 0;
     }
     

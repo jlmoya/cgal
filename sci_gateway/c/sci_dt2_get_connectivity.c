@@ -29,7 +29,7 @@
 
 #include "localization.h"
 #include "api_scilab.h"
-#include "sciprint.h"
+#include "Scierror.h"
 
 int sci_dt2_get_connectivity(GW_PARAMETERS)
 {

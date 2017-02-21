@@ -11,7 +11,7 @@
 
 #include "localization.h"
 #include "api_scilab.h"
-#include "sciprint.h"
+#include "Scierror.h"
 
 int sci_delaunay_triangulation_2(GW_PARAMETERS)
 {
@@ -100,14 +100,14 @@ int sci_delaunay_triangulation_2(GW_PARAMETERS)
 
     if (!(m1 == m2) ||!(n1 == n2) )
     {
-        Scierror(999,"%s: Incompatible inputs \r\n","delaunay");
+        Scierror(999,"%s: Incompatible inputs", fname);
         return 0;
     }
     
     Ptr = delaunay_triangulation_2(pdVarDt2X,pdVarDt2Y,n1);
     if(!Ptr)
     {
-        sciprint("%s: Incompatible inputs \r\n","cdelaunay");
+        Scierror(999, "%s: Incompatible inputs", "delaunay_triangulation_2");
         return 0;
     }
 

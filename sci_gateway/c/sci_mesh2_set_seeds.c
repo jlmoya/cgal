@@ -29,7 +29,7 @@
 
 #include "localization.h"
 #include "api_scilab.h"
-#include "sciprint.h"
+#include "Scierror.h"
 
 int sci_mesh2_set_seeds(GW_PARAMETERS)
 {
@@ -141,7 +141,7 @@ int sci_mesh2_set_seeds(GW_PARAMETERS)
     
     if (!(m2 == m3) ||!(n2 == n3))
     {
-        Scierror(999, "%s: Incompatible inputs.\n","mesh2_set_seeds");
+        Scierror(999, "%s: Incompatible inputs", "mesh2_set_seeds");
         return 0;
     }
     

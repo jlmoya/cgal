@@ -11,7 +11,7 @@
 
 #include "localization.h"
 #include "api_scilab.h"
-#include "sciprint.h"
+#include "Scierror.h"
 
 int sci_mesh2_refine(GW_PARAMETERS)
 {
@@ -160,7 +160,7 @@ int sci_mesh2_refine(GW_PARAMETERS)
             
             if (!(m2 == m3) ||!(n2 == n3) ||!(n2 == 1))
             {
-                Scierror(999, "%s: Incompatible inputs.\n","mesh2_refine");
+                Scierror(999, "%s: Incompatible inputs", "mesh2_refine");
                 return 0;
             }
             shapebound = *pdMesh2ShapeBound;
@@ -169,7 +169,7 @@ int sci_mesh2_refine(GW_PARAMETERS)
         break;
         default:
         {
-                sciprint(999,"%s: Incompatible inputs \r\n","mesh2_refine");
+                Scierror(999, "%s: Incompatible inputs", "mesh2_refine");
                 return 0;
         };
     }

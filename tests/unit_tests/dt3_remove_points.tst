@@ -30,7 +30,7 @@ z = rand(1,10);
 new_x = rand(1,10);
 new_y = rand(1,8); 
 new_z = rand(1,10); 
-assert_checkerror("dt3_remove_points(ptr,new_x,new_y,new_z)","%s: Incompatible inputs ",999,"dt3_remove_points");
+assert_checkerror("dt3_remove_points(ptr,new_x,new_y,new_z)", "%s: Incompatible inputs", 999, "dt3_remove_points");
 
 //checking if comupted results are the same as expected
 x=[0.2113249    0.7560439    0.0002211    0.3303271    0.6653811];

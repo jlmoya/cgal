@@ -37,4 +37,4 @@ cdt2_insert_points(ptr,new_x,new_y);
 tri2 = cdt2_get_connectivity(ptr);
 new_x = [2 4 5 5];
 new_y = [6 7 8];
-assert_checkerror("cdt2_remove_points(ptr,new_x,new_y)","%s: Incompatible inputs ",999,"cdt2_remove_points");
+assert_checkerror("cdt2_remove_points(ptr,new_x,new_y)","%s: Incompatible inputs",999,"cdt2_remove_points");

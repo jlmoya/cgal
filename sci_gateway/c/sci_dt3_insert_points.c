@@ -157,7 +157,7 @@ int sci_dt3_insert_points(GW_PARAMETERS)
 
     if (!(m2 == m3) ||!(n2 == n3)||!(n2 == n4)||!(m3 ==m4))
     {
-        Scierror(999,"%s: Incompatible inputs \r\n",fname);
+        Scierror(999,"%s: Incompatible inputs", fname);
         return 0;
     }
     

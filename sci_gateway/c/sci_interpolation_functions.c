@@ -38,18 +38,16 @@ int sci_interp2(GW_PARAMETERS)
 
 	if(z_m != y_n || z_n != x_n )
 	{
-		Error(999);
-		sciprint("%s: size incompatibility between grid points and values\r\n","cgal_interp2");	
+		Scierror(999, "%s: size incompatibility between grid points and values", fname);
 		return 0;
 	}
-		
+
 	if(xi_m != yi_m || xi_n != yi_n )
 	{
-		Error(999);
-		sciprint("%s: bad inputs for xp, yp \r\n","cgal_interp2");
+		Scierror(999, "%s: bad inputs for xp, yp", fname);
 		return 0;
 	}
-	
+
 	ZI = interp2(stk(l1),stk(l2),stk(l3),stk(l4),stk(l5),x_n,y_n,xi_m,xi_n);
 	if(!ZI)return 0;
 	CreateVar(6, "d",&xi_m, &xi_n, &l6);
@@ -96,8 +94,8 @@ int sci_interp3(GW_PARAMETERS)
 	GetRhsVar(5, "d", &y_m, &y_n, &l5);
 	GetRhsVar(6, "d", &z_m, &z_n, &l6);
 	GetRhsVar(7, "d", &v_m, &v_n, &l7);
-		
-	
+
+
 	xp = (double**)malloc(xi_m*sizeof(double*));
 	yp = (double**)malloc(xi_m*sizeof(double*));
 	zp = (double**)malloc(xi_m*sizeof(double*));
@@ -109,7 +107,7 @@ int sci_interp3(GW_PARAMETERS)
 	 	yp[i] = (double*)malloc(xi_n*sizeof(double));
 	 	zp[i] = (double*)malloc(xi_n*sizeof(double));
 	}
-	
+
 	for (i = 0 ; i < x_n ; i++)
 	{
 	 	v[i] = (double**)malloc(y_n*sizeof(double*));
@@ -118,7 +116,7 @@ int sci_interp3(GW_PARAMETERS)
 	{
 		for(j = 0 ; j < y_n ; j++) v[i][j] = (double*)malloc(z_n*sizeof(double));
 	}
-	
+
 	for( j =0 ; j < xi_n ; j++)
 	{
 		for( i =0 ; i < xi_m ; i++)
@@ -134,13 +132,13 @@ int sci_interp3(GW_PARAMETERS)
 		for( j =0 ; j < y_n ; j++)
 		{
 			for( i =0 ; i < x_n ; i++) v[i][j][k] = *stk(l7+i+j*x_n+k*x_n*y_n);
-		
+
 		}
 	}
 
 	V = interp3(xp,yp,zp,stk(l4),stk(l5),stk(l6),v,x_n,y_n,z_n,xi_m,xi_n);
 	if(!V)return 0;
-	
+
 	CreateVar(8, "d",&xi_m, &xi_n, &l8);
 
 	N = xi_m*xi_n;
@@ -148,14 +146,14 @@ int sci_interp3(GW_PARAMETERS)
 		for(j=0; j< xi_n; j++) *stk(l8+i*xi_n+j)= V[i][j];
 	}
 	LhsVar(1) = 8;
-	
+
 	for (i = 0 ; i < x_n ; i++)
 	{
 		for(j = 0 ; j < y_n ; j++) free(v[i][j]);
 	}
-	
+
 	for (i = 0 ; i < x_n ; i++) free(v[i]);
-		
+
 	for (i = 0 ; i < xi_m ; i++)
 	{
 	 	free(xp[i]);
@@ -167,7 +165,7 @@ int sci_interp3(GW_PARAMETERS)
 	free(xp);
 	free(yp);
 	free(zp);
-	free(v);	
+	free(v);
 	free(V);
 
 	return 0;

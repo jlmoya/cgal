@@ -27,7 +27,7 @@ y = rand(1,10);
 [tri1,ptr] = delaunay_2(x,y);
 new_x = rand(1,10);
 new_y = rand(1,8);  
-assert_checkerror("dt2_insert_points(ptr,new_x,new_y)","%s: Incompatible inputs.",999,"dt2_insert_points");
+assert_checkerror("dt2_insert_points(ptr,new_x,new_y)", "%s: Incompatible inputs", 999, "dt2_insert_points");
 
 //testing if computed outputs are the same as expected
 x=[ 0.9058    0.1270    0.9134    0.6324   0.0975  0.9058    0.1270    0.9134    0.6324    0.0975];

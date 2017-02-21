@@ -6,16 +6,17 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
 #include "gateway_cglab.h"
-#include <string.h>
-#include "machine.h"
-#include <math.h>
-#include <stdio.h>
-#include "localization.h"
-#include "api_scilab.h"
 #include "Delaunay_nd.h"
 
+#include "machine.h"
+#include "localization.h"
+#include "api_scilab.h"
+#include "sciprint.h"
+
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
 
 int sci_dtn_delete(GW_PARAMETERS)
 {

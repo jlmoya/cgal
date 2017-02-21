@@ -37,4 +37,4 @@ type2=type(ptr);
 assert_checkequal(type2,128.0);
 
 //testing what error message is produced when inputs have wrong size
-assert_checkerror ( "tri2=delaunay_2(x,u)", "%s: Incompatible inputs " , 999,"delaunay");
+assert_checkerror ( "tri2=delaunay_2(x,u)", "%s: Incompatible inputs", 999, "delaunay_2");

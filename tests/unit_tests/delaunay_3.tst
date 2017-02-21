@@ -41,5 +41,5 @@ type2=type(ptr);
 assert_checkequal(type2,128.0);
 
 //testing what error message is produced when inputs have wrong size
-assert_checkerror ( "tetra2=delaunay_3(x,u,z)", "delaunay3: Incompatible inputs " , 999);
+assert_checkerror ( "tetra2=delaunay_3(x,u,z)", "%s: Incompatible inputs", 999, "delaunay_3");
 

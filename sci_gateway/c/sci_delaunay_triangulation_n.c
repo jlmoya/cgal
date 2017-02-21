@@ -75,7 +75,7 @@ int sci_delaunay_triangulation_n(GW_PARAMETERS)
     Ptr = delaunay_triangulation_n(pdDtN,n1,m1);
     if (!Ptr)
     {
-        sciprint("%s: Incompatible inputs \r\n","cdelaunay");
+        Scierror(999, "%s: Incompatible inputs", "delaunay_triangulation_n");
         return 0;
     }
     

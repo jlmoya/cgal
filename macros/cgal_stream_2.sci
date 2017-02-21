@@ -14,7 +14,7 @@ function [c] = cgal_stream_2(u,v,dsep,integrator)
 //streamlines.
 
     [lhs,rhs] = argn();
-    if lhs > 1 or rhs > 4 then
+    if (lhs > 1) | (rhs > 4) then
         error("input or output not valid");
     end
     if ~exists("integrator") then 

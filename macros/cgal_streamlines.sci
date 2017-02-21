@@ -10,7 +10,7 @@
 function cgal_streamlines(cell_array)
     clf();
     s = size(cell_array);
-    nb_stls = s(2);			
+    nb_stls = s(2);
     drawlater()
     for i = 1:nb_stls
         stl = cell_array(1,i);
@@ -18,4 +18,4 @@ function cgal_streamlines(cell_array)
         plot(stl(:,1),stl(:,2),"marker",".","markersize",1,"linest","none");
     end
     drawnow()
-endfunction 
+endfunction

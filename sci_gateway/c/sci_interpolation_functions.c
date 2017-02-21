@@ -6,8 +6,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-#define __USE_DEPRECATED_STACK_FUNCTIONS__
-#include "stack-c.h"
+
+#include "gateway_cglab.h"
 #include "localization.h"
 
 extern double* interp2(double* xi, double* yi,double* x,double* y,double* z,int x_n,int y_n,int xi_m,int xi_n);
@@ -18,7 +18,7 @@ extern double** interp3(double** xi, double** yi,double** zi,double* x,double* y
 //--------------------------------------------------------------
 //			Interface interp2
 //---------------------------------------------------------------
-int sci_interp2(char* fname)
+int sci_interp2(GW_PARAMETERS)
 {
 	int minlhs=1, maxlhs=1, minrhs=5, maxrhs=5;
 	int x_m,x_n,l1,xi_m,xi_n,l2,y_m,y_n,l3,yi_m,yi_n,l4,z_m,z_n,l5,l6;
@@ -68,7 +68,7 @@ int sci_interp2(char* fname)
 //--------------------------------------------------------------
 //			Interface interp3
 //---------------------------------------------------------------
-int sci_interp3(char* fname)
+int sci_interp3(GW_PARAMETERS)
 {
 	int minlhs=1, maxlhs=1, minrhs=7, maxrhs=7;
 	int x_m,x_n,l1;

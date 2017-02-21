@@ -6,14 +6,14 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-#define __USE_DEPRECATED_STACK_FUNCTIONS__
-#include "stack-c.h"
+#include "gateway_cglab.h"
+#include "Delaunay_2d.h"
+
 #include "localization.h"
 #include "api_scilab.h"
 #include "sciprint.h"
-#include "Delaunay_2d.h"
 
-int sci_dt2_remove_points(char* fname)
+int sci_dt2_remove_points(GW_PARAMETERS)
 {
     SciErr sciErr;
     static int minlhs=1, maxlhs=1, minrhs=3, maxrhs=3;

@@ -22,22 +22,27 @@
 extern "C"
 {
 #endif
-#define __USE_DEPRECATED_STACK_FUNCTIONS__
-#include"stack-c.h"
+
+#include "call_scilab.h"
+#include "Scierror.h"
+
 #include <string.h>
 #include "machine.h"
 #include <stdio.h>
-extern int C2F(scirun)(char * startup, int lstartup);
+
 int send_scilab_job(char *job)
 {
-	static char buf[1024];
-	static char format[]="Err=execstr('%s','errcatch','n');quit;";
-	int m,n,lp;
-	sprintf(buf,format,job);
-	fprintf(stderr,"job envoye %s\n",buf);
-	C2F(scirun)(buf,strlen(buf));
-	GetMatrixptr("Err", &m, &n, &lp);
-	return (int) *stk(lp);
+    #ifdef _MSC_VER
+    if (StartScilab(NULL, NULL, NULL) == FALSE)
+    #else
+    if (StartScilab(getenv("SCI"), NULL, NULL) == FALSE)
+    #endif
+    {
+        Scierror(999, "%s: Error while calling StartScilab().\n", "send_scilab_job");
+        return -1;
+    }
+
+    return SendScilabJob(job);
 }
 #ifdef __cplusplus
 }

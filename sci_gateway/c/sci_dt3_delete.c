@@ -6,8 +6,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-#define __USE_DEPRECATED_STACK_FUNCTIONS__
-#include "stack-c.h"
+
+#include "gateway_cglab.h"
 #include "localization.h"
 #include <string.h>
 #include <stdio.h>
@@ -15,7 +15,7 @@
 #include "sciprint.h"
 #include "Delaunay_3d.h"
 
-int sci_dt3_delete(char* fname)
+int sci_dt3_delete(GW_PARAMETERS)
 {
     
     SciErr sciErr;

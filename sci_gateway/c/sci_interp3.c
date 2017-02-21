@@ -6,17 +6,18 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-#include <stdlib.h>
-#define __USE_DEPRECATED_STACK_FUNCTIONS__
-#include "stack-c.h"
+#include "gateway_cglab.h"
+#include "interpolation_functions.h"
+
 #include "localization.h"
 #include "api_scilab.h"
 #include "sciprint.h"
 #include "Scierror.h"
-#include "interpolation_functions.h"
+
+#include <stdlib.h>
 
 void* create_output(int _iCoeff, int _iSize, int _iRows, int _iCols, void* _pvDataIn);
-int sci_interp3(char* fname)
+int sci_interp3(GW_PARAMETERS)
 {
     int minlhs=1, maxlhs=1, minrhs=7, maxrhs=7;
     SciErr sciErr;

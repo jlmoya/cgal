@@ -17,9 +17,6 @@
 // Author(s)     : Naceur Meskini
 //               : Edyta Przymus
 //=========================================================================
-#define __USE_DEPRECATED_STACK_FUNCTIONS__
-#define __USE_DEPRECATED_STACK_FUNCTIONS__
-#include "stack-c.h"
 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -27,15 +24,14 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+#include "gateway_cglab.h"
+#include "Stream_lines.h"
 
-#include"stack-c.h"
 #include "localization.h"
 #include "api_scilab.h"
 #include "sciprint.h"
-#include "Stream_lines.h"
 
-
-int sci_streamlines_2(char* fname)
+int sci_streamlines_2(GW_PARAMETERS)
 {
     SciErr sciErr;
     

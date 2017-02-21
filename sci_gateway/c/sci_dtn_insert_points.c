@@ -6,19 +6,18 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-#define __USE_DEPRECATED_STACK_FUNCTIONS__
-#include "stack-c.h"
-#include <string.h>
-#include "machine.h"
-#include <math.h>
-#include <stdio.h>
-#include "localization.h"
-#include "api_scilab.h"
+#include "gateway_cglab.h"
 #include "Delaunay_nd.h"
 
+#include "machine.h"
+#include "localization.h"
+#include "api_scilab.h"
 
+#include <string.h>
+#include <math.h>
+#include <stdio.h>
 
-int sci_dtn_insert_points(char* fname)
+int sci_dtn_insert_points(GW_PARAMETERS)
 {
     SciErr sciErr;
     

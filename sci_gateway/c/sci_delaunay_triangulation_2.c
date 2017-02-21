@@ -6,14 +6,14 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-#define __USE_DEPRECATED_STACK_FUNCTIONS__
-#include "stack-c.h"
+#include "gateway_cglab.h"
+#include "Delaunay_2d.h"
+
 #include "localization.h"
 #include "api_scilab.h"
 #include "sciprint.h"
-#include "Delaunay_2d.h"
 
-int sci_delaunay_triangulation_2(char* fname)
+int sci_delaunay_triangulation_2(GW_PARAMETERS)
 {
     static int l3;
     static int minlhs=1, maxlhs=2, minrhs=2, maxrhs=2;

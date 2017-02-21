@@ -6,14 +6,13 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-#define __USE_DEPRECATED_STACK_FUNCTIONS__
-#include "stack-c.h"
-#include "localization.h"
-#include "api_scilab.h"
+#include "gateway_cglab.h"
 #include "Delaunay_mesher.h"
 
-int sci_mesh_2(char* fname){
+#include "localization.h"
+#include "api_scilab.h"
+
+int sci_mesh_2(GW_PARAMETERS){
     
     SciErr sciErr;
     int l3,l4;

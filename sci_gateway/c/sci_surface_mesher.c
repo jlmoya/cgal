@@ -6,20 +6,18 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+#include "gateway_cglab.h"
+#include "Surface_mesher.h"
 
-#include <string.h>
-#include <stdio.h>
-#define __USE_DEPRECATED_STACK_FUNCTIONS__
-#define __USE_DEPRECATED_STACK_FUNCTIONS__
-#include "stack-c.h"
 #include "localization.h"
 #include "api_scilab.h"
 #include "sciprint.h"
 #include "Scierror.h"
 
-#include "Surface_mesher.h"
+#include <string.h>
+#include <stdio.h>
 
-int sci_surface_mesher(char* fname)
+int sci_surface_mesher(GW_PARAMETERS)
 {
 
     SciErr sciErr;

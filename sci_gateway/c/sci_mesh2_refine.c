@@ -6,16 +6,14 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+#include "gateway_cglab.h"
+#include "Delaunay_mesher.h"
 
-#define __USE_DEPRECATED_STACK_FUNCTIONS__
-#include "stack-c.h"
 #include "localization.h"
 #include "api_scilab.h"
 #include "sciprint.h"
-#include "Delaunay_mesher.h"
 
-
-int sci_mesh2_refine(char* fname)
+int sci_mesh2_refine(GW_PARAMETERS)
 {
     
     //int l1, m1, n1,m2, n2, m3, n3,l2,lPtr;

@@ -17,20 +17,21 @@
 // Author(s)     : Naceur Meskini
 //                 Edyta Przymus
 //=========================================================================
-#define __USE_DEPRECATED_STACK_FUNCTIONS__
-#include "stack-c.h"
+
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-#include "stack-c.h"
+
+#include "gateway_cglab.h"
+#include "Delaunay_2d.h"
+
 #include "localization.h"
 #include "api_scilab.h"
 #include "sciprint.h"
-#include "Delaunay_2d.h"
 
-int sci_dt2_get_connectivity(char* fname)
+int sci_dt2_get_connectivity(GW_PARAMETERS)
 {
     SciErr sciErr;	
     static int lPtr,l3;

@@ -6,18 +6,18 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-#define __USE_DEPRECATED_STACK_FUNCTIONS__
-#include "stack-c.h"
-#include "api_scilab.h"
-#include <string.h>
-#include "machine.h"
-#include <math.h>
-#include <stdio.h>
-#include "localization.h"
+#include "gateway_cglab.h"
 #include "Delaunay_nd.h"
 
+#include "api_scilab.h"
+#include "machine.h"
+#include "localization.h"
 
-int sci_delaunay_triangulation_n(char* fname)
+#include <string.h>
+#include <math.h>
+#include <stdio.h>
+
+int sci_delaunay_triangulation_n(GW_PARAMETERS)
 {
 
     SciErr sciErr;

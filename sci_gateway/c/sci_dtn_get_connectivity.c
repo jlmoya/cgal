@@ -6,19 +6,18 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-#define __USE_DEPRECATED_STACK_FUNCTIONS__
-#include "stack-c.h"
-#include <string.h>
+#include "gateway_cglab.h"
+#include "Delaunay_nd.h"
+
+#include "localization.h"
+#include "api_scilab.h"
 #include "machine.h"
+
+#include <string.h>
 #include <math.h>
 #include <stdio.h>
-#include "localization.h"
-#include "Delaunay_nd.h"
-#include "api_scilab.h"
 
-
-
-int sci_dtn_get_connectivity(char* fname)
+int sci_dtn_get_connectivity(GW_PARAMETERS)
 {
     SciErr sciErr;
 

@@ -6,19 +6,20 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-#define __USE_DEPRECATED_STACK_FUNCTIONS__
-#include "stack-c.h"
+#include "gateway_cglab.h"
+
 #include "api_scilab.h"
 #include "localization.h"
+#include "Scierror.h"
+
 #include <string.h>
 #include "machine.h"
 #include <math.h>
 #include <stdio.h>
-#include "Scierror.h"
 
 extern void         cdt2_insert_points(void* Ptr,double* x, double* y,int nbpts);
 
-int sci_cdt2_insert_points(char* fname)
+int sci_cdt2_insert_points(GW_PARAMETERS)
 {   
     SciErr sciErr;
     

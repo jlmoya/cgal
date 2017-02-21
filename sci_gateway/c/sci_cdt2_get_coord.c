@@ -6,18 +6,19 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-#define __USE_DEPRECATED_STACK_FUNCTIONS__
-#include "stack-c.h"
+#include "gateway_cglab.h"
+#include "Constrained_Delaunay.h"
+
 #include "api_scilab.h"
+#include "Scierror.h"
 #include "localization.h"
+
 #include <string.h>
 #include "machine.h"
 #include <math.h>
 #include <stdio.h>
-#include "Scierror.h"
-#include "Constrained_Delaunay.h"
 
-int sci_cdt2_get_coord(char* fname)
+int sci_cdt2_get_coord(GW_PARAMETERS)
 {    
     SciErr sciErr;
     

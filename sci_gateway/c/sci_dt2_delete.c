@@ -18,8 +18,6 @@
 // Author(s)     : Naceur Meskini
 //                 Edyta Przymus
 //=========================================================================
-#define __USE_DEPRECATED_STACK_FUNCTIONS__
-#include "stack-c.h"
 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -27,12 +25,14 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+#include "gateway_cglab.h"
+#include "Delaunay_2d.h"
+
 #include "localization.h"
 #include "api_scilab.h"   
 #include "sciprint.h"
-#include "Delaunay_2d.h"
 
-int sci_dt2_delete(char* fname)
+int sci_dt2_delete(GW_PARAMETERS)
 {
     SciErr sciErr;
     int minrhs=0, maxrhs=2;

@@ -8,7 +8,7 @@
 
 function [c]=cgal_interp3(xp,yp,zp,x,y,z,v)
     [lhs,rhs] = argn();
-    if lhs > 1 or rhs <> 7  then
+    if (lhs > 1) | (rhs <> 7)  then
         error("input or output not valid");
     end	
     V=[];

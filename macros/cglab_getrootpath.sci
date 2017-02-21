@@ -23,6 +23,6 @@ function path = cglab_getrootpath()
     //   Copyright (C) 2010 - 2011 - DIGITEO - Allan CORNET
 
   [fs, path] = libraryinfo("cglablib");
-  path = pathconvert(fullpath(path + "../"), %t, %t);
+  path = pathconvert(fullpath(path + "/.."), %t, %t);
 endfunction
 

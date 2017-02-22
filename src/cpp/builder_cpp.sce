@@ -11,20 +11,20 @@ function builder_src_cpp()
   os = getos();
   [version, opts] = getversion();
   arch = opts(2);
-  thirdparty_path = fullpath(fullfile(thirdparty_path, os, arch));
+  thirdparty_path = fullpath(fullfile(thirdparty_path, os));
   
   CPPFLAGS = ilib_include_flag(src_cpp_path);
     
   if getos() == "Windows" then      
       CPPFLAGS = CPPFLAGS + ilib_include_flag(fullfile(thirdparty_path, "include"));
-      lib_path = fullfile(thirdparty_path, "lib");
+      lib_path = fullfile(thirdparty_path, arch, "lib");
       LDFLAGS = fullfile(lib_path, "CGAL-vc120-mt-4.7.lib");
       LDFLAGS = LDFLAGS + " " + fullfile(lib_path, "CGAL_ImageIO-vc120-mt-4.7.lib");
       LDFLAGS = LDFLAGS + " " + fullfile(lib_path, "libboost_thread-vc120-mt-1_60.lib");
       LDFLAGS = LDFLAGS + " " + fullfile(lib_path, "libboost_system-vc120-mt-1_60.lib");
   else      
       CPPFLAGS = CPPFLAGS + ilib_include_flag(fullfile(thirdparty_path, "include"));
-      LDFLAGS = "-L" + fullfile(thirdparty_path, "lib");
+      LDFLAGS = "-L" + fullfile(thirdparty_path, arch, "lib");
       LDFLAGS = LDFLAGS + " -lCGAL -lCGAL_ImageIO";
   end
 

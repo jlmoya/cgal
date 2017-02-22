@@ -1,3 +1,7 @@
+2.3.1:
+    [ Simon MARCHETTO ]
+    * Support of Scilab 6
+
 2.2:
     [ Simon MARCHETTO ]
     * CGAL 4.7 packaged in the toolbox

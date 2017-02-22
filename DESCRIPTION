@@ -1,7 +1,7 @@
 Toolbox: cglab
 Title: CGLAB
 Summary: Wrapper for the CGAL library
-Version: 2.2
+Version: 2.3.1
 Author: Edyta PRZYMUS
 Maintainer: Simon Marchetto (simon.marchetto@scilab-enterprises.com)
 Category: Linear Algebra

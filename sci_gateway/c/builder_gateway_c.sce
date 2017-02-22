@@ -9,13 +9,8 @@
 
 
 function build_gateway_cpp()
-
-  if (getos() == "Windows") then
-    // to manage long pathname
-    includes_src_cpp = '-I""' + get_absolute_file_path('builder_gateway_c.sce') + '../../src/cpp""';
-  else
-    includes_src_cpp = '-I' + get_absolute_file_path('builder_gateway_c.sce') + '../../src/cpp';
-  end
+  gateway_c_path = get_absolute_file_path("builder_gateway_c.sce");
+  include_flag = ilib_include_flag([gateway_c_path; fullpath(gateway_c_path + "/../../src/cpp")]);
 
   WITHOUT_AUTO_PUTLHSVAR = %t;
 
@@ -91,9 +86,9 @@ function build_gateway_cpp()
                   'surface_mesher' 'sci_surface_mesher'];
 
 
-tbx_build_gateway('gw_cglab', gw_functions, gw_files , ..
-                  get_absolute_file_path('builder_gateway_c.sce'), ..
-                  ['../../src/cpp/libcgal_cpp'], '', includes_src_cpp);
+tbx_build_gateway("gw_cglab", gw_functions, gw_files , ..
+                  gateway_c_path, ..
+                  ["../../src/cpp/libcgal_cpp"], "", include_flag);
 
 endfunction
 

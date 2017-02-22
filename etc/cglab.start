@@ -42,6 +42,10 @@ function cglablib = startModule()
       cd(orig_dir);
   else
       lib_path = fullfile(root_tlbx, "thirdparty", "Linux", arch, "lib");
+      link(fullfile(lib_path, "libgmp.so.10"));
+      link(fullfile(lib_path, "libmpfr.so.4"));
+      link(fullfile(lib_path, "libboost_system-mt.so.5"));
+      link(fullfile(lib_path, "libboost_thread-mt.so.5"));
       link(fullfile(lib_path, "libCGAL.so"));     
       link(fullfile(lib_path, "libCGAL_ImageIO.so"));         
   end

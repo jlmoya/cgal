@@ -1,3 +1,7 @@
+2.3.2:
+    [ Stéphane 0MOTTELET ]
+    * Support of Mac OS X
+
 2.3.1:
     [ Simon MARCHETTO ]
     * Support of Scilab 6

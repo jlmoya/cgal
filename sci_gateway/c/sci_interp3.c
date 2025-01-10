@@ -18,7 +18,7 @@
 void* create_output(int _iCoeff, int _iSize, int _iRows, int _iCols, void* _pvDataIn);
 int sci_interp3(GW_PARAMETERS)
 {
-    int minlhs=1, maxlhs=1, minrhs=7, maxrhs=7;
+    int minlhs=0, maxlhs=1, minrhs=7, maxrhs=7;
     SciErr sciErr;
     
     

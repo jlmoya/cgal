@@ -36,8 +36,10 @@
 #include "cgal_exception.h"
 #include <CGAL/assertions_behaviour.h>
 
-
-extern "C" int send_scilab_job(char *job);
+extern "C"
+{
+#include "sciprint.h"
+}
 
 struct K : CGAL::Exact_predicates_inexact_constructions_kernel {};
 typedef CGAL::Delaunay_triangulation_2<K>             			dt_2;
@@ -96,7 +98,7 @@ extern "C"
 			}
 		}
 		catch(...){
-			send_scilab_job("printf(''error:\t couldn't compute the interpolation for the given data'')");
+			sciprint("\terror: couldn't compute the interpolation for the given data");
 			return 0;		
 			}
 			
@@ -161,7 +163,7 @@ extern "C"
 			
 		}catch(...)
 			{
-				send_scilab_job("printf(''error:\t couldn't compute the interpolation for the given data'')");
+				sciprint("\terror: couldn't compute the interpolation for the given data");
 				return 0;
 			}
 							

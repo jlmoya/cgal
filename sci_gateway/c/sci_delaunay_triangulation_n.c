@@ -23,7 +23,7 @@ int sci_delaunay_triangulation_n(GW_PARAMETERS)
     SciErr sciErr;
 
     int l2;
-    int minlhs=1, maxlhs=2, minrhs=1, maxrhs=1;
+    int minlhs=0, maxlhs=2, minrhs=1, maxrhs=1;
     
     
     static int m1 = 0, n1 = 0, l1=0;

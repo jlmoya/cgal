@@ -22,7 +22,7 @@ int sci_constrained_delaunay_2(GW_PARAMETERS)
 {
     SciErr sciErr;
     
-    int minlhs=1, maxlhs=2, minrhs=3, maxrhs=3;
+    int minlhs=0, maxlhs=2, minrhs=3, maxrhs=3;
     
     int m1 = 0, n1 = 0, l1=0;
     int *piAddressX = NULL;

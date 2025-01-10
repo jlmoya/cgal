@@ -22,7 +22,7 @@ int sci_dtn_get_connectivity(GW_PARAMETERS)
     SciErr sciErr;
 
     int lPtr, l2;
-    int minlhs=1, maxlhs=1, minrhs=1, maxrhs=1;
+    int minlhs=0, maxlhs=1, minrhs=1, maxrhs=1;
     
     static int m1 = 0, n1 = 0, l1 = 0;
     int *piAdressDtNPtr = NULL;

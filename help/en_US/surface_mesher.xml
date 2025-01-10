@@ -10,17 +10,8 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="surface_mesher"><info><pubdate>September 2006</pubdate></info><refnamediv><refname>surface_mesher</refname><refpurpose> Meshes a surface defined as a grey level in a 3D image</refpurpose></refnamediv>
-  
-   
-  
-   
-  
-   
-  
-   
-  
-   
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="surface_mesher" xml:lang="en" xmlns:m="http://www.w3.org/1998/Math/MathML">
+<info><pubdate>September 2006</pubdate></info><refnamediv><refname>surface_mesher</refname><refpurpose> Meshes a surface defined as a grey level in a 3D image</refpurpose></refnamediv>
   
    <refsynopsisdiv><title>Calling Sequence</title><synopsis>[connect,coord]=surface_mesher(image,iso_value,bounded_sphere,mesh_criteria)</synopsis></refsynopsisdiv>
   
@@ -112,23 +103,41 @@
    </refsection>
   
    <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+   p = cglab_getrootpath();
+   image_1 = p+"/demos/skull_2.9.inr";
+   bounded_sphere = [122.0 102.0 117.0 200.0*200.0*2.0];
+   mesh_criteria = [30 5 5];
+   [tri,coord] = surface_mesher(image_1,2.9,bounded_sphere,mesh_criteria);
 
-p=cglab_getrootpath();
-image_1= p+"/demos/skull_2.9.inr";
-bounded_sphere = [122.0 102.0 117.0 200.0*200.0*2.0];
-mesh_criteria = [30 5 5];
-[tri,coord] = surface_mesher(image_1,2.9,bounded_sphere,mesh_criteria);
+   xx = matrix(coord(tri,1),-1,3)';
+   yy = matrix(coord(tri,2),-1,3)';
+   zz = matrix(coord(tri,3),-1,3)';
 
-//rendering using scilab plot3d:
-
-xx=matrix(coord(tri,1),-1,3)';
-yy=matrix(coord(tri,2),-1,3)';
-zz=matrix(coord(tri,3),-1,3)';
-clf();plot3d(xx,yy,zz)
-a=gca(); a.isoview="on"; a.rotation_angles=[75,-75];
- 
+   h = plot3d(xx,yy,zz)
+   h.color_mode=8
+   h.hiddencolor = -1;
+   a=gca();
+   a.isoview="on";
+   a.rotation_angles=[75,-75];
   ]]></programlisting></refsection>
-     <mediaobject><imageobject><imagedata align="center" fileref="../images/surface_mesher.png"/></imageobject></mediaobject>
+     <scilab:image>
+         p = cglab_getrootpath();
+         image_1 = p+"/demos/skull_2.9.inr";
+         bounded_sphere = [122.0 102.0 117.0 200.0*200.0*2.0];
+         mesh_criteria = [30 5 5];
+         [tri,coord] = surface_mesher(image_1,2.9,bounded_sphere,mesh_criteria);
+
+         xx = matrix(coord(tri,1),-1,3)';
+         yy = matrix(coord(tri,2),-1,3)';
+         zz = matrix(coord(tri,3),-1,3)';
+
+         h = plot3d(xx,yy,zz)
+         h.color_mode=8
+         h.hiddencolor = -1;
+         a=gca();
+         a.isoview="on";
+         a.rotation_angles=[75,-75];
+     </scilab:image>
 
   
    <refsection><title>Authors</title><simplelist type="vert">

@@ -22,7 +22,7 @@ int sci_dtn_insert_points(GW_PARAMETERS)
     SciErr sciErr;
     
     static int lPtr;
-    static int minlhs=1, maxlhs=1, minrhs=2, maxrhs=2;
+    static int minlhs=0, maxlhs=1, minrhs=2, maxrhs=2;
     
     static int m1 = 0, n1 = 0, l1=0;
     int *piAddressDtNPtr = NULL;

@@ -27,6 +27,11 @@
 #include <iostream>
 #include <CGAL/assertions_behaviour.h>
 
+extern "C"
+{
+#include "sciprint.h"
+}
+
 template <class CDT,class Criteria>
 class Mesh2d : public CGAL::Delaunay_mesher_2<CDT,Criteria>
 {
@@ -49,10 +54,7 @@ typedef CDT::Vertex_iterator Vertices_iterator;
 typedef CDT::Face_iterator faces_iterator;
 typedef CDT::Point Point;
 
-
-
 std::set<Mesher*> ListOfMesher;
-extern "C" int send_scilab_job(char *job);
 
 extern "C"
 {
@@ -137,7 +139,7 @@ extern "C"
 			*NbTri = count;
 		}catch(...)
 		{
-			send_scilab_job("printf('error unable to get connectivity')");
+			sciprint("\terror: unable to get connectivity");
 			if (TRI != NULL)
 			{
 				free(TRI);

@@ -20,7 +20,7 @@ int sci_delaunay_triangulation_3(GW_PARAMETERS)
     SciErr sciErr;
     
     int l4;
-    int minlhs=1, maxlhs=2, minrhs=3, maxrhs=3;
+    int minlhs=0, maxlhs=2, minrhs=3, maxrhs=3;
 
     static int m1 = 0, n1 = 0, l1=0;
     int *piAddressDt3X = NULL;

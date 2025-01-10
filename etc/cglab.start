@@ -2,11 +2,11 @@
 // Edyta PRZYMUS
 // Allan CORNET - DIGITEO - 2011
 // Scilab Enterprises - 2015
-// Stéphane MOTTELET - 2018 (OSX version)
+// Stéphane MOTTELET - UTC - 2018-2025
 // ====================================================================
 function cglablib = startModule()
 
-  mprintf("Start CG-lab\n");
+  mprintf("Start CG-lab: ");
 
   if isdef("cglablib") then
     warning("CG-lab library is already loaded");
@@ -19,7 +19,7 @@ function cglablib = startModule()
  
   // Load macros library
   // =============================================================================
-  mprintf("\tLoad macros\n");
+  mprintf("load macros");
   pathmacros = fullfile(root_tlbx, "macros");
   cglablib = lib(pathmacros);
   
@@ -28,7 +28,7 @@ function cglablib = startModule()
   verboseMode = ilib_verbose();
   ilib_verbose(0);
 
-  mprintf("\tLoad thirdparties\n");
+  mprintf(", thirdparties");
   [version, opts] = getversion();
   arch = opts(2);
   if getos() == "Windows" then
@@ -52,22 +52,21 @@ function cglablib = startModule()
   elseif getos() == "Darwin"
       lib_path = fullfile(root_tlbx, "thirdparty", "Darwin", arch, "lib");
       link(fullfile(lib_path, "libgmp.dylib"));
-      link(fullfile(lib_path, "libmpfr.dylib"));
-      link(fullfile(lib_path, "libboost_system-mt.dylib"));
-      link(fullfile(lib_path, "libboost_thread-mt.dylib"));
+      link(fullfile(lib_path, "libboost_thread.dylib"));
       link(fullfile(lib_path, "libCGAL.dylib"));     
       link(fullfile(lib_path, "libCGAL_ImageIO.dylib"));         
+      link(fullfile(lib_path, "libCGAL_Core.dylib"));     
   end
 
   // Load gateways
   // =============================================================================
-  mprintf("\tLoad gateways\n");
+  mprintf(", gateways");
   exec(fullfile(root_tlbx, "sci_gateway", "loader_gateway.sce"));
 
   // Load help chapter
   // =============================================================================
   if or(getscilabmode() == ["NW";"STD"]) then
-    mprintf("\tLoad help\n");
+    mprintf(", help");
     path_addchapter = fullfile(root_tlbx, "jar");
     if (isdir(path_addchapter) <> []) then
       add_help_chapter("CG-lab", path_addchapter, %F);
@@ -77,7 +76,7 @@ function cglablib = startModule()
   // Load demos
   // =============================================================================
   if or(getscilabmode() == ["NW";"STD"]) then
-    mprintf("\tLoad demos\n");
+    mprintf(", demos.\n");
     add_demo("CG-lab", fullfile(root_tlbx, "demos", "cglab.dem.gateway.sce"));
   end
 

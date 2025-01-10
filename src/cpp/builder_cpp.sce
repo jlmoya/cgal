@@ -17,7 +17,7 @@ function builder_src_cpp()
     
   if getos() == "Windows" then      
       CPPFLAGS = CPPFLAGS + ilib_include_flag(fullfile(thirdparty_path, "include"));
-      lib_path = fullfile(thirdparty_path, arch, "lib");
+      lib_path = fullfile(thirdparty_path, "lib");
       LDFLAGS = fullfile(lib_path, "CGAL-vc120-mt-4.7.lib");
       LDFLAGS = LDFLAGS + " " + fullfile(lib_path, "CGAL_ImageIO-vc120-mt-4.7.lib");
       LDFLAGS = LDFLAGS + " " + fullfile(lib_path, "libboost_thread-vc120-mt-1_60.lib");

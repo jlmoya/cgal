@@ -1,5 +1,9 @@
-2.3.2:
+2.3.3:
     [ Stéphane 0MOTTELET ]
+    * updates for Scilab 2025.0.0
+
+2.3.2:
+    [ Stéphane MOTTELET ]
     * Support of Mac OS X
 
 2.3.1:

@@ -11,6 +11,7 @@
 
 cd ..
 THIRDPARTY="$(pwd)/$(uname -s)/$(uname -m)"
+OS=$(uname)
 cd build
 CGAL_VER=4.7
 

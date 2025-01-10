@@ -35,7 +35,7 @@ int sci_mesh2_refine(GW_PARAMETERS)
     double *pdMesh2UpperBound = NULL;
     int iTypeMesh2UpperBound = 0; 
     
-    int minlhs=1, maxlhs=1, minrhs=1, maxrhs=3;
+    int minlhs=0, maxlhs=1, minrhs=1, maxrhs=3;
     double shapebound =0.,upperbound=0.;
     CheckRhs(minrhs,maxrhs) ;
     CheckLhs(minlhs,maxlhs) ;

@@ -27,6 +27,11 @@
 #include "cgal_exception.h"
 #include <CGAL/assertions_behaviour.h>
 
+extern"C"
+{
+#include "sciprint.h"
+}
+
 /********************************************************************/
 //					Delaunay 3D
 //
@@ -41,7 +46,6 @@ typedef Delaunay3d::Vertex_handle    																vertex_handle;
 typedef Delaunay3d::Finite_cells_iterator 													cells_iterator;
 
 std::set<Delaunay3d*> ListOfTriangulations;
-extern "C" int send_scilab_job(char *job);
 
 extern "C"
 {
@@ -60,7 +64,7 @@ extern "C"
 			dt->is_valid();
 		}catch(...)
 			{
-				send_scilab_job("printf(''error:\t the triangulation is not valid with the given points'')");
+				sciprint("\terror: the triangulation is not valid with the given points");
 				return 0;
 			}
 		return (void*)dt;
@@ -111,7 +115,7 @@ extern "C"
 			}
 		}catch(...)
 			{
-				send_scilab_job("printf(''\terror: unable to get connectivity of this object'')");
+				sciprint("\terror: unable to get connectivity of this object");
 				if (TES != NULL)
 				{
 					free(TES);
@@ -138,7 +142,7 @@ extern "C"
 			}
 		}catch(...)
 			{
-					send_scilab_job("printf(''\terror: unable to insert this point(s)'')");
+					sciprint("\terror: unable to insert this point(s)");
 			}
 	}
 
@@ -159,7 +163,7 @@ extern "C"
 			}
 		}catch(...)
 			{
-					send_scilab_job("printf(''\terror: unable to remove this point(s)'')");
+					sciprint("\terror: unable to remove this point(s)");
 			}
 	}
 }

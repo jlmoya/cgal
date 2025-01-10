@@ -26,6 +26,11 @@
 #include "cgal_exception.h"
 #include <CGAL/assertions_behaviour.h>
 
+extern "C"
+{
+#include "sciprint.h"
+}
+
 struct Kernel : public CGAL::Exact_predicates_inexact_constructions_kernel {};
 typedef CGAL::Surface_mesh_vertex_base_3< Kernel> 							Vb;
 typedef CGAL::Surface_mesh_cell_base_3< Kernel> 								Cb;
@@ -41,8 +46,6 @@ typedef Tr::Point                          									Point_3;
 typedef C2t3::Facet_iterator                    							Facet_iterator;
 typedef C2t3::Vertex_handle    												vertex_handle;
 typedef C2t3::Vertex_iterator 												Vertex_iterator;
-
-extern "C" int send_scilab_job(char *job);
 
 Tr  tr ;   // 3D-Delaunay triangulation
 
@@ -72,7 +75,7 @@ extern "C"
 	
 		}catch(...)
 			{
-				send_scilab_job("printf(''error:\t the surface defined by this image can not be build.'')");
+				sciprint("\terror: the surface defined by this image can not be build.");
 				return 0;
 			}
 
@@ -123,7 +126,7 @@ extern "C"
 			}
 		}catch(...)
 			{
-				send_scilab_job("printf(''\terror: unable to get connectivity of this object'')");
+				sciprint("\terror: unable to get connectivity of this object");
 				if (TES != NULL)
 				{
 					free(TES);
@@ -158,7 +161,7 @@ extern "C"
 				i++;
 			}
 		}catch(...){
-			send_scilab_job("printf(''\terror: unable to get coord of this object'')");
+			sciprint("\terror: unable to get coord of this object");
 			if (Coord != NULL)
 			{
 				free(Coord);

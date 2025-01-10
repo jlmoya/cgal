@@ -16,7 +16,7 @@
 int sci_delaunay_triangulation_2(GW_PARAMETERS)
 {
     static int l3;
-    static int minlhs=1, maxlhs=2, minrhs=2, maxrhs=2;
+    static int minlhs=0, maxlhs=2, minrhs=2, maxrhs=2;
     
     SciErr sciErr;
     

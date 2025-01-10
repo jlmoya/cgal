@@ -15,7 +15,7 @@
 
 int sci_interp2(GW_PARAMETERS)
 {
-    int minlhs=1, maxlhs=1, minrhs=5, maxrhs=5;
+    int minlhs=0, maxlhs=1, minrhs=5, maxrhs=5;
     
     SciErr sciErr;
     

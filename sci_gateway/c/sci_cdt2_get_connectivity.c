@@ -22,7 +22,7 @@ int sci_cdt2_get_connectivity(GW_PARAMETERS)
 {
     SciErr sciErr;
     
-    int minlhs=1, maxlhs=1, minrhs=1, maxrhs=1;
+    int minlhs=0, maxlhs=1, minrhs=1, maxrhs=1;
     
     int m1 = 0, n1 = 0, l2=0;
     int *piAddressPtr = NULL;

@@ -23,7 +23,7 @@ int sci_mesh_2(GW_PARAMETERS){
     double *pdVarPslg = NULL;
     int iTypePslg = 0;
 
-    int minlhs=1, maxlhs=3, minrhs=1, maxrhs=1;
+    int minlhs=0, maxlhs=3, minrhs=1, maxrhs=1;
     void* Ptr;
     int one =1;
     int n = 3,m = 2;

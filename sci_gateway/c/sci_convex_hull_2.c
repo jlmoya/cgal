@@ -25,7 +25,7 @@ int sci_convex_hull_2(GW_PARAMETERS)
     int iTypeXY = 0; 
     
     
-    static int minlhs=1, maxlhs=2, minrhs=1, maxrhs=1;
+    static int minlhs=0, maxlhs=2, minrhs=1, maxrhs=1;
     int NbInd;
     int* data = 0;
     int m = 1;

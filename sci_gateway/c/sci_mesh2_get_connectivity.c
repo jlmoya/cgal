@@ -18,7 +18,7 @@ int sci_mesh2_get_connectivity(GW_PARAMETERS)
     SciErr sciErr;
     
     int lPtr,l3;
-    int minlhs=1, maxlhs=1, minrhs=1, maxrhs=1;
+    int minlhs=0, maxlhs=1, minrhs=1, maxrhs=1;
     int n = 3;
     
     static int m1 = 0, n1 = 0;

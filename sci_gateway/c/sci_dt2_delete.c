@@ -159,8 +159,8 @@ int sci_dt2_delete(GW_PARAMETERS)
                 dt2_delete(pdDt2Ptr);
             }
             
-            sciprint("clear %s",pstData);
-            send_scilab_job(pstData);
+            // sciprint("clear %s",pstData);
+            // send_scilab_job(pstData);
             freeAllocatedSingleString(pstData);
         }
         break;

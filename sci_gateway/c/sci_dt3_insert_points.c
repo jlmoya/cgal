@@ -20,7 +20,7 @@ int sci_dt3_insert_points(GW_PARAMETERS)
     SciErr sciErr;
 
     int lPtr;
-    int minlhs=1, maxlhs=1, minrhs=4, maxrhs=4;
+    int minlhs=0, maxlhs=1, minrhs=4, maxrhs=4;
     
     static int m1 = 0, n1 = 0, l1=0;
     int *piAddressDt3Ptr = NULL;

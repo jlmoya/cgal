@@ -16,7 +16,7 @@
 int sci_dt2_remove_points(GW_PARAMETERS)
 {
     SciErr sciErr;
-    static int minlhs=1, maxlhs=1, minrhs=3, maxrhs=3;
+    static int minlhs=0, maxlhs=1, minrhs=3, maxrhs=3;
     
     static int m1 = 0, n1 = 0, l1=0;
     int *piAddressDt2Ptr = NULL;

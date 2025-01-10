@@ -34,7 +34,7 @@ int sci_cdt2_insert_constraints(GW_PARAMETERS)
     double *pdCxy = NULL;
     int iTypeCxy = 0;
     
-    int minlhs=1, maxlhs=1, minrhs=2, maxrhs=2;
+    int minlhs=0, maxlhs=1, minrhs=2, maxrhs=2;
 
     CheckRhs(minrhs,maxrhs) ;
     CheckLhs(minlhs,maxlhs) ;

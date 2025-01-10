@@ -28,15 +28,18 @@
 
 #include <CGAL/Cartesian.h>
 #include <CGAL/Filtered_kernel.h>
-
 #include <CGAL/Stream_lines_2.h>
 #include <CGAL/Runge_kutta_integrator_2.h>
 #include <vector>
 #include "cgal_exception.h"
 #include <math.h>
 #include <CGAL/assertions_behaviour.h>
-
 #include <CGAL/Regular_grid_2.h>
+
+extern "C"
+{
+#include "sciprint.h"
+}
 
 typedef double coord_type;
 typedef CGAL::Cartesian<coord_type> K1;
@@ -48,8 +51,6 @@ typedef Stl::Point_iterator_2 Point_iterator;
 typedef Stl::Stream_line_iterator_2 stl_iterator;
 typedef Stl::Point_2 Point;
 typedef Stl::Vector_2 Vector;
-
-extern "C" int send_scilab_job(char *job);
 
 extern "C"
 {
@@ -90,7 +91,7 @@ extern "C"
 			return (void*)Stream_lines;
 				
 		}catch(...)
-		{send_scilab_job("printf('error unable to compute a streamlines of this given data')");}	
+		{sciprint("\terror unable to compute a streamlines of this given data");}	
 		
 		return 0;
 
@@ -119,7 +120,7 @@ extern "C"
 		
 		}catch(...)
 		{
-			send_scilab_job("printf('error: failure in the function: get_nbpts_of_stls')");
+			sciprint("\terror: failure in the function: get_nbpts_of_stls");
 			if (nbpts_of_stls != NULL)
 			{
 				free(nbpts_of_stls);
@@ -157,7 +158,7 @@ extern "C"
 
 		}catch(...)
 		{
-			send_scilab_job("printf('error: failure in the function: get_stls ')");
+			sciprint("\terror: failure in the function: get_stls");
 			if (stls != NULL)
 			{
 				free(stls);

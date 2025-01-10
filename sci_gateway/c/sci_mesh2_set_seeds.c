@@ -36,7 +36,7 @@ int sci_mesh2_set_seeds(GW_PARAMETERS)
     SciErr sciErr;
     
     int lPtr;
-    int minlhs=1, maxlhs=1, minrhs=3, maxrhs=3;
+    int minlhs=0, maxlhs=1, minrhs=3, maxrhs=3;
     
     static int m1 = 0, n1 = 0, l1=0;
     int *piAddressMesh2Ptr = NULL;

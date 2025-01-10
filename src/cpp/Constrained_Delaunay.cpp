@@ -29,6 +29,11 @@
 #include "cgal_exception.h"
 #include "Constrained_Delaunay.h"
 
+extern "C"
+{
+#include "sciprint.h"
+}
+
 /********************************************************************/
 //					Constrained_Delaunay_triangulation_2
 //
@@ -48,7 +53,6 @@ typedef CDT::Finite_faces_iterator 								cfaces_iterator;
 typedef CDT::Face_handle 										      Face_handle;
 
 std::set<CDT*> ListOfCDT;
-extern "C" int send_scilab_job(char *job);
 
 extern "C"
 {
@@ -74,7 +78,7 @@ extern "C"
 			}
 		}catch(...)
 			{
-				send_scilab_job("printf(''error:\t the triangulation is not valid with the given points and constaints\n'')");
+				sciprint("\t error: the triangulation is not valid with the given points and constaints");
 				return 0;
 			}
 		return (void*) cdt;
@@ -129,7 +133,7 @@ extern "C"
 			}
 		}catch(...)
 			{
-				send_scilab_job("printf(''\terror: unable to get connectivity of this object'')");
+				sciprint("\terror: unable to get connectivity of this object");
 				if (TRI != NULL)
 				{
 					free(TRI);
@@ -167,7 +171,7 @@ extern "C"
 			}
 		}catch(...)
 			{
-				send_scilab_job("printf(''\terror: unable to get coordinates of this object'')");
+				sciprint("\terror: unable to get coordinates of this object");
 				if (Coord != NULL)
 				{
 					free(Coord);
@@ -193,7 +197,7 @@ extern "C"
 			}
 		}catch(...)
 			{
-					send_scilab_job("printf(''\terror: unable to insert this point(s)'')");
+					sciprint("\terror: unable to insert this point(s)");
 			}
 	}
 
@@ -211,11 +215,11 @@ extern "C"
 				Point_2 P1(cxy[i],cxy[i+nbconstraint]);
 				Point_2 P2(cxy[i+2*nbconstraint],cxy[i+3*nbconstraint]);
 				cdt->insert_constraint(P1,P2);
-				if(!cdt->is_valid())send_scilab_job("printf(''\terror: with this new constraint(s) cdt becomes not valid'')");
+				if(!cdt->is_valid()) sciprint("\terror: with this new constraint(s) cdt becomes not valid");
 			}
 		}catch(...)
 			{
-					send_scilab_job("printf(''\terror: unable to insert this constraint(s)'')");
+					sciprint("\terror: unable to insert this constraint(s)");
 			}
 	}
 
@@ -250,7 +254,7 @@ extern "C"
 			}
 		}catch(...)
 			{
-					send_scilab_job("printf(''\terror: unable to remove this constraint(s)'')");
+					sciprint("\terror: unable to remove this constraint(s)");
 			}
 	}
 
@@ -275,7 +279,7 @@ extern "C"
 			}
 		}catch(...)
 			{
-					send_scilab_job("printf(''\terror: unable to remove this points(s)'')");
+					sciprint("\terror: unable to remove this points(s)");
 			}
 	}
 
@@ -308,7 +312,7 @@ extern "C"
 			}
 		}catch(...)
 			{
-					send_scilab_job("printf(''\terror: unable to delete this pointer(s)'')");
+					sciprint("\terror: unable to delete this pointer(s)");
 			}
 			return 0;
 	}

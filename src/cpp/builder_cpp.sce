@@ -11,7 +11,7 @@ function builder_src_cpp()
   os = getos();
   [version, opts] = getversion();
   arch = opts(2);
-  thirdparty_path = fullpath(fullfile(thirdparty_path, os));
+  thirdparty_path = fullpath(fullfile(thirdparty_path, os, arch));
   
   CPPFLAGS = ilib_include_flag(src_cpp_path);
     
@@ -24,7 +24,7 @@ function builder_src_cpp()
       LDFLAGS = LDFLAGS + " " + fullfile(lib_path, "libboost_system-vc120-mt-1_60.lib");
   else      
       CPPFLAGS = CPPFLAGS + ilib_include_flag(fullfile(thirdparty_path, "include"));
-      LDFLAGS = "-L" + fullfile(thirdparty_path, arch, "lib");
+      LDFLAGS = "-L" + fullfile(thirdparty_path, "lib");
       LDFLAGS = LDFLAGS + " -lCGAL -lCGAL_ImageIO";
   end
 
@@ -36,8 +36,7 @@ function builder_src_cpp()
          'Delaunay_nd.cpp', ..
          'interpolation_functions.cpp', ..
          'Stream_lines.cpp', ..
-         'Surface_mesher.cpp', ..
-         'scilab_job.c'] ;
+         'Surface_mesher.cpp'] ;
 
    tbx_build_src('cgal_cpp', ..
                  files_cpp, ..

@@ -20,9 +20,6 @@ double* sm_get_coord(void* Ptr,int* nbpts);
 
 int delete_surface_mesher(void* Ptr);
 
-int send_scilab_job(char *job);
-
-
 #ifdef __cplusplus
 } 
 #endif

@@ -20,7 +20,7 @@ extern double** interp3(double** xi, double** yi,double** zi,double* x,double* y
 //---------------------------------------------------------------
 int sci_interp2(GW_PARAMETERS)
 {
-	int minlhs=1, maxlhs=1, minrhs=5, maxrhs=5;
+	int minlhs=0, maxlhs=1, minrhs=5, maxrhs=5;
 	int x_m,x_n,l1,xi_m,xi_n,l2,y_m,y_n,l3,yi_m,yi_n,l4,z_m,z_n,l5,l6;
 
 	double* ZI = 0;
@@ -68,7 +68,7 @@ int sci_interp2(GW_PARAMETERS)
 //---------------------------------------------------------------
 int sci_interp3(GW_PARAMETERS)
 {
-	int minlhs=1, maxlhs=1, minrhs=7, maxrhs=7;
+	int minlhs=0, maxlhs=1, minrhs=7, maxrhs=7;
 	int x_m,x_n,l1;
 	int xi_m,xi_n,l2;
 	int y_m,y_n,l3;

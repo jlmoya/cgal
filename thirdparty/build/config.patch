@@ -1,0 +1,11 @@
+--- /Users/mottelet/git/cgal/thirdparty/build/CGAL-4.7/include/CGAL/config.h	2015-09-21 16:25:52
++++ config.h	2025-01-10 12:12:32
+@@ -262,7 +262,7 @@
+    || defined(_M_ALPHA) || defined(_WIN64)
+ #  define CGAL_LITTLE_ENDIAN
+ #else
+-#  error Unknown endianness
++#  define CGAL_LITTLE_ENDIAN
+ #endif
+ 
+ 

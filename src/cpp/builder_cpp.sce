@@ -18,7 +18,10 @@ function builder_src_cpp()
   if getos() == "Windows" then      
       CPPFLAGS = CPPFLAGS + ilib_include_flag(fullfile(thirdparty_path, "include"));
       lib_path = fullfile(thirdparty_path, "lib");
-      LDFLAGS = fullfile(lib_path, "CGAL-vc140-mt-4.7.lib");
+      disp(lib_path)
+      LDFLAGS = fullfile(lib_path, "libboost_thread-vc143-mt-x64-1_86.lib");
+      LDFLAGS =  LDFLAGS + " " + fullfile(lib_path, "libgmp-10.lib");
+      LDFLAGS =  LDFLAGS + " " + fullfile(lib_path, "CGAL-vc140-mt-4.7.lib");
       LDFLAGS = LDFLAGS + " " + fullfile(lib_path, "CGAL_ImageIO-vc140-mt-4.7.lib");
   else      
       CPPFLAGS = CPPFLAGS + ilib_include_flag(fullfile(thirdparty_path, "include"));

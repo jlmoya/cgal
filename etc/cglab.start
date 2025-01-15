@@ -16,13 +16,13 @@ function cglablib = startModule()
   etc_tlbx  = get_absolute_file_path("cglab.start");
   etc_tlbx  = getshortpathname(etc_tlbx);
   root_tlbx = strncpy( etc_tlbx, length(etc_tlbx)-length("\etc\") );
- 
+
   // Load macros library
   // =============================================================================
   mprintf("load macros");
   pathmacros = fullfile(root_tlbx, "macros");
   cglablib = lib(pathmacros);
-  
+
   // Load thirdparties
   // =============================================================================
   verboseMode = ilib_verbose();
@@ -35,26 +35,33 @@ function cglablib = startModule()
       bin_path = fullfile(root_tlbx, "thirdparty", "Windows", arch, "bin");
       orig_dir = pwd();
       cd(bin_path);
-      link(fullfile(bin_path, "boost_system-vc120-mt-1_60.dll"));
-      link(fullfile(bin_path, "boost_chrono-vc120-mt-1_60.dll"));
-      link(fullfile(bin_path, "boost_thread-vc120-mt-1_60.dll"));
-      link(fullfile(bin_path, "CGAL-vc120-mt-4.7.dll"));
-      link(fullfile(bin_path, "CGAL_ImageIO-vc120-mt-4.7.dll"));
+      link("libgmp-10.dll");
+      if (isDebug())
+        link("boost_thread-vc143-mt-gd-x64-1_86.dll");
+        link("CGAL-vc140-mt-gd-4.7.dll");
+        link("CGAL_ImageIO-vc140-mt-gd-4.7.dll");
+        link("CGAL_Core-vc140-mt-gd-4.7.dll");
+      else
+        link("boost_thread-vc143-mt-x64-1_86.dll");
+        link("CGAL-vc140-mt-4.7.dll");
+        link("CGAL_ImageIO-vc140-mt-4.7.dll");
+        link("CGAL_Core-vc140-mt-4.7.dll");
+      end
       cd(orig_dir);
   elseif getos() == "Linux"
       lib_path = fullfile(root_tlbx, "thirdparty", "Linux", arch, "lib");
       link(fullfile(lib_path, "libgmp.so"));
       link(fullfile(lib_path, "libboost_thread.so"));
-      link(fullfile(lib_path, "libCGAL.so"));     
-      link(fullfile(lib_path, "libCGAL_ImageIO.so"));         
-      link(fullfile(lib_path, "libCGAL_Core.so"));     
+      link(fullfile(lib_path, "libCGAL.so"));
+      link(fullfile(lib_path, "libCGAL_ImageIO.so"));
+      link(fullfile(lib_path, "libCGAL_Core.so"));
   elseif getos() == "Darwin"
       lib_path = fullfile(root_tlbx, "thirdparty", "Darwin", arch, "lib");
       link(fullfile(lib_path, "libgmp.dylib"));
       link(fullfile(lib_path, "libboost_thread.dylib"));
-      link(fullfile(lib_path, "libCGAL.dylib"));     
-      link(fullfile(lib_path, "libCGAL_ImageIO.dylib"));         
-      link(fullfile(lib_path, "libCGAL_Core.dylib"));     
+      link(fullfile(lib_path, "libCGAL.dylib"));
+      link(fullfile(lib_path, "libCGAL_ImageIO.dylib"));
+      link(fullfile(lib_path, "libCGAL_Core.dylib"));
   end
 
   // Load gateways

@@ -1,8 +1,8 @@
 //  boost/config/user.hpp  ---------------------------------------------------//
 
 //  (C) Copyright John Maddock 2001. 
-//  Use, modification and distribution are subject to the 
-//  Boost Software License, Version 1.0. (See accompanying file 
+//  Use, modification and distribution are subject to the
+//  Boost Software License, Version 1.0. (See accompanying file
 //  LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 //  Do not check in modified versions of this file,
@@ -130,10 +130,4 @@
 //
 // to ensure the correct libraries are selected at link time.
 // #define BOOST_LIB_BUILDID amd64
-
-#if defined _MSC_VER
-# if _MSC_FULL_VER < 180021006
-#  define BOOST_NO_CXX11_TEMPLATE_ALIASES
-# endif
-#endif
 

@@ -10,6 +10,7 @@
 #include "Delaunay_3d.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#include "sci_malloc.h"
 
 #include "localization.h"
 #include <string.h>
@@ -153,7 +154,7 @@ int sci_delaunay_triangulation_3(GW_PARAMETERS)
         return 0;
     }
     
-    data2 = (int*)malloc(sizeof(int)* 4*nbtetra);
+    data2 = (int*)MALLOC(sizeof(int)* 4*nbtetra);
     if(data2==NULL)
     {
         Scierror(999,"Can't allocate memory!\n");
@@ -190,7 +191,7 @@ int sci_delaunay_triangulation_3(GW_PARAMETERS)
     LhsVar(1) = Rhs + 1;
     LhsVar(2) = Rhs + 2;
     PutLhsVar();
-    free(data);
-    free(data2);
+    FREE(data);
+    FREE(data2);
     return 0;
 }

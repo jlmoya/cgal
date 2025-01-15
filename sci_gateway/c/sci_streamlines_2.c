@@ -2,7 +2,7 @@
 //
 // This file is part of CG-LAB; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public License as
-// published by the Free Software Foundation; version 2.1 of the License.
+// published by the FREE Software Foundation; version 2.1 of the License.
 // See the file LICENSE.LGPL distributed with CG-LAB.
 //
 // Licensees holding a valid commercial license may use this file in
@@ -30,6 +30,7 @@
 #include "localization.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#include "sci_malloc.h"
 
 int sci_streamlines_2(GW_PARAMETERS)
 {
@@ -223,7 +224,7 @@ int sci_streamlines_2(GW_PARAMETERS)
     
     //CreateVar(5, "d", &nb_pts, &N, &l5);
     
-    stls2 = (double*)malloc(sizeof(double) * 2*nb_pts);
+    stls2 = (double*)MALLOC(sizeof(double) * 2*nb_pts);
     if(stls2 == NULL)
     {
         Scierror(999,"%s: Wrong type for input argument #%d: A vector expected.\n",fname,4);
@@ -243,7 +244,7 @@ int sci_streamlines_2(GW_PARAMETERS)
         return 0;
     }
     
-    nbpts_of_stls2 = (int*)malloc(sizeof(int) * size);
+    nbpts_of_stls2 = (int*)MALLOC(sizeof(int) * size);
     if (nbpts_of_stls2==NULL)
     {
         Scierror(999,"Can't allocate memory!\n");
@@ -267,10 +268,10 @@ int sci_streamlines_2(GW_PARAMETERS)
     LhsVar(1) = Rhs + 1;
     LhsVar(2) = Rhs + 2;
     PutLhsVar();
-    free(nbpts_of_stls);
-    free(nbpts_of_stls2);
-    free(stls);
-    free(stls2);
+    FREE(nbpts_of_stls);
+    FREE(nbpts_of_stls2);
+    FREE(stls);
+    FREE(stls2);
 
     
     

@@ -12,6 +12,7 @@
 #include "localization.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#include "sci_malloc.h"
 
 #include <stdlib.h>
 
@@ -81,7 +82,7 @@ int sci_interp3(GW_PARAMETERS)
     double*** v = 0;
     
     int counter =0;
-	  int counter2=0;
+	int counter2=0;
 	  
     CheckRhs(minrhs,maxrhs) ;
     CheckLhs(minlhs,maxlhs) ;
@@ -312,7 +313,7 @@ int sci_interp3(GW_PARAMETERS)
 		return 0;
 	}
 
-	piLen = (int*)malloc(sizeof(int) * iRows * iCols);
+	piLen = (int*)MALLOC(sizeof(int) * iRows * iCols);
 	
 	sciErr = getMatrixOfStringInList(pvApiCtx, piAdressV, 1, &iRows, &iCols, piLen, NULL);
 	if(sciErr.iErr)
@@ -321,10 +322,10 @@ int sci_interp3(GW_PARAMETERS)
 		return 0;
 	}
 
-	pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
+	pstData = (char**)MALLOC(sizeof(char*) * iRows * iCols);
 	for (i = 0 ; i < iRows * iCols ; i++)
 	{
-		pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
+		pstData[i] = (char*)MALLOC(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
 	}
 
 	sciErr = getMatrixOfStringInList(pvApiCtx, piAdressV, 1, &iRows, &iCols, piLen, pstData);
@@ -351,32 +352,32 @@ int sci_interp3(GW_PARAMETERS)
 		return 0;
 	}
     
-    xp = (double**)malloc(m1*sizeof(double*));
-    yp = (double**)malloc(m1*sizeof(double*));
-    zp = (double**)malloc(m1*sizeof(double*));
-    v = (double***)malloc((*puiData)*sizeof(double*));
+    xp = (double**)MALLOC(m1*sizeof(double*));
+    yp = (double**)MALLOC(m1*sizeof(double*));
+    zp = (double**)MALLOC(m1*sizeof(double*));
+    v = (double***)MALLOC((*puiData)*sizeof(double*));
 
     for (i = 0 ; i < m1 ; i++)
     {
-        xp[i] = (double*)malloc(n1*sizeof(double));
-        yp[i] = (double*)malloc(n1*sizeof(double));
-        zp[i] = (double*)malloc(n1*sizeof(double));
+        xp[i] = (double*)MALLOC(n1*sizeof(double));
+        yp[i] = (double*)MALLOC(n1*sizeof(double));
+        zp[i] = (double*)MALLOC(n1*sizeof(double));
     }
     
     for (i = 0 ; i < (*puiData) ; i++)
     {
-        v[i] = (double**)malloc((*puiData+1)*sizeof(double*));
+        v[i] = (double**)MALLOC((*puiData+1)*sizeof(double*));
     }
 
     for (i = 0 ; i < (*(puiData+1)) ; i++)
     {
         for(j = 0 ; j < (*(puiData+2)) ; j++) 
          {
-            v[i][j] = (double*)malloc((*(puiData+2))*sizeof(double));
+            v[i][j] = (double*)MALLOC((*(puiData+2))*sizeof(double));
          }
     }
     
-  counter =0;
+    counter =0;
 	for ( k =0 ; k < (*puiData) ; k++)
 	{
 		for ( j =0 ; j < (*(puiData+1)) ; j++)
@@ -389,7 +390,7 @@ int sci_interp3(GW_PARAMETERS)
 		}
 	}
 	
-  counter2=0;
+    counter2=0;
 	
 	for( j =0 ; j < n1 ; j++)
 	{
@@ -423,28 +424,28 @@ int sci_interp3(GW_PARAMETERS)
     {
         for(j = 0 ; j < n5 ; j++) 
         {
-        free(v[i][j]);
+            FREE(v[i][j]);
         }
     }
     
     for (i = 0 ; i < n4 ; i++)
     {
-    free(v[i]);
+        FREE(v[i]);
     }
         
     for (i = 0 ; i < m1 ; i++)
     {
-    free(xp[i]);
-    free(yp[i]);
-    free(zp[i]);
-    free(V[i]);
+        FREE(xp[i]);
+        FREE(yp[i]);
+        FREE(zp[i]);
+        FREE(V[i]);
     }
 
-    free(xp);
-    free(yp);
-    free(zp);
-    free(v);    
-    free(V);
+    FREE(xp);
+    FREE(yp);
+    FREE(zp);
+    FREE(v);    
+    FREE(V);
 
     return 0;
 

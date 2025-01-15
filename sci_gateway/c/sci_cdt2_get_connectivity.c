@@ -77,7 +77,7 @@ int sci_cdt2_get_connectivity(GW_PARAMETERS)
         return 0;
     }
     
-    data2 = (int*)malloc(sizeof(int)*3*NbTri);
+    data2 = (int*)MALLOC(sizeof(int)*3*NbTri);
     if(data2==NULL)
     {
         Scierror(999,"Can't allocate memory!\n");
@@ -102,7 +102,7 @@ int sci_cdt2_get_connectivity(GW_PARAMETERS)
 
     LhsVar(1) = Rhs + 1;
     PutLhsVar();
-    free(data);
-    free(data2);
+    FREE(data);
+    FREE(data2);
     return 0;
 }

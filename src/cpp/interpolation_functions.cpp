@@ -39,6 +39,7 @@
 extern "C"
 {
 #include "sciprint.h"
+#include "sci_malloc.h"
 }
 
 struct K : CGAL::Exact_predicates_inexact_constructions_kernel {};
@@ -78,7 +79,7 @@ extern "C"
 			
 	//  		sibson_gradient_fitting_nn_2(T,std::inserter(function_gradients,function_gradients.begin()),Value_access(function_values),Traits());	
 			int xi_size = xi_m*xi_n;	
-			ZI = (double*)malloc(xi_size*sizeof(double));	
+			ZI = (double*)MALLOC(xi_size*sizeof(double));	
 
 			for (int i=0 ; i < xi_size ; i++)
 			{
@@ -137,8 +138,8 @@ extern "C"
 						}
 					}
 				}
-				V = (double**)malloc(xi_m*sizeof(double*));
-				for (int i = 0 ; i < xi_m ; i++) V[i] = (double*)malloc(xi_n*sizeof(double));
+				V = (double**)MALLOC(xi_m*sizeof(double*));
+				for (int i = 0 ; i < xi_m ; i++) V[i] = (double*)MALLOC(xi_n*sizeof(double));
 				if(!V)return 0;
 			
 				for (int i = 0 ; i < xi_m ; i++)

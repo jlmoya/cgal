@@ -32,6 +32,7 @@
 extern "C"
 {
 #include "sciprint.h"
+#include "sci_malloc.h"
 }
 
 /********************************************************************/
@@ -123,7 +124,7 @@ extern "C"
 			*NbTri = count;
 
 			unsigned int nbtri = IndTRI.size();
-			TRI = (int*)malloc(nbtri*sizeof(int));
+			TRI = (int*)MALLOC(nbtri*sizeof(int));
 
 			if(!TRI)return 0;
 
@@ -136,7 +137,7 @@ extern "C"
 				sciprint("\terror: unable to get connectivity of this object");
 				if (TRI != NULL)
 				{
-					free(TRI);
+					FREE(TRI);
 					TRI = NULL;
 				}
 			}
@@ -157,7 +158,7 @@ extern "C"
 			*nbpts = nbvertices;
 
 
-			Coord = (double*)malloc(2*nbvertices*sizeof(double));
+			Coord = (double*)MALLOC(2*nbvertices*sizeof(double));
 
 			if(!Coord)return 0;
 
@@ -174,7 +175,7 @@ extern "C"
 				sciprint("\terror: unable to get coordinates of this object");
 				if (Coord != NULL)
 				{
-					free(Coord);
+					FREE(Coord);
 					Coord = NULL;
 				}
 			}

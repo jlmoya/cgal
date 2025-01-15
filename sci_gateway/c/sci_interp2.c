@@ -216,7 +216,7 @@ int sci_interp2(GW_PARAMETERS)
     
     LhsVar(1) = Rhs + 1;
     PutLhsVar();
-    free(ZI);
+    FREE(ZI);
 
     return 0;
     

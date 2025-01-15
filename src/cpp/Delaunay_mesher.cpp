@@ -30,6 +30,7 @@
 extern "C"
 {
 #include "sciprint.h"
+#include "sci_malloc.h"
 }
 
 template <class CDT,class Criteria>
@@ -81,7 +82,7 @@ extern "C"
 		*nbpts = nbvertices;
 
 		double* Coord = 0;
-		Coord = (double*)malloc(2*nbvertices*sizeof(double));
+		Coord = (double*)MALLOC(2*nbvertices*sizeof(double));
 
 		if(!Coord)return 0;
 
@@ -129,7 +130,7 @@ extern "C"
 			}
 
 			unsigned int nbtri = IndTRI.size();
-			TRI = (int*)malloc(nbtri*sizeof(int));
+			TRI = (int*)MALLOC(nbtri*sizeof(int));
 			if(!TRI) return 0;
 
 			for(unsigned int j=0; j< nbtri; j++)
@@ -142,7 +143,7 @@ extern "C"
 			sciprint("\terror: unable to get connectivity");
 			if (TRI != NULL)
 			{
-				free(TRI);
+				FREE(TRI);
 				TRI = NULL;
 			}
 		}

@@ -80,7 +80,7 @@ int sci_cdt2_get_coord(GW_PARAMETERS)
 
     LhsVar(1) = Rhs + 1;
     PutLhsVar();
-    free(Coord);
+    FREE(Coord);
 
     return 0;
 

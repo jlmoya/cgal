@@ -39,6 +39,7 @@
 extern "C"
 {
 #include "sciprint.h"
+#include "sci_malloc.h"
 }
 
 typedef double coord_type;
@@ -109,7 +110,7 @@ extern "C"
 		{
 			Stl*  Stream_lines = (Stl*)Ptr;
 			int nb_stls = (int)std::distance(Stream_lines->begin(),Stream_lines->end());
-			nbpts_of_stls = (int*)malloc(nb_stls*sizeof(int));
+			nbpts_of_stls = (int*)MALLOC(nb_stls*sizeof(int));
 			if(!nbpts_of_stls)return 0;
 			int i = 0;
 			for(stl_iterator sit = Stream_lines->begin(); sit != Stream_lines->end(); sit++)
@@ -123,7 +124,7 @@ extern "C"
 			sciprint("\terror: failure in the function: get_nbpts_of_stls");
 			if (nbpts_of_stls != NULL)
 			{
-				free(nbpts_of_stls);
+				FREE(nbpts_of_stls);
 				nbpts_of_stls = NULL;
 			}		
 		}	
@@ -142,7 +143,7 @@ extern "C"
 		try
 		{
 			Stl*  Stream_lines = (Stl*)Ptr;
-			stls = (double*)malloc(2*nb_pts*sizeof(double));
+			stls = (double*)MALLOC(2*nb_pts*sizeof(double));
 			if(!stls)return 0;
 			int i = 0;
 			for(stl_iterator sit = Stream_lines->begin(); sit != Stream_lines->end(); sit++)
@@ -161,7 +162,7 @@ extern "C"
 			sciprint("\terror: failure in the function: get_stls");
 			if (stls != NULL)
 			{
-				free(stls);
+				FREE(stls);
 				stls = NULL;
 			}		
 		}	

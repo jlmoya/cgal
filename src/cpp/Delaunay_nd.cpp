@@ -29,6 +29,7 @@
 extern"C"
 {
 #include "sciprint.h"
+#include "sci_malloc.h"
 }
 
 /********************************************************************/
@@ -129,7 +130,7 @@ extern"C"
         *Nbsimplex = count;
 
         unsigned int nbInd = IndTRI.size();
-        TES = (int*)malloc(nbInd*sizeof(int));
+        TES = (int*)MALLOC(nbInd*sizeof(int));
 
         if(!TES) return 0;
 

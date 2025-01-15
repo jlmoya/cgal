@@ -108,7 +108,7 @@ int sci_delaunay_triangulation_n(GW_PARAMETERS)
     LhsVar(1) = Rhs + 1;
     LhsVar(2) = Rhs + 2;
     PutLhsVar();
-    free(data);
+    FREE(data);
 
     return 0;
 

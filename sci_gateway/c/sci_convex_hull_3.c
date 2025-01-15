@@ -139,7 +139,7 @@ int sci_convex_hull_3(GW_PARAMETERS)
     
     LhsVar(1) = Rhs + 1;
     PutLhsVar();
-    free(data);
+    FREE(data);
 }
     
     

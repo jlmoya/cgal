@@ -33,6 +33,8 @@ typedef K::Point_2 Point_2;
 
 extern "C"
 {
+#include "sci_malloc.h"
+
 	int* convex_hull_2(double* xy,int nb,int* nbind)
 	{
 	//xy is (2,nb) matrix that represents points coordinates
@@ -53,7 +55,7 @@ extern "C"
 			idPoint++;
 		}
 		*nbind = output.size();
-		ind = (int*)malloc((*nbind)*sizeof(int));// faire des tests.
+		ind = (int*)MALLOC((*nbind)*sizeof(int));// faire des tests.
 		for(unsigned int j = 0; j < output.size(); j++ )
 		{
 			ind[j] = list[output[j]];
@@ -128,7 +130,7 @@ extern "C"
 			unsigned int nbInd = Indices.size();
 			*nbtab = nbInd;
 
-			hull = (int*)malloc(nbInd*sizeof(int));
+			hull = (int*)MALLOC(nbInd*sizeof(int));
 
 			for(unsigned int j=0; j< nbInd; j++)
 			{

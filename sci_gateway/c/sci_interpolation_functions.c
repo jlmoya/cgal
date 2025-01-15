@@ -9,6 +9,7 @@
 
 #include "gateway_cglab.h"
 #include "localization.h"
+#include "sci_malloc.h"
 
 extern double* interp2(double* xi, double* yi,double* x,double* y,double* z,int x_n,int y_n,int xi_m,int xi_n);
 
@@ -57,7 +58,7 @@ int sci_interp2(GW_PARAMETERS)
 
 	LhsVar(1) = 6;
 
-	free(ZI);
+	FREE(ZI);
 
 	return 0;
 
@@ -96,25 +97,25 @@ int sci_interp3(GW_PARAMETERS)
 	GetRhsVar(7, "d", &v_m, &v_n, &l7);
 
 
-	xp = (double**)malloc(xi_m*sizeof(double*));
-	yp = (double**)malloc(xi_m*sizeof(double*));
-	zp = (double**)malloc(xi_m*sizeof(double*));
-	v = (double***)malloc(x_n*sizeof(double*));
+	xp = (double**)MALLOC(xi_m*sizeof(double*));
+	yp = (double**)MALLOC(xi_m*sizeof(double*));
+	zp = (double**)MALLOC(xi_m*sizeof(double*));
+	v = (double***)MALLOC(x_n*sizeof(double*));
 
 	for (i = 0 ; i < xi_m ; i++)
 	{
-	 	xp[i] = (double*)malloc(xi_n*sizeof(double));
-	 	yp[i] = (double*)malloc(xi_n*sizeof(double));
-	 	zp[i] = (double*)malloc(xi_n*sizeof(double));
+	 	xp[i] = (double*)MALLOC(xi_n*sizeof(double));
+	 	yp[i] = (double*)MALLOC(xi_n*sizeof(double));
+	 	zp[i] = (double*)MALLOC(xi_n*sizeof(double));
 	}
 
 	for (i = 0 ; i < x_n ; i++)
 	{
-	 	v[i] = (double**)malloc(y_n*sizeof(double*));
+	 	v[i] = (double**)MALLOC(y_n*sizeof(double*));
 	}
 	for (i = 0 ; i < x_n ; i++)
 	{
-		for(j = 0 ; j < y_n ; j++) v[i][j] = (double*)malloc(z_n*sizeof(double));
+		for(j = 0 ; j < y_n ; j++) v[i][j] = (double*)MALLOC(z_n*sizeof(double));
 	}
 
 	for( j =0 ; j < xi_n ; j++)
@@ -149,24 +150,24 @@ int sci_interp3(GW_PARAMETERS)
 
 	for (i = 0 ; i < x_n ; i++)
 	{
-		for(j = 0 ; j < y_n ; j++) free(v[i][j]);
+		for(j = 0 ; j < y_n ; j++) FREE(v[i][j]);
 	}
 
-	for (i = 0 ; i < x_n ; i++) free(v[i]);
+	for (i = 0 ; i < x_n ; i++) FREE(v[i]);
 
 	for (i = 0 ; i < xi_m ; i++)
 	{
-	 	free(xp[i]);
-		free(yp[i]);
-		free(zp[i]);
-		free(V[i]);
+	 	FREE(xp[i]);
+		FREE(yp[i]);
+		FREE(zp[i]);
+		FREE(V[i]);
 	}
 
-	free(xp);
-	free(yp);
-	free(zp);
-	free(v);
-	free(V);
+	FREE(xp);
+	FREE(yp);
+	FREE(zp);
+	FREE(v);
+	FREE(V);
 
 	return 0;
 

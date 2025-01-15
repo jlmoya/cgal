@@ -12,6 +12,7 @@
 #include "localization.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#include "sci_malloc.h"
 
 int sci_mesh_2(GW_PARAMETERS){
 
@@ -101,7 +102,7 @@ int sci_mesh_2(GW_PARAMETERS){
         return 0;
     }
 
-    data2 = (int*)malloc(sizeof(int) * 3*NbTri);
+    data2 = (int*)MALLOC(sizeof(int) * 3*NbTri);
     if(data2==NULL)
     {
         Scierror(999,"Can't allocate memory!\n");
@@ -130,9 +131,9 @@ int sci_mesh_2(GW_PARAMETERS){
     LhsVar(3) = Rhs + 1;
     PutLhsVar();
 
-    free(data);
-    free(data2);
-    free(Coord);
+    FREE(data);
+    FREE(data2);
+    FREE(Coord);
 
 
 

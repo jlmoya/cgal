@@ -30,6 +30,7 @@
 extern"C"
 {
 #include "sciprint.h"
+#include "sci_malloc.h"
 }
 
 /********************************************************************/
@@ -107,7 +108,7 @@ extern "C"
 			*Nbtetra = count;
 
 			unsigned int nbInd = IndTRI.size();
-			TES = (int*)malloc(nbInd*sizeof(int));
+			TES = (int*)MALLOC(nbInd*sizeof(int));
 			if(!TES) return 0;
 			for(unsigned int j=0; j< nbInd; j++)
 			{
@@ -118,7 +119,7 @@ extern "C"
 				sciprint("\terror: unable to get connectivity of this object");
 				if (TES != NULL)
 				{
-					free(TES);
+					FREE(TES);
 					TES = NULL;
 				}
 			}

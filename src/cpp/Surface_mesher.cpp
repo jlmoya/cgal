@@ -29,6 +29,7 @@
 extern "C"
 {
 #include "sciprint.h"
+#include "sci_malloc.h"
 }
 
 struct Kernel : public CGAL::Exact_predicates_inexact_constructions_kernel {};
@@ -118,7 +119,7 @@ extern "C"
 			*Nbtetra = dt->number_of_facets();
 
 			unsigned int nbInd = IndTRI.size();
-			TES = (int*)malloc(nbInd*sizeof(int));
+			TES = (int*)MALLOC(nbInd*sizeof(int));
 			if(!TES) return 0;
 			for(unsigned int j=0; j< nbInd; j++)
 			{
@@ -129,7 +130,7 @@ extern "C"
 				sciprint("\terror: unable to get connectivity of this object");
 				if (TES != NULL)
 				{
-					free(TES);
+					FREE(TES);
 					TES = NULL;
 				}
 			}
@@ -148,7 +149,7 @@ extern "C"
 			int nbvertices = std::distance(tr->vertices_begin(),tr->vertices_end()) ;
 			*nbpts = nbvertices;
 				
-			Coord = (double*)malloc(3*nbvertices*sizeof(double));
+			Coord = (double*)MALLOC(3*nbvertices*sizeof(double));
 	
 			if(!Coord)return 0;
 	
@@ -164,7 +165,7 @@ extern "C"
 			sciprint("\terror: unable to get coord of this object");
 			if (Coord != NULL)
 			{
-				free(Coord);
+				FREE(Coord);
 				Coord = NULL;
 			}		
 		}

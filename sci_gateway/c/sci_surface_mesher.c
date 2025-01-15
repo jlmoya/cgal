@@ -12,6 +12,7 @@
 #include "localization.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#include "sci_malloc.h"
 
 #include <string.h>
 #include <stdio.h>
@@ -226,7 +227,7 @@ int sci_surface_mesher(GW_PARAMETERS)
         return 0;
     }
 
-    data2=(int*)malloc(sizeof(int)*(3*nbtriangle+3));
+    data2=(int*)MALLOC(sizeof(int)*(3*nbtriangle+3));
     if (data2==NULL)
     {
         Scierror(999,"Can't allocate memory!\n");
@@ -261,9 +262,9 @@ int sci_surface_mesher(GW_PARAMETERS)
         return 0;
     }
     
-    free(data);
-    free(data2);
-    free(Coord);
+    FREE(data);
+    FREE(data2);
+    FREE(Coord);
     delete_surface_mesher(Ptr);
     
     LhsVar(1) = Rhs + 1;

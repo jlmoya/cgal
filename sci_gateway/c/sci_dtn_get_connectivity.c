@@ -85,7 +85,7 @@ int sci_dtn_get_connectivity(GW_PARAMETERS)
 
     LhsVar(1) = Rhs + 1;
     PutLhsVar();
-    free(data);
+    FREE(data);
 
     return 0;
 }

@@ -13,10 +13,13 @@
 #include "localization.h"
 #include "api_scilab.h"
 #include "sciprint.h"
+#include "Scierror.h"
 
 #include <math.h>
 #include <stdio.h>
 #include <string.h>
+
+int dt2_delete(void* Ptr);
 
 int sci_dtn_delete(GW_PARAMETERS)
 {

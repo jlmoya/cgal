@@ -10,6 +10,7 @@
 #include "gateway_cglab.h"
 #include "localization.h"
 #include "sci_malloc.h"
+#include "Scierror.h"
 
 extern double* interp2(double* xi, double* yi,double* x,double* y,double* z,int x_n,int y_n,int xi_m,int xi_n);
 

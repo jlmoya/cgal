@@ -9,10 +9,12 @@
 
 #include "gateway_cglab.h"
 #include "localization.h"
+#include "Scierror.h"
 #include <string.h>
 #include <stdio.h>
 #include "api_scilab.h"
 #include "Delaunay_3d.h"
+
 int sci_dt3_remove_points(GW_PARAMETERS)
 {
     SciErr sciErr;

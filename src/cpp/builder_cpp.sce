@@ -5,7 +5,7 @@
 // ====================================================================
 function builder_src_cpp()
 
-  src_cpp_path = get_absolute_file_path('builder_cpp.sce');
+  src_cpp_path = get_absolute_file_path();
   thirdparty_path = fullfile(src_cpp_path, "../../thirdparty");
   cd ..
   os = getos();
@@ -30,7 +30,7 @@ function builder_src_cpp()
         LDFLAGS = LDFLAGS + " " + fullfile(lib_path, "CGAL_ImageIO-vc140-mt-4.7.lib");
       end
   else
-      CPPFLAGS = CPPFLAGS + ilib_include_flag(fullfile(thirdparty_path, "include"));
+      CPPFLAGS = CPPFLAGS + ilib_include_flag(fullfile(getenv("CONDA_PREFIX"),"include")) + ilib_include_flag(fullfile(thirdparty_path, "include")) + " -DCGAL_HILBERT_SORT_WITH_MEDIAN_POLICY_CROSS_PLATFORM_BEHAVIOR -D_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION -Wno-register -Wno-everything";
       LDFLAGS = "-L" + fullfile(thirdparty_path, "lib");
       LDFLAGS = LDFLAGS + " -lCGAL -lCGAL_ImageIO";
   end

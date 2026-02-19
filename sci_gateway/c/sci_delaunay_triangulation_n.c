@@ -12,6 +12,7 @@
 #include "api_scilab.h"
 #include "machine.h"
 #include "localization.h"
+#include "Scierror.h"
 
 #include <string.h>
 #include <math.h>

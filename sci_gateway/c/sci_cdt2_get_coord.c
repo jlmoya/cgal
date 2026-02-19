@@ -58,7 +58,7 @@ int sci_cdt2_get_coord(GW_PARAMETERS)
         return 0;
     }
     
-    sciErr = getPointer(pvApiCtx, piAddressPtr , &pdPtr);
+    sciErr = getPointer(pvApiCtx, piAddressPtr , (void **)&pdPtr);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);

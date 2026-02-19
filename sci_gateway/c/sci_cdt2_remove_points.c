@@ -63,7 +63,7 @@ int sci_cdt2_remove_points(GW_PARAMETERS)
         return 0;
     }
     
-    sciErr = getPointer(pvApiCtx, piAddressPtr , &pdPtr);
+    sciErr = getPointer(pvApiCtx, piAddressPtr , (void **)&pdPtr);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);

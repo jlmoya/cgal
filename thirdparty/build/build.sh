@@ -25,7 +25,7 @@ patch CGAL-${CGAL_VER}/include/CGAL/config.h config.patch
 cd CGAL-${CGAL_VER}
 mkdir -p build
 cd build
-cmake -DCMAKE_INSTALL_PREFIX="${THIRDPARTY}" ..
+cmake -DCMAKE_INSTALL_PREFIX="${THIRDPARTY}" -DCMAKE_CXX_FLAGS="-D_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION -Wno-register" ..
 make -j
 make install
 

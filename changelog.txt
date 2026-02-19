@@ -1,5 +1,9 @@
+2.3.4:
+    [ Stéphane MOTTELET ]
+    * fixes to allow strict C++17 compilation
+
 2.3.3:
-    [ Stéphane 0MOTTELET ]
+    [ Stéphane MOTTELET ]
     * updates for Scilab 2025.0.0
 
 2.3.2:

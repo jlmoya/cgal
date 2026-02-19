@@ -10,6 +10,7 @@
 #include "Delaunay_3d.h"
 
 #include "api_scilab.h"
+#include "Scierror.h"
 #include "localization.h"
 
 #include <string.h>

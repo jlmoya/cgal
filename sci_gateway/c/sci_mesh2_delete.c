@@ -12,6 +12,7 @@
 #include "localization.h"
 #include "api_scilab.h"
 #include "sciprint.h"
+#include "Scierror.h"
 
 int sci_mesh2_delete(GW_PARAMETERS){
     

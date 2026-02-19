@@ -31,6 +31,9 @@
 #include "localization.h"
 #include "api_scilab.h"   
 #include "sciprint.h"
+#include "Scierror.h"
+
+int dt2_delete(void* Ptr);
 
 int sci_cdt2_delete(GW_PARAMETERS)
 {

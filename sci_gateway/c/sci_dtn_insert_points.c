@@ -11,6 +11,7 @@
 
 #include "machine.h"
 #include "localization.h"
+#include "Scierror.h"
 #include "api_scilab.h"
 
 #include <string.h>

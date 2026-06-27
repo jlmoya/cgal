@@ -26,6 +26,7 @@
 #include <iostream>
 #include <CGAL/Convex_hull_traits_3.h>
 #include <CGAL/convex_hull_3.h>
+#include <CGAL/Polyhedron_3.h> // CGAL 6 no longer pulls Polyhedron_3 transitively via convex_hull_3.h
 
 
 typedef CGAL::Exact_predicates_inexact_constructions_kernel  K;

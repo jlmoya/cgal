@@ -20,8 +20,10 @@
 
 #include "cgal_exception.h"
 
-cgal_exception::cgal_exception(const std::string what,const std::string expr,const std::string file,int line,
-								const std::string msg ):my_what(what),my_expr(expr),my_file(file),my_line(line),my_msg(msg){};
+// The constructor is already defined inline in cgal_exception.h; defining it again here is a
+// redefinition under modern clang (was tolerated by older compilers). Keep the inline one only.
+// cgal_exception::cgal_exception(const std::string what,const std::string expr,const std::string file,int line,
+//								const std::string msg ):my_what(what),my_expr(expr),my_file(file),my_line(line),my_msg(msg){};
 
 
 // static void cgal_error_handler(const char* what,const char* expr,const char* file,int line,const char* msg )

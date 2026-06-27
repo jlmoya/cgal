@@ -29,6 +29,11 @@ function builder_src_cpp()
         LDFLAGS =  LDFLAGS + " " + fullfile(lib_path, "CGAL-vc140-mt-4.7.lib");
         LDFLAGS = LDFLAGS + " " + fullfile(lib_path, "CGAL_ImageIO-vc140-mt-4.7.lib");
       end
+  elseif getos() == "Darwin" then
+      // macOS arm64: header-only CGAL 6.x from Homebrew (no libCGAL/CGAL_ImageIO since CGAL 5);
+      // link gmp + mpfr for exact arithmetic. boost is header-only for the wrapped features.
+      CPPFLAGS = CPPFLAGS + " -std=c++17 -I/opt/homebrew/opt/cgal/include -I/opt/homebrew/opt/boost/include -I/opt/homebrew/opt/gmp/include -I/opt/homebrew/opt/mpfr/include -DCGAL_HILBERT_SORT_WITH_MEDIAN_POLICY_CROSS_PLATFORM_BEHAVIOR -D_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION -Wno-register -Wno-everything";
+      LDFLAGS = "-L/opt/homebrew/opt/gmp/lib -L/opt/homebrew/opt/mpfr/lib -lgmp -lmpfr -Wl,-rpath,/opt/homebrew/opt/gmp/lib -Wl,-rpath,/opt/homebrew/opt/mpfr/lib";
   else
       CPPFLAGS = CPPFLAGS + ilib_include_flag(fullfile(getenv("CONDA_PREFIX"),"include")) + ilib_include_flag(fullfile(thirdparty_path, "include")) + " -DCGAL_HILBERT_SORT_WITH_MEDIAN_POLICY_CROSS_PLATFORM_BEHAVIOR -D_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION -Wno-register -Wno-everything";
       LDFLAGS = "-L" + fullfile(thirdparty_path, "lib");

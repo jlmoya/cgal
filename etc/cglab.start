@@ -56,12 +56,9 @@ function cglablib = startModule()
       link(fullfile(lib_path, "libCGAL_ImageIO.so"));
       link(fullfile(lib_path, "libCGAL_Core.so"));
   elseif getos() == "Darwin"
-      lib_path = fullfile(root_tlbx, "thirdparty", "Darwin", arch, "lib");
-      link(fullfile(lib_path, "libgmp.dylib"));
-      link(fullfile(lib_path, "libboost_thread.dylib"));
-      link(fullfile(lib_path, "libCGAL.dylib"));
-      link(fullfile(lib_path, "libCGAL_ImageIO.dylib"));
-      link(fullfile(lib_path, "libCGAL_Core.dylib"));
+      // macOS arm64: no bundled thirdparty. gmp + mpfr resolve through libcgal_cpp's
+      // embedded rpath (/opt/homebrew/opt/{gmp,mpfr}/lib); CGAL 6 is header-only so it
+      // is compiled into libcgal_cpp and needs no runtime link. Nothing to link here.
   end
 
   // Load gateways

@@ -71,7 +71,7 @@ function cglablib = startModule()
   if or(getscilabmode() == ["NW";"STD"]) then
     mprintf(", help");
     path_addchapter = fullfile(root_tlbx, "jar");
-    if (isdir(path_addchapter) <> []) then
+    if isdir(path_addchapter) then
       add_help_chapter("CG-lab", path_addchapter, %F);
     end
   end

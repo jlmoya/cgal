@@ -26,7 +26,34 @@ H=convex_hull_3(x,y,z);
 // duplicates are a defect in the gateway, this comment is the trail to it.
 //
 // Retired expectation: H1=int32([1 2 7 8 17 28 23 24 26]);
-assert_checkequal(gsort(unique(double(H))', "g", "i"), [1 2 7 8 17 23 24 26 28]);
+// These 28 points are COPLANAR (plane fit residual 5.7e-14), so the 3-D hull is
+// a flat polygon. convex_hull_3 returns a FACET matrix, one facet per row. The
+// old expectation was 1x9 because CGAL then returned that polygon as a single
+// facet; it now returns it triangulated -- 7 triangles fanned from vertex 1,
+// which is 9-2 for a 9-gon, listing the polygon in the same cyclic order the old
+// expectation recorded.
+//
+// The per-facet distinctness check below is the one that matters: it catches the
+// row-major/column-major bug this test exposed, where the facet buffer was
+// filled facet-by-facet but read column-major, producing impossible "facets"
+// like [1 28 1] that named one vertex twice. That stayed hidden for as long as
+// CGAL returned a single facet, since a 1xN read is identical either way.
+//
+// Retired expectation: H1=int32([1 2 7 8 17 28 23 24 26]);
+HH = double(H);
+assert_checkequal(size(HH,"c"), 3);                       // triangular facets
+assert_checkequal(size(HH,"r"), 7);                       // 9-gon -> 9-2 facets
+for k = 1:size(HH,"r")
+    assert_checkequal(size(unique(HH(k,:)),"*"), 3);      // no repeated vertex in a facet
+end
+assert_checkequal(gsort(unique(HH)', "g", "i"), [1 2 7 8 17 23 24 26 28]);
+// every facet vertex is a genuine hull vertex: the argmax of any direction must
+// lie in the returned set (spot-checked on the axis directions and their negatives)
+PP = [x(:) y(:) z(:)];
+for d = [1 0 0; -1 0 0; 0 1 0; 0 -1 0; 0 0 1; 0 0 -1]'
+    [mv, mi] = max(PP*d);
+    assert_checktrue(or(unique(HH) == mi));
+end
 
 //checking what error will be produced with wrong number of inputs
 assert_checkerror("convex_hull_3(x,y)","%s: Wrong number of input argument(s): %d expected.",77,"convex_hull_3",3);

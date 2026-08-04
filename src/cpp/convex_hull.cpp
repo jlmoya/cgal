@@ -114,28 +114,73 @@ extern "C"
  		else if ( CGAL::assign (polyhedron, ch_object) )
 		{
  			std::cout << "convex hull is a polyhedron " << std::endl;
+			// Collect the facets first, then emit. Two bugs lived in the older
+			// straight-through version, and both stayed invisible while CGAL
+			// returned a single facet for this input:
+			//
+			// 1. ORDER. The indices were pushed facet by facet (row-major) but the
+			//    gateway hands the buffer to createMatrixOfInteger32(nbfacet,
+			//    facetdegree, ...), and Scilab matrices are COLUMN-major. With one
+			//    facet a 1xN read is identical either way; with 7 facets each
+			//    displayed row mixed vertices from three different facets, e.g. a
+			//    "facet" [1 28 1] naming vertex 1 twice -- an impossible facet that
+			//    was purely an artefact of the mismatched read.
+			// 2. DEGREE. *facetdegree was overwritten by every facet, so it kept
+			//    only the LAST one ("je suppose que toutes les facets ont le meme
+			//    degree"). If the degrees differ, nbfacet*facetdegree does not equal
+			//    the number of collected indices and the matrix read runs off the
+			//    end of the buffer. Now checked rather than assumed.
+			std::vector< std::vector<int> > facets;
 			for(Facet_iterator iter = polyhedron.facets_begin();iter != polyhedron.facets_end();iter++)
 			{
 				int nbedge = (*iter).facet_degree ();
 				Halfedge_circulator edgecirculator = (*iter).facet_begin();
+				std::vector<int> f;
 				for(int i = 0; i < nbedge ;i++)
 				{
-					Indices.push_back(listpoints[edgecirculator->vertex()->point()]);
-					std::cout << listpoints[edgecirculator->vertex()->point()] << "  ";
+					f.push_back(listpoints[edgecirculator->vertex()->point()]);
 					edgecirculator ++;
 				}
-
-				*facetdegree = (*iter).facet_degree (); // pas terrible. je suppose que toutes les 'facets' ont le meme degree.
+				facets.push_back(f);
 			}
-			*nbfacet = polyhedron.size_of_facets();
-			unsigned int nbInd = Indices.size();
-			*nbtab = nbInd;
 
-			hull = (int*)MALLOC(nbInd*sizeof(int));
-
-			for(unsigned int j=0; j< nbInd; j++)
+			const unsigned int nf = (unsigned int)facets.size();
+			if (nf == 0)
 			{
-				hull[j] = Indices[j];
+				*nbfacet = 0; *facetdegree = 0; *nbtab = 0;
+				return 0;
+			}
+			const unsigned int deg = (unsigned int)facets[0].size();
+			for(unsigned int f = 1; f < nf; f++)
+			{
+				if (facets[f].size() != deg)
+				{
+					// A ragged hull cannot be returned as a rectangular matrix.
+					// Report it instead of emitting a buffer the caller will
+					// misread; the old code would have overrun it silently.
+					std::cerr << "convex_hull_3: facets have differing degrees ("
+					          << deg << " and " << facets[f].size()
+					          << "); cannot return a rectangular facet matrix" << std::endl;
+					*nbfacet = 0; *facetdegree = 0; *nbtab = 0;
+					return 0;
+				}
+			}
+
+			*nbfacet     = (int)nf;
+			*facetdegree = (int)deg;
+			*nbtab       = (int)(nf * deg);
+
+			hull = (int*)MALLOC(nf * deg * sizeof(int));
+
+			// Column-major: element (row=facet f, col=vertex v) lives at v*nf + f,
+			// so each ROW of the Scilab matrix is one facet, which is what the
+			// header above documents ("each row contains one simplex").
+			for(unsigned int f = 0; f < nf; f++)
+			{
+				for(unsigned int v = 0; v < deg; v++)
+				{
+					hull[v * nf + f] = facets[f][v];
+				}
 			}
  			return hull;
 		}

@@ -42,5 +42,9 @@ zz=[0.3076091];
 [tetra,ptr] = delaunay_3(x,y,z);
 dt3_remove_points(ptr,xx,yy,zz);
 new_tetra = dt3_get_connectivity(ptr);
-new_tetra1=int32([4  2  3  1]);
-assert_checkequal(new_tetra,new_tetra1);
+// Removing one of the five points leaves four, hence exactly one tetrahedron on
+// all of them. Which order CGAL lists its vertices in is not part of that
+// contract -- it reported [4 2 3 1] when this was written and [2 1 3 4] now, the
+// same tetrahedron. Verified before rewriting: the vertex set is identical.
+assert_checkequal(size(double(new_tetra)), [1 4]);
+assert_checkequal(gsort(double(new_tetra(:))', "g", "i"), [1 2 3 4]);

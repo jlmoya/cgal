@@ -191,13 +191,13 @@ int sci_interp2(GW_PARAMETERS)
     
     if (m5 != n4 || n5 != n3 )
     {
-        Scierror(999,"%s: size incompatibility between grid points and values\r\n","interp2"); 
+        Scierror(999,"%s: size incompatibility between grid points and values\n","interp2"); 
         return 0;
     }
     
     if(m1 != m2 || n1 != n2 )
     {
-        Scierror(999,"%s: bad inputs for xp, yp \r\n","interp2");
+        Scierror(999,"%s: bad inputs for xp, yp \n","interp2");
         return 0;
     }
     

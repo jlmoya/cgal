@@ -17,6 +17,35 @@
 #include <stdlib.h>
 
 void* create_output(int _iCoeff, int _iSize, int _iRows, int _iCols, void* _pvDataIn);
+
+/* Rank guard for the 2-D / vector parameters.
+ *
+ * Scilab 5 represented a 3-D array as an "hm" mlist, so the bare
+ * `!= sci_matrix` tests below rejected one automatically. Scilab 6 makes N-D
+ * doubles a first-class sci_matrix, so those tests now ACCEPT a 3-D array where
+ * a 2-D matrix or a vector is required, and the wrong shape only surfaces much
+ * later as "bad inputs for xp, yp, zp". Returns 1 when the variable has rank 2
+ * or less.
+ *
+ * Deliberately fails open: if the value cannot be read as an N-D double it is an
+ * ordinary matrix, which is exactly what these parameters want, so an API that
+ * declines the call can never turn valid input into a rejection.
+ */
+static int interp3_rank_le_2(void* _pvCtx, int* _piAddr)
+{
+    SciErr  e;
+    int     iDims = 0;
+    int*    piDims = NULL;
+    double* pdbl = NULL;
+
+    e = getHypermatOfDouble(_pvCtx, _piAddr, &piDims, &iDims, &pdbl);
+    if (e.iErr)
+    {
+        return 1;
+    }
+    return (iDims <= 2);
+}
+
 int sci_interp3(GW_PARAMETERS)
 {
     int minlhs=0, maxlhs=1, minrhs=7, maxrhs=7;
@@ -102,7 +131,7 @@ int sci_interp3(GW_PARAMETERS)
         return 0;
     }   
         
-    if ( iTypeXi != sci_matrix )
+    if ( iTypeXi != sci_matrix || !interp3_rank_le_2(pvApiCtx, piAdressXi) )
     {
         Scierror(999,"%s: Wrong type for input argument #%d: A matrix expected.\n",fname,1);
         return 0;
@@ -129,7 +158,7 @@ int sci_interp3(GW_PARAMETERS)
         return 0;
     }   
         
-    if ( iTypeYi != sci_matrix )
+    if ( iTypeYi != sci_matrix || !interp3_rank_le_2(pvApiCtx, piAdressYi) )
     {
         Scierror(999,"%s: Wrong type for input argument #%d: A matrix expected.\n",fname,2);
         return 0;
@@ -156,7 +185,7 @@ int sci_interp3(GW_PARAMETERS)
         return 0;
     }   
         
-    if ( iTypeZi != sci_matrix )
+    if ( iTypeZi != sci_matrix || !interp3_rank_le_2(pvApiCtx, piAdressZi) )
     {
         Scierror(999,"%s: Wrong type for input argument #%d: A matrix expected.\n",fname,3);
         return 0;
@@ -171,7 +200,7 @@ int sci_interp3(GW_PARAMETERS)
     
     if (m1 != m2 || m2 != m3 || n1 != n2 || n2 != n3 )
     {
-        Scierror(999,"%s: bad inputs for xp, yp, zp \r\n","interp3");
+        Scierror(999,"%s: bad inputs for xp, yp, zp \n","interp3");
         return 0;
     }
     
@@ -190,7 +219,7 @@ int sci_interp3(GW_PARAMETERS)
         return 0;
     }   
         
-    if ( iTypeX != sci_matrix )
+    if ( iTypeX != sci_matrix || !interp3_rank_le_2(pvApiCtx, piAdressX) )
     {
         Scierror(999,"%s: Wrong type for input argument #%d: A vector expected.\n",fname,4);
         return 0;
@@ -217,7 +246,7 @@ int sci_interp3(GW_PARAMETERS)
         return 0;
     }   
         
-    if ( iTypeY != sci_matrix )
+    if ( iTypeY != sci_matrix || !interp3_rank_le_2(pvApiCtx, piAdressY) )
     {
         Scierror(999,"%s: Wrong type for input argument #%d: A vector expected.\n",fname,5);
         return 0;
@@ -244,7 +273,7 @@ int sci_interp3(GW_PARAMETERS)
         return 0;
     }   
         
-    if ( iTypeZ != sci_matrix )
+    if ( iTypeZ != sci_matrix || !interp3_rank_le_2(pvApiCtx, piAdressZ) )
     {
         Scierror(999,"%s: Wrong type for input argument #%d: A vector expected.\n",fname,6);
         return 0;
@@ -265,7 +294,7 @@ int sci_interp3(GW_PARAMETERS)
     
     if (n4 != n5 || n5 != n6 || n6 != n4)
     {
-        Scierror(999,"%s: bad inputs for x, y, z \r\n","interp3");
+        Scierror(999,"%s: bad inputs for x, y, z \n","interp3");
         return 0;
     }
     

@@ -283,12 +283,38 @@ int sci_interp3(GW_PARAMETERS)
         return 0;
     }   
         
-    if ( iTypeV != sci_mlist )
+    /* V may arrive in either of two representations.
+     *
+     * Scilab 5 had no N-dimensional double type: a 3-D array was an "hm" mlist
+     * of {type-tag strings, dims, flat entries}, which is what the branch below
+     * walks. Scilab 6 made N-D doubles first class, so on any current Scilab
+     * ndgrid()/hypermat V is a plain sci_matrix with 3 dimensions and the old
+     * mlist-only test rejected it outright -- interp3 could not be called with a
+     * modern 3-D array at all ("An mlist expected"). Accept both: the mlist form
+     * for backward compatibility, and sci_matrix via getHypermatOfDouble, which
+     * yields the same two things the rest of this function consumes -- puiData
+     * (the 3 dimensions) and pdblReal (the flat data).
+     */
+    if ( iTypeV == sci_matrix )
     {
-        Scierror(999,"%s: Wrong type for input argument #%d: An mlist expected.\n",fname,7);
-        return 0;
+        int  iDimsV   = 0;
+        int* piDimsV  = NULL;
+
+        sciErr = getHypermatOfDouble(pvApiCtx, piAdressV, &piDimsV, &iDimsV, &pdblReal);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+        if (iDimsV != 3)
+        {
+            Scierror(999,"%s: Wrong size for input argument #%d: A 3-dimensional array expected.\n",fname,7);
+            return 0;
+        }
+        puiData = piDimsV;
     }
-    
+    else if ( iTypeV == sci_mlist )
+    {
 	sciErr = getListItemNumber(pvApiCtx, piAdressV, &iItem);
 	if (sciErr.iErr)
 	{
@@ -351,7 +377,13 @@ int sci_interp3(GW_PARAMETERS)
 		printError(&sciErr, 0);
 		return 0;
 	}
-    
+    }
+    else
+    {
+        Scierror(999,"%s: Wrong type for input argument #%d: A 3-dimensional array expected.\n",fname,7);
+        return 0;
+    }
+
     xp = (double**)MALLOC(m1*sizeof(double*));
     yp = (double**)MALLOC(m1*sizeof(double*));
     zp = (double**)MALLOC(m1*sizeof(double*));

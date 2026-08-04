@@ -80,4 +80,6 @@ int sci_mesh2_get_coord(GW_PARAMETERS)
     PutLhsVar();
     FREE(Coord);
     
+    return 0;   /* success: every error path above returns; falling off the
+                    end of this int function was undefined behaviour. */
 }

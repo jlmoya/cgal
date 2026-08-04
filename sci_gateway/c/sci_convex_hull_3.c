@@ -140,6 +140,8 @@ int sci_convex_hull_3(GW_PARAMETERS)
     LhsVar(1) = Rhs + 1;
     PutLhsVar();
     FREE(data);
+    return 0;   /* success: every error path above returns; falling off the
+                    end of this int function was undefined behaviour. */
 }
     
     

@@ -101,4 +101,6 @@ int sci_mesh2_get_connectivity(GW_PARAMETERS)
     FREE(data2);
 
     
+    return 0;   /* success: every error path above returns; falling off the
+                    end of this int function was undefined behaviour. */
 }

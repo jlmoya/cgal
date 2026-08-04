@@ -142,4 +142,6 @@ int sci_mesh_2(GW_PARAMETERS){
 
 
 
+    return 0;   /* success: every error path above returns; falling off the
+                    end of this int function was undefined behaviour. */
 }

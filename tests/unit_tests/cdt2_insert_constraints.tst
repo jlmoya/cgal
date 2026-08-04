@@ -15,7 +15,7 @@ cdt2_insert_constraints(ptr,C);
 assert_checkerror("cdt2_insert_constraints(x,C)","%s: Wrong type for input argument #%d: A pointer expected.",999,"cdt2_insert_constraints",1);
 
 //testing what error message is produced when inputs have wrong size 
-assert_checkerror("cdt2_insert_constraints(ptr,x)","%s: Incompatible inputs ",999,"cdt2_insert_constraints");
+assert_checkerror("cdt2_insert_constraints(ptr,x)","%s: Incompatible inputs",999,"cdt2_insert_constraints");
 
 //checking what error will be produced with wrong number of inputs
 assert_checkerror("cdt2_insert_constraints(ptr,y,C)","%s: Wrong number of input argument(s): %d expected.",77,"cdt2_insert_constraints",2);
